@@ -1,0 +1,47 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using ShelterManager.Database.Commons;
+using ShelterManager.Database.Entities;
+
+namespace ShelterManager.Database.Contexts;
+
+public sealed class ShelterManagerContext : DbContext
+{
+    private readonly TimeProvider _timeProvider;
+    
+    public ShelterManagerContext(DbContextOptions<ShelterManagerContext> options, TimeProvider timeProvider) : base(options)
+    {
+        _timeProvider = timeProvider;
+
+        ChangeTracker.StateChanged += UpdateTimestamps;
+        ChangeTracker.Tracked += UpdateTimestamps;
+    }
+
+    public DbSet<Animal> Animals { get; init; }
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        base.OnModelCreating(builder);
+        
+        builder.ApplyConfigurationsFromAssembly(typeof(BaseEntityConfiguration<>).Assembly);
+    }
+
+    private void UpdateTimestamps(object? sender, EntityEntryEventArgs e)
+    {
+        if (e.Entry.Entity is not ITimeTrackable timeTrackable)
+        {
+            return;
+        }
+
+        switch (e.Entry.State)
+        {
+            case EntityState.Added:
+                timeTrackable.CreatedAt = _timeProvider.GetUtcNow();
+                timeTrackable.UpdatedAt = _timeProvider.GetUtcNow();
+                return;
+            case EntityState.Modified:
+                timeTrackable.UpdatedAt = _timeProvider.GetUtcNow();
+                return;
+        }
+    }
+}
