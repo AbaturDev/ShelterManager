@@ -18,7 +18,9 @@ public sealed class ShelterManagerContext : DbContext
     }
 
     public DbSet<Animal> Animals { get; init; }
-
+    public DbSet<Species> Species { get; init; }
+    public DbSet<Breed> Breeds { get; set; }
+    
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
