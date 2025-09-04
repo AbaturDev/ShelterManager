@@ -1,0 +1,10 @@
+namespace ShelterManager.Common.Constants;
+
+public static class ApiRoutes
+{
+    public const string BaseRoot = "api";
+
+    public const string AnimalRoute = "animals";
+    public const string BreedRoute = "breeds";
+    public const string SpeciesRoute = "species";
+}
