@@ -9,7 +9,7 @@ public sealed record Breed : BaseEntity
     public required string Name { get; set; }
     public Guid SpeciesId { get; set; }
     public Species Species { get; set; } = null!;
-    public ICollection<Animal> Animals { get; set; } = new List<Animal>();
+    public ICollection<Animal> Animals { get; set; } = null!;
 
     private sealed class Configuration : BaseEntityConfiguration<Breed>
     {

@@ -7,7 +7,7 @@ namespace ShelterManager.Database.Entities;
 public sealed record Species : BaseEntity
 {
     public required string Name { get; set; }
-    public ICollection<Breed> Breeds { get; set; } = new List<Breed>();
+    public ICollection<Breed> Breeds { get; set; } = null!;
 
     private sealed class Configuration : BaseEntityConfiguration<Species>
     {
