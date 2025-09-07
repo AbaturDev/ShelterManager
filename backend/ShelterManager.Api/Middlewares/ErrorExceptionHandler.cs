@@ -4,7 +4,7 @@ using ShelterManager.Common.Exceptions;
 
 namespace ShelterManager.Api.Middlewares;
 
-public class ErrorExceptionHandler : IExceptionHandler
+public class ErrorExceptionHandler(ILogger<ErrorExceptionHandler> logger) : IExceptionHandler
 {
     public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception, CancellationToken cancellationToken)
     {
@@ -24,6 +24,8 @@ public class ErrorExceptionHandler : IExceptionHandler
         httpContext.Response.StatusCode = status;
         await httpContext.Response.WriteAsJsonAsync(problemDetails, cancellationToken);
 
+        logger.LogError(exception, "Handled exception for {Path}", httpContext.Request.Path);
+        
         return true;
     }
 }

@@ -2,8 +2,10 @@ using Azure;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using ShelterManager.Api.Constants;
+using ShelterManager.Api.Extensions;
 using ShelterManager.Common.Constants;
 using ShelterManager.Common.Utils;
+using ShelterManager.Services.Dtos.Animals;
 using ShelterManager.Services.Services.Abstractions;
 
 namespace ShelterManager.Api.Endpoints;
@@ -19,6 +21,8 @@ public static class AnimalEndpoints
             .WithTags(nameof(AnimalEndpoints));
 
         group.MapGet("", ListAnimals);
+        group.MapPost("", TestValid)
+            .WithRequestValidation<CreateAnimalDto>();
         
         return group;
     }
@@ -29,5 +33,12 @@ public static class AnimalEndpoints
         var response = await animalService.ListAnimalsAsync();
         
         return TypedResults.Ok(response);
+    }
+    
+    private static async Task<Ok<string>> TestValid(
+        [FromBody] CreateAnimalDto test
+        )
+    {
+        return TypedResults.Ok(test.Name);
     }
 }

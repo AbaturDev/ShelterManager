@@ -1,27 +1,43 @@
+using Serilog;
 using ShelterManager.Api.Extensions;
 using ShelterManager.Api.Middlewares;
 using ShelterManager.Core;
 using ShelterManager.Database;
 using ShelterManager.Services;
 
-var builder = WebApplication.CreateBuilder(args);
+try
+{
+    var builder = WebApplication.CreateBuilder(args);
 
-builder.AddCore();
-builder.AddDatabase();
-builder.AddServices();
+    builder.AddSerilog();
 
-builder.AddApiConfiguration();
+    builder.AddCore();
+    builder.AddDatabase();
+    builder.AddServices();
 
-builder.Services.AddExceptionHandler<ErrorExceptionHandler>();
+    builder.AddApiConfiguration();
 
-var app = builder.Build();
+    builder.Services.AddExceptionHandler<ErrorExceptionHandler>();
 
-app.UseExceptionHandler();
+    var app = builder.Build();
 
-app.UseApiConfiguration();
+    app.UseSerilogRequestLogging();
 
-app.UseHttpsRedirection();
+    app.UseExceptionHandler();
 
-app.RegisterEndpoints();
+    app.UseApiConfiguration();
 
-app.Run();
+    app.UseHttpsRedirection();
+
+    app.RegisterEndpoints();
+
+    app.Run();
+}
+catch (Exception ex)
+{
+    Log.Fatal(ex, "Application terminated unexpectedly");
+}
+finally
+{
+    Log.CloseAndFlush();
+}
