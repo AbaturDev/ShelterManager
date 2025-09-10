@@ -14,5 +14,7 @@ public static class Setup
         builder.Services.AddValidatorsFromAssemblyContaining<PageQueryFilterValidator>();
         
         builder.Services.AddScoped<IAnimalService, AnimalService>();
+        builder.Services.AddScoped<ISpeciesService, SpeciesService>();
+        builder.Services.AddScoped<IBreedService, BreedService>();
     }
 }
