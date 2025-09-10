@@ -14,6 +14,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\ShelterManager.Common\ShelterManager.Common.csproj" />
+      <ProjectReference Include="..\ShelterManager.Database\ShelterManager.Database.csproj" />
     </ItemGroup>
 
 </Project>

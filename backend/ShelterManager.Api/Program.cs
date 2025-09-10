@@ -9,7 +9,7 @@ try
 {
     var builder = WebApplication.CreateBuilder(args);
 
-    builder.AddSerilog();
+    //builder.AddSerilog();
 
     builder.AddCore();
     builder.AddDatabase();
@@ -21,7 +21,7 @@ try
 
     var app = builder.Build();
 
-    app.UseSerilogRequestLogging();
+    //app.UseSerilogRequestLogging();
 
     app.UseExceptionHandler();
 
