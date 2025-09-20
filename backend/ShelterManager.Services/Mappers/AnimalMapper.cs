@@ -9,6 +9,9 @@ public static class AnimalMapper
     {
         var dto = new AnimalDto
         {
+            Id = animal.Id,
+            CreatedAt = animal.CreatedAt,
+            UpdatedAt = animal.UpdatedAt,
             Name = animal.Name,
             Description = animal.Description,
             AdmissionDate = animal.AdmissionDate,

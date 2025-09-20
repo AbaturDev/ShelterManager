@@ -9,6 +9,9 @@ public static class SpeciesMapper
     {
         var dto = new SpeciesDto
         {
+            Id = species.Id,
+            CreatedAt = species.CreatedAt,
+            UpdatedAt = species.UpdatedAt,
             Name = species.Name
         };
 

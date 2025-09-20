@@ -77,4 +77,38 @@ public class AnimalService : IAnimalService
 
         return animal.Id;
     }
+
+    public async Task DeleteAnimalAsync(Guid id, CancellationToken ct)
+    {
+        var animal = await _context.Animals
+            .FirstOrDefaultAsync(a => a.Id == id, ct);
+
+        if (animal is null)
+        {
+            throw new NotFoundException("Animal not found");
+        }
+
+        _context.Animals.Remove(animal);
+        await _context.SaveChangesAsync(ct);
+    }
+
+    public async Task UpdateAnimalAsync(Guid id, UpdateAnimalDto dto, CancellationToken ct)
+    {
+        var animal = await _context.Animals
+            .FirstOrDefaultAsync(a => a.Id == id, ct);
+
+        if (animal is null)
+        {
+            throw new NotFoundException("Animal not found");
+        }
+
+        animal.Name = dto.Name;
+        animal.AdmissionDate = dto.AdmissionDate;
+        animal.Age = dto.Age;
+        animal.Description = dto.Description;
+        animal.ImagePath = dto.ImagePath;
+        animal.Status = dto.Status;
+        
+        await _context.SaveChangesAsync(ct);
+    }
 }

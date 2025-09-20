@@ -7,6 +7,6 @@ public interface ISpeciesService
 {
     Task<PaginatedResponse<SpeciesDto>> ListSpeciesAsync(PageQueryFilter pageQueryFilter, CancellationToken ct);
     Task<SpeciesDto> GetSpeciesByIdAsync(Guid id, CancellationToken ct);
-    Task CreateSpeciesAsync(CreateSpeciesDto dto, CancellationToken ct);
+    Task<Guid> CreateSpeciesAsync(CreateSpeciesDto dto, CancellationToken ct);
     Task DeleteSpeciesAsync(Guid id, CancellationToken ct);
 }

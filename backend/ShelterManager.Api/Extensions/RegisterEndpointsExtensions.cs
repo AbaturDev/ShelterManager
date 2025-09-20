@@ -6,6 +6,9 @@ public static class RegisterEndpointsExtensions
 {
     public static void RegisterEndpoints(this IEndpointRouteBuilder app)
     {
-        app.MapAnimalEndpoints();
+        app
+            .MapAnimalEndpoints()
+            .MapBreedEndpoints()
+            .MapSpeciesEndpoints();
     }
 }

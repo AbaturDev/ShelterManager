@@ -51,7 +51,7 @@ public class SpeciesService : ISpeciesService
         return speciesDto;
     }
 
-    public async Task CreateSpeciesAsync(CreateSpeciesDto dto, CancellationToken ct)
+    public async Task<Guid> CreateSpeciesAsync(CreateSpeciesDto dto, CancellationToken ct)
     {
         var speciesExists = await _context.Species
             .Where(s => s.Name == dto.Name)
@@ -69,6 +69,8 @@ public class SpeciesService : ISpeciesService
 
         _context.Species.Add(species);
         await _context.SaveChangesAsync(ct);
+
+        return species.Id;
     }
 
     public async Task DeleteSpeciesAsync(Guid id, CancellationToken ct)

@@ -20,10 +20,14 @@ public static class AnimalEndpoints
             .RequireRateLimiting(RateLimiters.DefaultRateLimiterName)
             .WithTags(nameof(AnimalEndpoints));
 
-        group.MapGet("", ListAnimals);
+        group.MapGet("", ListAnimals)
+            .WithRequestValidation<PageQueryFilter>();
         group.MapGet("/{id:guid}", GetAnimal);
         group.MapPost("", CreateAnimal)
             .WithRequestValidation<CreateAnimalDto>();
+        group.MapPut("", UpdateAnimal)
+            .WithRequestValidation<UpdateAnimalDto>();
+        group.MapDelete("", DeleteAnimal);
         
         return group;
     }
@@ -57,5 +61,28 @@ public static class AnimalEndpoints
         var id = await animalService.CreateAnimalAsync(animalDto, ct);
 
         return TypedResults.Created($"/animals/{id}");
+    }
+
+    private static async Task<NoContent> DeleteAnimal(
+        Guid id,
+        [FromServices] IAnimalService animalService,
+        CancellationToken ct
+    )
+    {
+        await animalService.DeleteAnimalAsync(id, ct);
+
+        return TypedResults.NoContent();
+    }
+
+    private static async Task<Ok> UpdateAnimal(
+        Guid id,
+        [FromBody] UpdateAnimalDto dto,
+        [FromServices] IAnimalService animalService,
+        CancellationToken ct
+    )
+    {
+        await animalService.UpdateAnimalAsync(id, dto, ct);
+
+        return TypedResults.Ok();
     }
 }

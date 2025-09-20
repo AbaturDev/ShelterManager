@@ -9,6 +9,9 @@ public static class BreedMapper
     {
         var dto = new BreedDto
         {
+            Id = breed.Id,
+            CreatedAt = breed.CreatedAt,
+            UpdatedAt = breed.UpdatedAt,
             Name = breed.Name,
             SpeciesId = breed.SpeciesId
         };
