@@ -27,10 +27,6 @@ public static class SpeciesEndpoints
         group.MapPost("", CreateSpecies)
             .WithRequestValidation<CreateSpeciesDto>();
         group.MapDelete("{id:guid}", DeleteSpecies);
-
-        group.MapGet("/{id:guid}/breeds", ListSpeciesBreeds)
-            .WithRequestValidation<PageQueryFilter>();
-        group.MapPost("/{id:guid}/breeds", CreateBreedForSpecies);
         
         return group;
     }
@@ -77,29 +73,5 @@ public static class SpeciesEndpoints
         await speciesService.DeleteSpeciesAsync(id, ct);
 
         return TypedResults.NoContent();
-    }
-
-    private static async Task<Ok<PaginatedResponse<BreedDto>>> ListSpeciesBreeds(
-        Guid id,
-        [AsParameters] PageQueryFilter pageQueryFilter,
-        [FromServices] IBreedService breedService,
-        CancellationToken ct
-        )
-    {
-        var response = await breedService.ListBreedsAsync(pageQueryFilter, id, ct);
-
-        return TypedResults.Ok(response);
-    }
-
-    private static async Task<Created> CreateBreedForSpecies(
-        Guid id,
-        [FromBody] CreateBreedDto dto,
-        [FromServices] IBreedService breedService,
-        CancellationToken ct
-        )
-    {
-        await breedService.CreateBreedAsync(dto, id, ct);
-
-        return TypedResults.Created();
     }
 }

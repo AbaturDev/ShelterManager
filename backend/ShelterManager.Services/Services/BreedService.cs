@@ -36,10 +36,11 @@ public class BreedService : IBreedService
         return new PaginatedResponse<BreedDto>(items, pageQueryFilter.Page, pageQueryFilter.PageSize, count);
     }
 
-    public async Task<BreedDto> GetBreedByIdAsync(Guid id, CancellationToken ct)
+    public async Task<BreedDto> GetBreedByIdAsync(Guid id, Guid speciesId, CancellationToken ct)
     {
         var breed = await _context.Breeds
             .AsNoTracking()
+            .Where(b => b.SpeciesId == speciesId)
             .FirstOrDefaultAsync(b => b.Id == id, ct);
 
         if (breed is null)
@@ -52,7 +53,7 @@ public class BreedService : IBreedService
         return dto;
     }
 
-    public async Task CreateBreedAsync(CreateBreedDto dto, Guid speciesId, CancellationToken ct)
+    public async Task<Guid> CreateBreedAsync(CreateBreedDto dto, Guid speciesId, CancellationToken ct)
     {
         var species = await _context.Species
             .Include(s => s.Breeds)
@@ -70,18 +71,23 @@ public class BreedService : IBreedService
         {
             throw new BadRequestException("Breed already exists for this species");
         }
-        
-        species.Breeds.Add(new Breed
+
+        var breed = new Breed
         {
-            Name = dto.Name
-        });
+            Name = dto.Name,
+        };
+
+        species.Breeds.Add(breed);
 
         await _context.SaveChangesAsync(ct);
+
+        return breed.Id;
     }
 
-    public async Task DeleteBreedAsync(Guid id, CancellationToken ct)
+    public async Task DeleteBreedAsync(Guid id, Guid speciesId, CancellationToken ct)
     {
         var breed = await _context.Breeds
+            .Where(b => b.SpeciesId == speciesId)
             .FirstOrDefaultAsync(b => b.Id == id, ct);
 
         if (breed is null)

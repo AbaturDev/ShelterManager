@@ -6,7 +6,7 @@ namespace ShelterManager.Services.Validators.Animals;
 
 public class UpdateAnimalDtoValidator : AbstractValidator<AnimalDto>
 {
-    public UpdateAnimalDtoValidator()
+    public UpdateAnimalDtoValidator(TimeProvider timeProvider)
     {
         RuleFor(x => x.Name)
             .NotEmpty()
@@ -16,10 +16,12 @@ public class UpdateAnimalDtoValidator : AbstractValidator<AnimalDto>
             .MaximumLength(350);
 
         RuleFor(x => x.Status)
-            .NotEmpty()
             .IsInEnum();
         
         RuleFor(x => x.Age)
             .InclusiveBetween(0, 50);
+        
+        RuleFor(x => x.AdmissionDate)
+            .LessThanOrEqualTo(timeProvider.GetUtcNow());
     }
 }
