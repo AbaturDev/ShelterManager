@@ -2,19 +2,18 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using ShelterManager.Api.Constants;
 using ShelterManager.Api.Extensions;
-using ShelterManager.Common.Constants;
-using ShelterManager.Common.Dtos;
-using ShelterManager.Common.Utils;
+using ShelterManager.Api.Utils;
 using ShelterManager.Services.Dtos.Breeds;
+using ShelterManager.Services.Dtos.Commons;
 using ShelterManager.Services.Services.Abstractions;
 
 namespace ShelterManager.Api.Endpoints;
 
 public static class BreedEndpoints
 {
-    public static RouteGroupBuilder MapBreedEndpoints(this IEndpointRouteBuilder route)
+    public static RouteGroupBuilder MapBreedEndpoints(this IEndpointRouteBuilder route, int apiVersion)
     {
-        var groupRoute = ApiRouteBuilder.BuildBaseGroupRoute(ApiRoutes.SpeciesRoute, 1);
+        var groupRoute = ApiRouteBuilder.BuildBaseGroupRoute(ApiRoutes.SpeciesRoute, apiVersion);
 
         var group = route.MapGroup(groupRoute + "/{speciesId:guid}/" + ApiRoutes.BreedRoute)
             .RequireRateLimiting(RateLimiters.DefaultRateLimiterName)

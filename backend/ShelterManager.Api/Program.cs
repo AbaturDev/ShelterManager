@@ -18,7 +18,7 @@ try
     builder.AddApiConfiguration();
 
     builder.Services.AddExceptionHandler<ErrorExceptionHandler>();
-
+    
     var app = builder.Build();
 
     //app.UseSerilogRequestLogging();

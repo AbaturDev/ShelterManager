@@ -18,7 +18,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ShelterManager.Common\ShelterManager.Common.csproj" />
       <ProjectReference Include="..\ShelterManager.Core\ShelterManager.Core.csproj" />
       <ProjectReference Include="..\ShelterManager.Database\ShelterManager.Database.csproj" />
       <ProjectReference Include="..\ShelterManager.Services\ShelterManager.Services.csproj" />

@@ -1,5 +1,5 @@
-using ShelterManager.Common.Dtos;
 using ShelterManager.Services.Dtos.Breeds;
+using ShelterManager.Services.Dtos.Commons;
 
 namespace ShelterManager.Services.Services.Abstractions;
 

@@ -1,4 +1,4 @@
-namespace ShelterManager.Common.Dtos;
+namespace ShelterManager.Services.Dtos.Commons;
 
 public sealed record PaginatedResponse<T>
 {

@@ -1,3 +1,3 @@
-namespace ShelterManager.Common.Exceptions;
+namespace ShelterManager.Core.Exceptions;
 
 public sealed class NotFoundException(string message) : Exception(message);

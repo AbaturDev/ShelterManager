@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.RateLimiting;
 using ShelterManager.Api.Constants;
+using ShelterManager.Core.Extensions;
 
 namespace ShelterManager.Api.Extensions;
 
@@ -10,11 +11,13 @@ public static class ApiExtensions
         builder.Services.AddProblemDetails();
         AddRateLimiting(builder);
         AddOpenApiDocs(builder);
+        AddCorsConfiguration(builder);
     }
 
     public static void UseApiConfiguration(this WebApplication app)
     {
         app.UseRateLimiter();
+        app.UseCors();
         
         if (app.Environment.IsDevelopment())
         {
@@ -42,6 +45,36 @@ public static class ApiExtensions
         });
     }
 
+    private static void AddCorsConfiguration(IHostApplicationBuilder builder)
+    {
+        var cors = builder.Configuration.GetSection(CorsOptions.SectionName).Get<CorsOptions>();
+        
+        builder.Services.AddCors(options =>
+        {
+            options.AddDefaultPolicy(b =>
+            {
+                if (cors is null)
+                {
+                    return;
+                }
+                
+                b.WithOrigins(cors.Origins)
+                    .WithMethods(cors.Methods)
+                    .WithHeaders(cors.Headers)
+                    .WithExposedHeaders(cors.ExposedHeaders);
+
+                if (cors.AllowCredentials)
+                {
+                    b.AllowCredentials();
+                }
+                else
+                {
+                    b.DisallowCredentials();
+                }
+            });
+        });
+    }
+    
     private static void AddOpenApiDocs(IHostApplicationBuilder builder)
     {
         builder.Services.AddOpenApi();

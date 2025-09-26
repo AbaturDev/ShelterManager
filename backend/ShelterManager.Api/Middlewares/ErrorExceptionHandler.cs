@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using ShelterManager.Common.Exceptions;
+using ShelterManager.Core.Exceptions;
 
 namespace ShelterManager.Api.Middlewares;
 
