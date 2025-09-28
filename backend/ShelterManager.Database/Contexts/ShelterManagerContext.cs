@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using ShelterManager.Database.Commons;
@@ -5,7 +7,7 @@ using ShelterManager.Database.Entities;
 
 namespace ShelterManager.Database.Contexts;
 
-public sealed class ShelterManagerContext : DbContext
+public sealed class ShelterManagerContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
 {
     private readonly TimeProvider _timeProvider;
     
@@ -25,8 +27,10 @@ public sealed class ShelterManagerContext : DbContext
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
-        
+
         builder.ApplyConfigurationsFromAssembly(typeof(BaseEntityConfiguration<>).Assembly);
+        
+        builder.ApplyConfigurationsFromAssembly(typeof(UserConfiguration).Assembly);
     }
 
     private void UpdateTimestamps(object? sender, EntityEntryEventArgs e)

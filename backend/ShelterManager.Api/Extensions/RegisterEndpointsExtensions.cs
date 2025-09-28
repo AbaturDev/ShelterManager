@@ -15,5 +15,6 @@ public static class RegisterEndpointsExtensions
         app.MapAnimalEndpoints(apiVersion);
         app.MapBreedEndpoints(apiVersion);
         app.MapSpeciesEndpoints(apiVersion);
+        app.MapAccountEndpoints(apiVersion);
     }
 }

@@ -16,5 +16,6 @@ public static class Setup
         builder.Services.AddScoped<IAnimalService, AnimalService>();
         builder.Services.AddScoped<ISpeciesService, SpeciesService>();
         builder.Services.AddScoped<IBreedService, BreedService>();
+        builder.Services.AddScoped<IAccountService, AccountService>();
     }
 }

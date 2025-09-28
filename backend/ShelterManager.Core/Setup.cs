@@ -12,5 +12,7 @@ public static class Setup
         builder.Services.AddSingleton(TimeProvider.System);
 
         builder.Services.AddOptionsWithValidation<ApiOptions>(ApiOptions.SectionName);
+        builder.Services.AddOptionsWithValidation<CorsOptions>(CorsOptions.SectionName);
+        builder.Services.AddOptionsWithValidation<JwtOptions>(JwtOptions.SectionName);
     }
 }

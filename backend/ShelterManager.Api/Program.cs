@@ -27,8 +27,6 @@ try
 
     app.UseApiConfiguration();
 
-    app.UseHttpsRedirection();
-
     app.RegisterEndpoints();
 
     app.Run();

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace ShelterManager.Core.Extensions;
+namespace ShelterManager.Core.Options;
 
 public class CorsOptions
 {
