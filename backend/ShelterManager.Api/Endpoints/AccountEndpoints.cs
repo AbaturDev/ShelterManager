@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using ShelterManager.Api.Constants;
+using ShelterManager.Api.Extensions;
 using ShelterManager.Api.Utils;
 using ShelterManager.Services.Dtos.Accounts;
 using ShelterManager.Services.Services.Abstractions;
@@ -19,8 +20,10 @@ public static class AccountEndpoints
             .WithTags(nameof(AccountEndpoints));
 
         group.MapPost("/login", Login);
-        group.MapPost("/register", Register);
-        group.MapPost("/change-password", ChangePassword);
+        group.MapPost("/register", Register)
+            .WithRequestValidation<RegisterRequest>();
+        group.MapPost("/change-password", ChangePassword)
+            .WithRequestValidation<ChangePasswordRequest>();
         
         return group;
     }
