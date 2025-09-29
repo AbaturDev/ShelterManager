@@ -3,8 +3,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
+using Scalar.AspNetCore;
 using ShelterManager.Api.Constants;
+using ShelterManager.Api.Utils;
 using ShelterManager.Core.Options;
 
 namespace ShelterManager.Api.Extensions;
@@ -121,62 +122,41 @@ public static class ApiExtensions
     
     private static void AddOpenApiDocs(IHostApplicationBuilder builder)
     {
-        builder.Services.AddOpenApi();
-        
         var apiOptions = builder.Configuration.GetSection(ApiOptions.SectionName).Get<ApiOptions>();
         if (apiOptions is null)
         {
             return;
         }
-
-        builder.Services.AddSwaggerGen(c =>
+        
+        builder.Services.AddOpenApi(options =>
         {
-            c.SwaggerDoc("v1", new OpenApiInfo
+            options.AddDocumentTransformer((document, _, _) =>
             {
-                Title = apiOptions.Title,
-                Version = $"v{apiOptions.Version}",
-                Description = apiOptions.Description,
-            });
-
-            c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-            {
-                Name = "Authorization",
-                Type = SecuritySchemeType.ApiKey,
-                Scheme = "Bearer",
-                BearerFormat = "JWT",
-                In = ParameterLocation.Header,
-                Description = "JWT Authorization header using the Bearer scheme.\n" +
-                              "Enter 'Bearer' [space] and then your token in the text input below.\n" +
-                              "Example: 'Bearer 12345abcdef'"
-            });
-
-            c.AddSecurityRequirement(new OpenApiSecurityRequirement
-            {
+                document.Info = new()
                 {
-                    new OpenApiSecurityScheme
-                    {
-                        Reference = new OpenApiReference
-                        {
-                            Type = ReferenceType.SecurityScheme,
-                            Id = "Bearer"
-                        }
-                    },
-                    new List<string>()
-                }
+                    Title = apiOptions.Title,
+                    Version = $"v{apiOptions.Version}",
+                    Description = apiOptions.Description,
+                };
+                return Task.CompletedTask;
             });
+            options.AddDocumentTransformer<BearerSecuritySchemeTransformer>();
         });
     }
 
     private static void UseApiDocs(WebApplication app)
     {
-        app.MapOpenApi();
+        var apiOptions = app.Services.GetRequiredService<IOptions<ApiOptions>>();
 
-        //var apiOptions = app.Services.GetRequiredService<IOptions<ApiOptions>>();
+        var openApiRoutePattern = $"/open-api/v{apiOptions.Value.Version}.json";
+        
+        app.MapOpenApi(openApiRoutePattern);
 
-        app.UseSwagger();
-        app.UseSwaggerUI(c =>
+        app.MapScalarApiReference(options =>
         {
-            c.SwaggerEndpoint("/v1/swagger.json", "API");
+            options.Title = apiOptions.Value.Title;
+            options.OpenApiRoutePattern = openApiRoutePattern;
+            options.HideClientButton = true;
         });
     }
 }

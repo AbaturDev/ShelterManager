@@ -25,9 +25,9 @@ public static class AnimalEndpoints
         group.MapGet("/{id:guid}", GetAnimal);
         group.MapPost("", CreateAnimal)
             .WithRequestValidation<CreateAnimalDto>();
-        group.MapPut("", UpdateAnimal)
+        group.MapPut("/{id:guid}", UpdateAnimal)
             .WithRequestValidation<UpdateAnimalDto>();
-        group.MapDelete("", DeleteAnimal);
+        group.MapDelete("/{id:guid}", DeleteAnimal);
         
         return group;
     }
