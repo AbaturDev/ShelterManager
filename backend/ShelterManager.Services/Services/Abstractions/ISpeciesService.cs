@@ -1,4 +1,4 @@
-using ShelterManager.Common.Dtos;
+using ShelterManager.Services.Dtos.Commons;
 using ShelterManager.Services.Dtos.Species;
 
 namespace ShelterManager.Services.Services.Abstractions;

@@ -1,7 +1,7 @@
 using System.Text;
-using ShelterManager.Common.Constants;
+using ShelterManager.Api.Constants;
 
-namespace ShelterManager.Common.Utils;
+namespace ShelterManager.Api.Utils;
 
 public static class ApiRouteBuilder
 {

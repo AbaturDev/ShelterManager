@@ -1,5 +1,5 @@
 using FluentValidation;
-using ShelterManager.Common.Dtos;
+using ShelterManager.Services.Dtos.Commons;
 
 namespace ShelterManager.Services.Validators;
 

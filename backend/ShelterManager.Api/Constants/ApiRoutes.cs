@@ -1,4 +1,4 @@
-namespace ShelterManager.Common.Constants;
+namespace ShelterManager.Api.Constants;
 
 public static class ApiRoutes
 {

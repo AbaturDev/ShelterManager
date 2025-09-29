@@ -12,13 +12,12 @@
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="Scalar.AspNetCore" Version="2.8.7" />
         <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
         <PackageReference Include="Serilog.Exceptions" Version="8.4.0" />
-        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="9.0.4" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ShelterManager.Common\ShelterManager.Common.csproj" />
       <ProjectReference Include="..\ShelterManager.Core\ShelterManager.Core.csproj" />
       <ProjectReference Include="..\ShelterManager.Database\ShelterManager.Database.csproj" />
       <ProjectReference Include="..\ShelterManager.Services\ShelterManager.Services.csproj" />

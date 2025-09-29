@@ -15,7 +15,7 @@ public sealed record Animal : BaseEntity
     public string? Description { get; set; }
     public Guid BreedId { get; set; }
     public Breed Breed { get; set; } = null!;
-
+    public ICollection<Event> Events { get; set; } = new List<Event>();
     private sealed class Configuration : BaseEntityConfiguration<Animal>
     {
         public override void Configure(EntityTypeBuilder<Animal> builder)
@@ -30,6 +30,10 @@ public sealed record Animal : BaseEntity
             builder.HasOne(a => a.Breed)
                 .WithMany(b => b.Animals)
                 .HasForeignKey(a => a.BreedId);
+            
+            builder.HasMany(a => a.Events)
+                .WithOne(e => e.Animal)
+                .HasForeignKey(e => e.AnimalId);
         }
     }
 }

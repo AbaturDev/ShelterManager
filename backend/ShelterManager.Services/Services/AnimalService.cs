@@ -1,13 +1,13 @@
 using Microsoft.EntityFrameworkCore;
-using ShelterManager.Common.Dtos;
-using ShelterManager.Common.Exceptions;
-using ShelterManager.Common.Utils;
+using ShelterManager.Core.Exceptions;
 using ShelterManager.Database.Contexts;
 using ShelterManager.Database.Entities;
 using ShelterManager.Database.Enums;
 using ShelterManager.Services.Dtos.Animals;
+using ShelterManager.Services.Dtos.Commons;
 using ShelterManager.Services.Mappers;
 using ShelterManager.Services.Services.Abstractions;
+using ShelterManager.Services.Utils;
 
 namespace ShelterManager.Services.Services;
 

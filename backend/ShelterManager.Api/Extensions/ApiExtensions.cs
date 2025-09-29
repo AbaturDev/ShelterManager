@@ -1,5 +1,12 @@
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.RateLimiting;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using Scalar.AspNetCore;
 using ShelterManager.Api.Constants;
+using ShelterManager.Api.Utils;
+using ShelterManager.Core.Options;
 
 namespace ShelterManager.Api.Extensions;
 
@@ -8,12 +15,22 @@ public static class ApiExtensions
     public static void AddApiConfiguration(this IHostApplicationBuilder builder)
     {
         builder.Services.AddProblemDetails();
+        AddAuthentication(builder);
+        builder.Services.AddAuthorization();
         AddRateLimiting(builder);
         AddOpenApiDocs(builder);
+        AddCorsConfiguration(builder);
     }
 
     public static void UseApiConfiguration(this WebApplication app)
     {
+        app.UseCors();
+        
+        app.UseHttpsRedirection();
+        
+        app.UseAuthentication();
+        app.UseAuthorization();
+        
         app.UseRateLimiter();
         
         if (app.Environment.IsDevelopment())
@@ -42,17 +59,104 @@ public static class ApiExtensions
         });
     }
 
+    private static void AddCorsConfiguration(IHostApplicationBuilder builder)
+    {
+        var cors = builder.Configuration.GetSection(CorsOptions.SectionName).Get<CorsOptions>();
+        
+        builder.Services.AddCors(options =>
+        {
+            options.AddDefaultPolicy(b =>
+            {
+                if (cors is null)
+                {
+                    return;
+                }
+                
+                b.WithOrigins(cors.Origins)
+                    .WithMethods(cors.Methods)
+                    .WithHeaders(cors.Headers)
+                    .WithExposedHeaders(cors.ExposedHeaders);
+
+                if (cors.AllowCredentials)
+                {
+                    b.AllowCredentials();
+                }
+                else
+                {
+                    b.DisallowCredentials();
+                }
+            });
+        });
+    }
+
+    private static void AddAuthentication(IHostApplicationBuilder builder)
+    {
+        var jwtOptions = builder.Configuration.GetSection(JwtOptions.SectionName).Get<JwtOptions>();
+        if (jwtOptions is null)
+        {
+            return;
+        }
+        
+        builder.Services.AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        })
+        .AddJwtBearer(options =>
+        {
+            options.RequireHttpsMetadata = false;
+            options.SaveToken = true;
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateIssuerSigningKey = true,
+                ValidateLifetime = true,
+                ValidIssuer = jwtOptions.Issuer,
+                ValidAudience = jwtOptions.Audience,
+                IssuerSigningKey =
+                    new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions.Secret))
+            };
+        });
+    }
+    
     private static void AddOpenApiDocs(IHostApplicationBuilder builder)
     {
-        builder.Services.AddOpenApi();
+        var apiOptions = builder.Configuration.GetSection(ApiOptions.SectionName).Get<ApiOptions>();
+        if (apiOptions is null)
+        {
+            return;
+        }
+        
+        builder.Services.AddOpenApi(options =>
+        {
+            options.AddDocumentTransformer((document, _, _) =>
+            {
+                document.Info = new()
+                {
+                    Title = apiOptions.Title,
+                    Version = $"v{apiOptions.Version}",
+                    Description = apiOptions.Description,
+                };
+                return Task.CompletedTask;
+            });
+            options.AddDocumentTransformer<BearerSecuritySchemeTransformer>();
+        });
     }
 
     private static void UseApiDocs(WebApplication app)
     {
-        app.MapOpenApi();
-        app.UseSwaggerUI(options =>
+        var apiOptions = app.Services.GetRequiredService<IOptions<ApiOptions>>();
+
+        var openApiRoutePattern = $"/open-api/v{apiOptions.Value.Version}.json";
+        
+        app.MapOpenApi(openApiRoutePattern);
+
+        app.MapScalarApiReference(options =>
         {
-            options.SwaggerEndpoint("/openapi/v1.json", "Shelter Manager API");
+            options.Title = apiOptions.Value.Title;
+            options.OpenApiRoutePattern = openApiRoutePattern;
+            options.HideClientButton = true;
         });
     }
 }

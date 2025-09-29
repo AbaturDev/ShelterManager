@@ -18,7 +18,7 @@ try
     builder.AddApiConfiguration();
 
     builder.Services.AddExceptionHandler<ErrorExceptionHandler>();
-
+    
     var app = builder.Build();
 
     //app.UseSerilogRequestLogging();
@@ -26,8 +26,6 @@ try
     app.UseExceptionHandler();
 
     app.UseApiConfiguration();
-
-    app.UseHttpsRedirection();
 
     app.RegisterEndpoints();
 

@@ -5,7 +5,7 @@ namespace ShelterManager.Services.Validators.Animals;
 
 public class CreateAnimalDtoValidator : AbstractValidator<CreateAnimalDto>
 {
-    public CreateAnimalDtoValidator()
+    public CreateAnimalDtoValidator(TimeProvider timeProvider)
     {
         RuleFor(x => x.Name)
             .NotEmpty()
@@ -16,5 +16,8 @@ public class CreateAnimalDtoValidator : AbstractValidator<CreateAnimalDto>
 
         RuleFor(x => x.Age)
             .InclusiveBetween(0, 50);
+
+        RuleFor(x => x.AdmissionDate)
+            .LessThanOrEqualTo(timeProvider.GetUtcNow());
     }
 }
