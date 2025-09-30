@@ -8,7 +8,7 @@ public class CreateSpeciesDtoValidator : AbstractValidator<CreateSpeciesDto>
     public CreateSpeciesDtoValidator()
     {
         RuleFor(x => x.Name)
-            .NotEmpty()
-            .MaximumLength(30);
+            .NotEmpty().WithMessage("Name is required")
+            .MaximumLength(30).WithMessage("Name must not exceed 30 characters");
     }
 }

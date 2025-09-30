@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.RateLimiting;
@@ -15,11 +16,16 @@ public static class ApiExtensions
     public static void AddApiConfiguration(this IHostApplicationBuilder builder)
     {
         builder.Services.AddProblemDetails();
+        
         AddAuthentication(builder);
         builder.Services.AddAuthorization();
+        
         AddRateLimiting(builder);
+        
+        AddCultureConfiguration(builder);
         AddOpenApiDocs(builder);
         AddCorsConfiguration(builder);
+        
     }
 
     public static void UseApiConfiguration(this WebApplication app)
@@ -56,6 +62,17 @@ public static class ApiExtensions
                 o.PermitLimit = 5;
                 o.QueueLimit = 0;
             });
+        });
+    }
+
+    private static void AddCultureConfiguration(IHostApplicationBuilder builder)
+    {
+        builder.Services.Configure<RequestLocalizationOptions>(options =>
+        {
+            var supportedCultures = new[] { new CultureInfo("en-US") };
+            options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("en-US");
+            options.SupportedCultures = supportedCultures;
+            options.SupportedUICultures = supportedCultures;
         });
     }
 

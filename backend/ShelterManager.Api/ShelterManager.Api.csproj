@@ -14,7 +14,6 @@
         </PackageReference>
         <PackageReference Include="Scalar.AspNetCore" Version="2.8.7" />
         <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
-        <PackageReference Include="Serilog.Exceptions" Version="8.4.0" />
     </ItemGroup>
 
     <ItemGroup>
