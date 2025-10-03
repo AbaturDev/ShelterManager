@@ -10,7 +10,13 @@ public sealed record Event : BaseEntity
     public string? Description { get; set; }
     public required DateTimeOffset Date { get; set; }
     public bool IsDone { get; set; }
+    public DateTimeOffset? CompletedAt { get; set; }
+    public decimal Cost { get; set; }
+    public required string Location { get; set; }
     public Guid AnimalId { get; set; }
+    public Guid UserId { get; set; }
+    
+    public User User { get; set; } = null!;
     public Animal Animal { get; set; } = null!;
 
     private sealed class Configuration : BaseEntityConfiguration<Event>
@@ -27,6 +33,10 @@ public sealed record Event : BaseEntity
             builder.HasOne(e => e.Animal)
                 .WithMany(a => a.Events)
                 .HasForeignKey(e => e.AnimalId);
+            
+            builder.HasOne(e => e.User)
+                .WithMany()
+                .HasForeignKey(e => e.UserId);
         }
     }
 }
