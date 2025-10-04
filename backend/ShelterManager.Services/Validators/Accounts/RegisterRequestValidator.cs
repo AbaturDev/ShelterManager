@@ -8,15 +8,15 @@ public class RegisterRequestValidator : AbstractValidator<RegisterRequest>
     public RegisterRequestValidator()
     {
         RuleFor(x => x.Name)
-            .NotEmpty()
-            .MaximumLength(30);
+            .NotEmpty().WithMessage("Name is required")
+            .MaximumLength(30).WithMessage("Name must not exceed 30 characters");
         
         RuleFor(x => x.Surname)
-            .NotEmpty()
-            .MaximumLength(30);
+            .NotEmpty().WithMessage("Surname is required")
+            .MaximumLength(30).WithMessage("Surname must not exceed 30 characters");
         
         RuleFor(x => x.Email)
-            .NotEmpty()
-            .EmailAddress();
+            .NotEmpty().WithMessage("Email is required")
+            .EmailAddress().WithMessage("Email must be a valid email address");
     }
 }

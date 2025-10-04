@@ -9,8 +9,6 @@ try
 {
     var builder = WebApplication.CreateBuilder(args);
 
-    //builder.AddSerilog();
-
     builder.AddCore();
     builder.AddDatabase();
     builder.AddServices();
@@ -20,8 +18,6 @@ try
     builder.Services.AddExceptionHandler<ErrorExceptionHandler>();
     
     var app = builder.Build();
-
-    //app.UseSerilogRequestLogging();
 
     app.UseExceptionHandler();
 

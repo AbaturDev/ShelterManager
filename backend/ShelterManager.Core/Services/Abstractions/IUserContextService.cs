@@ -4,5 +4,5 @@ namespace ShelterManager.Core.Services.Abstractions;
 
 public interface IUserContextService
 {
-    ClaimsPrincipal? GetCurrentUser();
+    Guid? GetCurrentUserId();
 }

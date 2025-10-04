@@ -5,9 +5,9 @@ using ShelterManager.Database.Entities;
 using ShelterManager.Database.Enums;
 using ShelterManager.Services.Dtos.Animals;
 using ShelterManager.Services.Dtos.Commons;
+using ShelterManager.Services.Extensions;
 using ShelterManager.Services.Mappers;
 using ShelterManager.Services.Services.Abstractions;
-using ShelterManager.Services.Utils;
 
 namespace ShelterManager.Services.Services;
 

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ShelterManager.Database.Contexts;
 
@@ -11,9 +12,11 @@ using ShelterManager.Database.Contexts;
 namespace ShelterManager.Database.Migrations
 {
     [DbContext(typeof(ShelterManagerContext))]
-    partial class ShelterManagerContextModelSnapshot : ModelSnapshot
+    [Migration("20251004224025_UpdatedEventEntity")]
+    partial class UpdatedEventEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

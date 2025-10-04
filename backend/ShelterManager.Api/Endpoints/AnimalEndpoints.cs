@@ -17,7 +17,6 @@ public static class AnimalEndpoints
 
         var group = route.MapGroup(groupRoute)
             .RequireRateLimiting(RateLimiters.DefaultRateLimiterName)
-            .RequireAuthorization()
             .WithTags(nameof(AnimalEndpoints));
 
         group.MapGet("", ListAnimals)
@@ -60,7 +59,7 @@ public static class AnimalEndpoints
     {
         var id = await animalService.CreateAnimalAsync(animalDto, ct);
 
-        return TypedResults.Created($"/animals/{id}");
+        return TypedResults.Created($"/{ApiRoutes.AnimalRoute}/{id}");
     }
 
     private static async Task<NoContent> DeleteAnimal(

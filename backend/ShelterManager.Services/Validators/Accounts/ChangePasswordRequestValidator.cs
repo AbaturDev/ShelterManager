@@ -8,10 +8,11 @@ public class ChangePasswordRequestValidator : AbstractValidator<ChangePasswordRe
     public ChangePasswordRequestValidator()
     {
         RuleFor(x => x.Email)
-            .NotEmpty()
-            .EmailAddress();
+            .NotEmpty().WithMessage("Email is required")
+            .EmailAddress().WithMessage("Email must be a valid email address.");
 
         RuleFor(x => x.NewPassword)
-            .NotEqual(x => x.CurrentPassword);
+            .NotEqual(x => x.CurrentPassword)
+            .WithMessage("New password cannot be the same as the current password.");
     }
 }

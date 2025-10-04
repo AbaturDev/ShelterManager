@@ -10,7 +10,7 @@ public class PageQueryFilterValidator : AbstractValidator<PageQueryFilter>
     public PageQueryFilterValidator()
     {
         RuleFor(x => x.Page)
-            .GreaterThanOrEqualTo(1);
+            .GreaterThanOrEqualTo(1).WithMessage("Page must be greater than or equal to 1.");
 
         RuleFor(x => x.PageSize)
             .Custom((value, context) =>
