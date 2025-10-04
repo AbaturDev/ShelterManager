@@ -12,9 +12,18 @@ public class UserContextService : IUserContextService
     {
         _httpContext = httpContext;
     }
-    
-    public ClaimsPrincipal? GetCurrentUser()
+
+    public ClaimsPrincipal? User => _httpContext.HttpContext?.User;
+
+    public Guid? GetCurrentUserId()
     {
-        return _httpContext.HttpContext?.User;
+        if (User is null)
+        {
+            return null;
+        }
+
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+        return userId is not null ? Guid.Parse(userId) : null;
     }
 }

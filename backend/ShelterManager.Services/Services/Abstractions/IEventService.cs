@@ -5,11 +5,10 @@ namespace ShelterManager.Services.Services.Abstractions;
 
 public interface IEventService
 {
-    Task<PaginatedResponse<EventDto>> ListEventsAsync(CancellationToken ct);
-    Task<PaginatedResponse<EventDto>> ListHistoryEventsAsync(CancellationToken ct);
-    Task<EventDto> GetEventAsync(CancellationToken ct);
-    Task<Guid> CreateEventAsync(CancellationToken ct);
-    Task DeleteEventAsync(CancellationToken ct);
-    Task UpdateEventAsync(CancellationToken ct);
-    Task EndEventAsync(CancellationToken ct);
+    Task<PaginatedResponse<EventDto>> ListEventsAsync(EventPageQueryFilter queryFilter, CancellationToken ct);
+    Task<EventDto> GetEventAsync(Guid id, CancellationToken ct);
+    Task<Guid> CreateEventAsync(CreateEventDto dto, CancellationToken ct);
+    Task DeleteEventAsync(Guid id, CancellationToken ct);
+    Task UpdateEventAsync(Guid id, UpdateEventDto dto, CancellationToken ct);
+    Task EndEventAsync(Guid id, CancellationToken ct);
 }

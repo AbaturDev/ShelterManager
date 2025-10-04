@@ -1,4 +1,4 @@
-namespace ShelterManager.Services.Utils;
+namespace ShelterManager.Services.Extensions;
 
 public static class PaginationUtils
 {
