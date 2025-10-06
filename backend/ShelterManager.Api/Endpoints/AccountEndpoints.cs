@@ -21,6 +21,7 @@ public static class AccountEndpoints
 
         group.MapPost("/login", Login);
         group.MapPost("/register", Register)
+            .RequireAuthorization(AuthorizationPolicies.AdminPolicyName)
             .WithRequestValidation<RegisterRequest>();
         group.MapPost("/change-password", ChangePassword)
             .WithRequestValidation<ChangePasswordRequest>();

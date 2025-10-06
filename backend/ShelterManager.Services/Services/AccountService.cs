@@ -35,7 +35,7 @@ public class AccountService : IAccountService
 
         var response = new LoginResponse
         {
-            JwtToken = GenerateToken(user)
+            JwtToken = await GenerateToken(user)
         };
         
         return response;
@@ -68,6 +68,15 @@ public class AccountService : IAccountService
             
             throw new BadRequestException(errors);
         }
+        
+        var roleResult = await _userManager.AddToRoleAsync(user, request.Role);
+        
+        if (!roleResult.Succeeded)
+        {
+            var errors = string.Join(";", roleResult.Errors.Select(e => e.Description));
+            
+            throw new BadRequestException(errors);
+        }
     }
 
     public async Task ChangePasswordAsync(ChangePasswordRequest request)
@@ -92,11 +101,13 @@ public class AccountService : IAccountService
         await _userManager.UpdateAsync(user);
     }
     
-    private string GenerateToken(User user)
+    private async Task<string> GenerateToken(User user)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtOptions.Value.Secret));
 
+        var userRoles = await _userManager.GetRolesAsync(user);
+        
         var claims = new List<Claim>
         {
             new(ClaimTypes.NameIdentifier, user.Id.ToString()),
@@ -104,6 +115,11 @@ public class AccountService : IAccountService
             new(nameof(user.MustChangePassword), user.MustChangePassword.ToString())
         };
 
+        foreach (var role in userRoles)
+        {
+            claims.Add(new Claim(ClaimTypes.Role, role));
+        }
+        
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(claims),
