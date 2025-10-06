@@ -17,6 +17,8 @@ public static class AnimalEndpoints
 
         var group = route.MapGroup(groupRoute)
             .RequireRateLimiting(RateLimiters.DefaultRateLimiterName)
+            .RequireAuthorization(AuthorizationPolicies.MustChangePasswordPolicyName)
+            .RequireAuthorization(AuthorizationPolicies.UserPolicyName)
             .WithTags(nameof(AnimalEndpoints));
 
         group.MapGet("", ListAnimals)

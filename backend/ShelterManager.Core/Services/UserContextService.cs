@@ -26,4 +26,21 @@ public class UserContextService : IUserContextService
 
         return userId is not null ? Guid.Parse(userId) : null;
     }
+
+    public bool? GetMustChangePassword()
+    {
+        if (User is null)
+        {
+            return null;
+        }
+        
+        var mustChangePassword = _httpContext.HttpContext.User.FindFirst("MustChangePassword");
+
+        if (mustChangePassword is not null && bool.TryParse(mustChangePassword.Value, out var mustChangePasswordResult))
+        {
+            return mustChangePasswordResult;
+        }
+        
+        return null;
+    }
 }

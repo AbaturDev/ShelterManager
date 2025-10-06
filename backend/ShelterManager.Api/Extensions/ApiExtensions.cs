@@ -1,13 +1,17 @@
 using System.Globalization;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Scalar.AspNetCore;
 using ShelterManager.Api.Constants;
+using ShelterManager.Api.Middlewares;
 using ShelterManager.Api.Utils;
 using ShelterManager.Core.Options;
+using ShelterManager.Database.Constants;
 
 namespace ShelterManager.Api.Extensions;
 
@@ -18,14 +22,13 @@ public static class ApiExtensions
         builder.Services.AddProblemDetails();
         
         AddAuthentication(builder);
-        builder.Services.AddAuthorization();
+        AddAuthorization(builder);
         
         AddRateLimiting(builder);
         
         AddCultureConfiguration(builder);
         AddOpenApiDocs(builder);
         AddCorsConfiguration(builder);
-        
     }
 
     public static void UseApiConfiguration(this WebApplication app)
@@ -38,7 +41,7 @@ public static class ApiExtensions
         app.UseAuthorization();
         
         app.UseRateLimiter();
-        
+
         if (app.Environment.IsDevelopment())
         {
             UseApiDocs(app);
@@ -134,6 +137,51 @@ public static class ApiExtensions
                 IssuerSigningKey =
                     new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions.Secret))
             };
+            options.Events = new JwtBearerEvents
+            {
+                OnChallenge = async context =>
+                {
+                    context.HandleResponse();
+                    context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                    context.Response.ContentType = "application/problem+json";
+
+                    await context.Response.WriteAsJsonAsync(new ProblemDetails
+                    {
+                        Type = "https://tools.ietf.org/html/rfc7235#section-3.1",
+                        Title = "Unauthorized",
+                        Status = StatusCodes.Status401Unauthorized,
+                        Detail = "Authentication is required to access this resource.",
+                        Instance = context.Request.Path
+                    });
+                },
+                OnForbidden = async context =>
+                {
+                    context.Response.StatusCode = StatusCodes.Status403Forbidden;
+                    context.Response.ContentType = "application/problem+json";
+
+                    await context.Response.WriteAsJsonAsync(new ProblemDetails
+                    {
+                        Type = "https://tools.ietf.org/html/rfc7231#section-6.5.3",
+                        Title = "Forbidden",
+                        Status = StatusCodes.Status403Forbidden,
+                        Detail = "You do not have permission to access this resource.",
+                        Instance = context.Request.Path
+                    });
+                }
+            };
+        });
+    }
+
+    private static void AddAuthorization(IHostApplicationBuilder builder)
+    {
+        builder.Services.AddScoped<IAuthorizationHandler, MustChangePasswordAuthorizationHandler>();
+        
+        builder.Services.AddAuthorization(options =>
+        {
+            options.AddPolicy(AuthorizationPolicies.AdminPolicyName, policy => policy.RequireRole(RoleNames.Admin));
+            options.AddPolicy(AuthorizationPolicies.MustChangePasswordPolicyName, policy => policy.AddRequirements(new MustChangePasswordRequirement()));
+            options.AddPolicy(AuthorizationPolicies.UserPolicyName, policy =>
+                policy.RequireAssertion(context => context.User.IsInRole(RoleNames.User) || context.User.IsInRole(RoleNames.Admin)));
         });
     }
     
