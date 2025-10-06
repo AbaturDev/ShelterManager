@@ -16,14 +16,15 @@ public static class AccountEndpoints
 
         var group = route.MapGroup(groupRoute)
             .RequireRateLimiting(RateLimiters.LoginRateLimiterName)
-            .AllowAnonymous()
             .WithTags(nameof(AccountEndpoints));
 
-        group.MapPost("/login", Login);
+        group.MapPost("/login", Login)
+            .AllowAnonymous();
         group.MapPost("/register", Register)
             .RequireAuthorization(AuthorizationPolicies.AdminPolicyName)
             .WithRequestValidation<RegisterRequest>();
         group.MapPost("/change-password", ChangePassword)
+            .RequireAuthorization(AuthorizationPolicies.UserPolicyName)
             .WithRequestValidation<ChangePasswordRequest>();
         
         return group;

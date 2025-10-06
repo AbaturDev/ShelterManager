@@ -17,7 +17,7 @@ public class MustChangePasswordAuthorizationHandler : AuthorizationHandler<MustC
     {
         var mustChangePassword = _userContext.GetMustChangePassword();
 
-        if (mustChangePassword is not null && mustChangePassword == true)
+        if (mustChangePassword is not null && mustChangePassword == false)
         {
             context.Succeed(requirement);
         }
