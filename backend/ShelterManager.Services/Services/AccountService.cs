@@ -6,6 +6,8 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using ShelterManager.Core.Exceptions;
 using ShelterManager.Core.Options;
+using ShelterManager.Core.Services.Abstractions;
+using ShelterManager.Core.Utils;
 using ShelterManager.Database.Entities;
 using ShelterManager.Services.Dtos.Accounts;
 using ShelterManager.Services.Services.Abstractions;
@@ -14,15 +16,21 @@ namespace ShelterManager.Services.Services;
 
 public class AccountService : IAccountService
 {
+    private const int DefaultPasswordLength = 8;
+    
     private readonly UserManager<User> _userManager;
     private readonly IOptions<JwtOptions> _jwtOptions;
     private readonly TimeProvider _timeProvider;
+    private readonly IEmailService _emailService;
+    private readonly ITemplateService _templateService;
     
-    public AccountService(UserManager<User> userManager, IOptions<JwtOptions> jwtOptions, TimeProvider timeProvider)
+    public AccountService(UserManager<User> userManager, IOptions<JwtOptions> jwtOptions, TimeProvider timeProvider, IEmailService emailService, ITemplateService templateService)
     {
         _userManager = userManager;
         _jwtOptions = jwtOptions;
         _timeProvider = timeProvider;
+        _emailService = emailService;
+        _templateService = templateService;
     }
     
     public async Task<LoginResponse> LoginAsync(LoginRequest request)
@@ -57,9 +65,20 @@ public class AccountService : IAccountService
             MustChangePassword = true,
         };
         
-        // TODO: generate random password and send new user email
-        var password = "Haslo123!";
+        var password = PasswordGenerator.GeneratePassword(DefaultPasswordLength);
+        var userFullName = $"{user.Name} {user.Surname}";
 
+        var templateParameters = new Dictionary<string, string>()
+        {
+            { "User", userFullName },
+            { "Password", password }
+        };
+        
+        //TODO: Language + upgrade templates look (and lang versions)
+        var htmlMessage = _templateService.LoadTemplate("Templates\\Emails\\pl\\RegisterEmail.html", templateParameters);
+        
+        await _emailService.SendEmailAsync(user.Email, userFullName, "a", htmlMessage);
+        
         var result = await _userManager.CreateAsync(user, password);
 
         if (!result.Succeeded)
