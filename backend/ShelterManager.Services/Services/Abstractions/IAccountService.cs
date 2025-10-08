@@ -8,4 +8,5 @@ public interface IAccountService
     Task<LoginResponse> LoginAsync(LoginRequest request);
     Task RegisterAsync(RegisterRequest request);
     Task ChangePasswordAsync(ChangePasswordRequest request);
+    Task<LoginResponse> RefreshTokenAsync(RefreshTokenRequest request);
 }

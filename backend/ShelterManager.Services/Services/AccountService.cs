@@ -1,13 +1,16 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using ShelterManager.Core.Exceptions;
 using ShelterManager.Core.Options;
 using ShelterManager.Core.Services.Abstractions;
 using ShelterManager.Core.Utils;
+using ShelterManager.Database.Contexts;
 using ShelterManager.Database.Entities;
 using ShelterManager.Services.Dtos.Accounts;
 using ShelterManager.Services.Services.Abstractions;
@@ -17,20 +20,23 @@ namespace ShelterManager.Services.Services;
 public class AccountService : IAccountService
 {
     private const int DefaultPasswordLength = 8;
+    private const int RefreshTokenExpirationDays = 20;
     
     private readonly UserManager<User> _userManager;
     private readonly IOptions<JwtOptions> _jwtOptions;
     private readonly TimeProvider _timeProvider;
     private readonly IEmailService _emailService;
     private readonly ITemplateService _templateService;
+    private readonly ShelterManagerContext _context;
     
-    public AccountService(UserManager<User> userManager, IOptions<JwtOptions> jwtOptions, TimeProvider timeProvider, IEmailService emailService, ITemplateService templateService)
+    public AccountService(UserManager<User> userManager, IOptions<JwtOptions> jwtOptions, TimeProvider timeProvider, IEmailService emailService, ITemplateService templateService, ShelterManagerContext context)
     {
         _userManager = userManager;
         _jwtOptions = jwtOptions;
         _timeProvider = timeProvider;
         _emailService = emailService;
         _templateService = templateService;
+        _context = context;
     }
     
     public async Task<LoginResponse> LoginAsync(LoginRequest request)
@@ -41,9 +47,21 @@ public class AccountService : IAccountService
             throw new BadRequestException("Invalid email or password");
         }
 
+        var refreshToken = new RefreshToken
+        {
+            Token = GenerateRefreshToken(),   
+            UserId = user.Id,
+            IsRevoked = false,
+            ExpiresAt = _timeProvider.GetUtcNow().AddDays(RefreshTokenExpirationDays),
+        };
+        
+        _context.RefreshTokens.Add(refreshToken);
+        await _context.SaveChangesAsync();
+        
         var response = new LoginResponse
         {
-            JwtToken = await GenerateToken(user)
+            JwtToken = await GenerateToken(user),
+            RefreshToken = refreshToken.Token,
         };
         
         return response;
@@ -97,6 +115,37 @@ public class AccountService : IAccountService
             throw new BadRequestException(errors);
         }
     }
+    
+    public async Task<LoginResponse> RefreshTokenAsync(RefreshTokenRequest request)
+    {
+        var refreshToken = await _context.RefreshTokens
+            .Include(rt => rt.User)
+            .FirstOrDefaultAsync(rt => rt.Token == request.RefreshToken);
+
+        if (refreshToken is null || refreshToken.IsRevoked || refreshToken.ExpiresAt <= _timeProvider.GetUtcNow())
+        {
+            throw new UnauthorizedException("Invalid or expired refresh token");
+        }
+        
+        refreshToken.IsRevoked = true;
+        
+        var newRefreshToken = new RefreshToken
+        {
+            IsRevoked = false,
+            Token = GenerateRefreshToken(),
+            UserId = refreshToken.User.Id,
+            ExpiresAt = _timeProvider.GetUtcNow().AddDays(RefreshTokenExpirationDays),
+        };
+        
+        _context.RefreshTokens.Add(newRefreshToken);
+        await _context.SaveChangesAsync();
+        
+        return new LoginResponse
+        {
+            JwtToken = await GenerateToken(refreshToken.User),
+            RefreshToken = newRefreshToken.Token
+        };
+    }
 
     public async Task ChangePasswordAsync(ChangePasswordRequest request)
     {
@@ -118,6 +167,14 @@ public class AccountService : IAccountService
         
         user.MustChangePassword = false;
         await _userManager.UpdateAsync(user);
+    }
+    
+    private static string GenerateRefreshToken()
+    {
+        var bytes = new byte[64];
+        using var rng = RandomNumberGenerator.Create();
+        rng.GetBytes(bytes);
+        return Convert.ToBase64String(bytes);
     }
     
     private async Task<string> GenerateToken(User user)
