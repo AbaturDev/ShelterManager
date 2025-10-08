@@ -12,6 +12,7 @@ using ShelterManager.Core.Services.Abstractions;
 using ShelterManager.Core.Utils;
 using ShelterManager.Database.Contexts;
 using ShelterManager.Database.Entities;
+using ShelterManager.Services.Constants;
 using ShelterManager.Services.Dtos.Accounts;
 using ShelterManager.Services.Services.Abstractions;
 
@@ -67,7 +68,7 @@ public class AccountService : IAccountService
         return response;
     }
 
-    public async Task RegisterAsync(RegisterRequest request)
+    public async Task RegisterAsync(RegisterRequest request, string languageCode)
     {
         if (await _userManager.FindByEmailAsync(request.Email) is not null)
         {
@@ -84,21 +85,9 @@ public class AccountService : IAccountService
         };
         
         var password = PasswordGenerator.GeneratePassword(DefaultPasswordLength);
-        var userFullName = $"{user.Name} {user.Surname}";
 
-        var templateParameters = new Dictionary<string, string>()
-        {
-            { "User", userFullName },
-            { "Password", password }
-        };
-        
-        //TODO: Language + upgrade templates look (and lang versions)
-        var htmlMessage = _templateService.LoadTemplate("Templates\\Emails\\pl\\RegisterEmail.html", templateParameters);
-        
-        await _emailService.SendEmailAsync(user.Email, userFullName, "a", htmlMessage);
-        
         var result = await _userManager.CreateAsync(user, password);
-
+        
         if (!result.Succeeded)
         {
             var errors = string.Join(";", result.Errors.Select(e => e.Description));
@@ -114,6 +103,18 @@ public class AccountService : IAccountService
             
             throw new BadRequestException(errors);
         }
+        
+        var userFullName = $"{user.Name} {user.Surname}";
+
+        var templateParameters = new Dictionary<string, string>()
+        {
+            { "User", userFullName },
+            { "Password", password }
+        };
+
+        var htmlMessage = _templateService.LoadTemplate($"Templates\\Emails\\{languageCode}\\RegisterEmail.html", templateParameters);
+        
+        await _emailService.SendEmailAsync(user.Email, userFullName, RegisterEmailSubjects.GetSubject(languageCode), htmlMessage);
     }
     
     public async Task<LoginResponse> RefreshTokenAsync(RefreshTokenRequest request)

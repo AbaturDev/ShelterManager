@@ -44,10 +44,13 @@ public static class AccountEndpoints
 
     private static async Task<Created> Register(
         [FromBody] RegisterRequest request,
+        [FromHeader(Name = "Accept-Language")] string? language,
         [FromServices] IAccountService accountService
         )
     {
-        await accountService.RegisterAsync(request);
+        var languageCode = LanguageUtils.GetLanguageCode(language);
+        
+        await accountService.RegisterAsync(request, languageCode);
         
         return TypedResults.Created();
     }

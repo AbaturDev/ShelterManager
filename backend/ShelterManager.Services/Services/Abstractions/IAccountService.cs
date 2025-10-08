@@ -6,7 +6,7 @@ namespace ShelterManager.Services.Services.Abstractions;
 public interface IAccountService
 {
     Task<LoginResponse> LoginAsync(LoginRequest request);
-    Task RegisterAsync(RegisterRequest request);
+    Task RegisterAsync(RegisterRequest request, string languageCode);
     Task ChangePasswordAsync(ChangePasswordRequest request);
     Task<LoginResponse> RefreshTokenAsync(RefreshTokenRequest request);
 }
