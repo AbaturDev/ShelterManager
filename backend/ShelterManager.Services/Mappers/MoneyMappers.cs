@@ -3,7 +3,7 @@ using ShelterManager.Services.Dtos.Commons;
 
 namespace ShelterManager.Services.Mappers;
 
-public static class MoneyMapper
+public static class MoneyMappers
 {
     public static MoneyDto? MapToMoneyDto(Money? money)
     {

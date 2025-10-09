@@ -4,7 +4,7 @@ using ShelterManager.Services.Dtos.Events;
 
 namespace ShelterManager.Services.Mappers;
 
-public static class EventMapper
+public static class EventMappers
 {
     public static EventDto MapToEventDto(Event eventEntity)
     {
@@ -22,7 +22,7 @@ public static class EventMapper
             AnimalId = eventEntity.AnimalId,
             UserId = eventEntity.UserId,
             CompletedByUserId = eventEntity.CompletedByUserId,
-            Cost = MoneyMapper.MapToMoneyDto(eventEntity.Cost)
+            Cost = MoneyMappers.MapToMoneyDto(eventEntity.Cost)
         };
     }
 }

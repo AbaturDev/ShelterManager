@@ -15,10 +15,10 @@ public sealed record Event : BaseEntity
     public Money? Cost { get; set; }
     public required string Location { get; set; }
     public Guid AnimalId { get; set; }
-    public Guid UserId { get; set; }
+    public Guid? UserId { get; set; }
     public Guid? CompletedByUserId { get; set; }
     
-    public User User { get; set; } = null!;
+    public User? User { get; set; } = null!;
     public User? CompletedByUser { get; set; }
 
     public Animal Animal { get; set; } = null!;

@@ -23,6 +23,7 @@ public sealed class ShelterManagerContext : IdentityDbContext<User, IdentityRole
     public DbSet<Species> Species { get; init; }
     public DbSet<Breed> Breeds { get; init; }
     public DbSet<Event> Events { get; init; }
+    public DbSet<RefreshToken> RefreshTokens { get; init; }
     
     protected override void OnModelCreating(ModelBuilder builder)
     {

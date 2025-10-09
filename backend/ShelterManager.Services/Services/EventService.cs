@@ -34,7 +34,7 @@ public class EventService : IEventService
         var count = await query.CountAsync(ct);
 
         var items = await query
-            .Select(x => EventMapper.MapToEventDto(x))
+            .Select(x => EventMappers.MapToEventDto(x))
             .Paginate(queryFilter.Page, queryFilter.PageSize)
             .ToListAsync(ct);
 
@@ -52,7 +52,7 @@ public class EventService : IEventService
             throw new NotFoundException("Event not found");
         }
 
-        var eventDto = EventMapper.MapToEventDto(eventEntity);
+        var eventDto = EventMappers.MapToEventDto(eventEntity);
 
         return eventDto;
     }
@@ -67,7 +67,7 @@ public class EventService : IEventService
             Description = dto.Description,
             AnimalId = dto.AnimalId,
             Date = dto.Date,
-            Cost = MoneyMapper.MapToMoneyEntity(dto.Cost),
+            Cost = MoneyMappers.MapToMoneyEntity(dto.Cost),
             Location = dto.Location,
             UserId = dto.UserId,
             IsDone = false
@@ -108,7 +108,7 @@ public class EventService : IEventService
         eventEntity.Title = dto.Title;
         eventEntity.Description = dto.Description;
         eventEntity.Date = dto.Date;
-        eventEntity.Cost = MoneyMapper.MapToMoneyEntity(dto.Cost);
+        eventEntity.Cost = MoneyMappers.MapToMoneyEntity(dto.Cost);
         eventEntity.Location = dto.Location;
         eventEntity.UserId = dto.UserId;
 

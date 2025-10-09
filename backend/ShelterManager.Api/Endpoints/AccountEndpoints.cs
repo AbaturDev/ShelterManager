@@ -26,14 +26,15 @@ public static class AccountEndpoints
         group.MapPost("/change-password", ChangePassword)
             .RequireAuthorization(AuthorizationPolicies.UserPolicyName)
             .WithRequestValidation<ChangePasswordRequest>();
+        group.MapPost("/refresh-token", RefreshToken)
+            .AllowAnonymous();
         
         return group;
     }
 
     private static async Task<Ok<LoginResponse>> Login(
         [FromBody] LoginRequest request,
-        [FromServices] IAccountService accountService,
-        CancellationToken ct
+        [FromServices] IAccountService accountService
         )
     {
         var response = await accountService.LoginAsync(request);
@@ -43,10 +44,13 @@ public static class AccountEndpoints
 
     private static async Task<Created> Register(
         [FromBody] RegisterRequest request,
+        [FromHeader(Name = "Accept-Language")] string? language,
         [FromServices] IAccountService accountService
         )
     {
-        await accountService.RegisterAsync(request);
+        var languageCode = LanguageUtils.GetLanguageCode(language);
+        
+        await accountService.RegisterAsync(request, languageCode);
         
         return TypedResults.Created();
     }
@@ -58,5 +62,15 @@ public static class AccountEndpoints
         await accountService.ChangePasswordAsync(request);
         
         return TypedResults.Ok();
+    }
+    
+    private static async Task<Ok<LoginResponse>> RefreshToken(
+        [FromBody] RefreshTokenRequest request,
+        [FromServices] IAccountService accountService
+    )
+    {
+        var response = await accountService.RefreshTokenAsync(request);
+
+        return TypedResults.Ok(response);
     }
 }

@@ -3,7 +3,7 @@ using ShelterManager.Services.Dtos.Species;
 
 namespace ShelterManager.Services.Mappers;
 
-public static class SpeciesMapper
+public static class SpeciesMappers
 {
     public static SpeciesDto MapToSpeciesDto(Species species)
     {

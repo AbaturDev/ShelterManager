@@ -9,6 +9,7 @@ public sealed class User : IdentityUser<Guid>
     public required string Name { get; set; }
     public required string Surname { get; set; }
     public bool MustChangePassword { get; set; }
+    public bool IsDeleted { get; set; }
 }
 
 public class UserConfiguration : IEntityTypeConfiguration<User>
@@ -27,5 +28,10 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 
         builder.Property(u => u.MustChangePassword)
             .HasDefaultValue(true);
+        
+        builder.HasQueryFilter(u => !u.IsDeleted);
+        
+        builder.Property(u => u.IsDeleted)
+            .HasDefaultValue(false);
     }
 }

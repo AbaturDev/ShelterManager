@@ -1,7 +1,6 @@
 namespace ShelterManager.Services.Dtos.Accounts;
 
-public sealed record LoginResponse
+public sealed record RefreshTokenRequest
 {
-    public required string JwtToken { get; init; }
     public required string RefreshToken { get; init; }
 }

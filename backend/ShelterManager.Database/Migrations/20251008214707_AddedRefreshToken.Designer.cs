@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ShelterManager.Database.Contexts;
 
@@ -11,9 +12,11 @@ using ShelterManager.Database.Contexts;
 namespace ShelterManager.Database.Migrations
 {
     [DbContext(typeof(ShelterManagerContext))]
-    partial class ShelterManagerContextModelSnapshot : ModelSnapshot
+    [Migration("20251008214707_AddedRefreshToken")]
+    partial class AddedRefreshToken
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -261,7 +264,7 @@ namespace ShelterManager.Database.Migrations
                     b.Property<DateTimeOffset>("UpdatedAt")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("UserId")
+                    b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -347,11 +350,6 @@ namespace ShelterManager.Database.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -501,7 +499,9 @@ namespace ShelterManager.Database.Migrations
 
                     b.HasOne("ShelterManager.Database.Entities.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.OwnsOne("ShelterManager.Database.Entities.Owned.Money", "Cost", b1 =>
                         {

@@ -29,7 +29,7 @@ public class BreedService : IBreedService
         var count = await query.CountAsync(ct);
 
         var items = await query
-            .Select(b => BreedMapper.MapToBreedDto(b))
+            .Select(b => BreedMappers.MapToBreedDto(b))
             .Paginate(pageQueryFilter.Page, pageQueryFilter.PageSize)
             .ToListAsync(ct);
 
@@ -48,7 +48,7 @@ public class BreedService : IBreedService
             throw new NotFoundException("Breed not found");
         }
 
-        var dto = BreedMapper.MapToBreedDto(breed);
+        var dto = BreedMappers.MapToBreedDto(breed);
 
         return dto;
     }

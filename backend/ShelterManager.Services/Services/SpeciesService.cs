@@ -28,7 +28,7 @@ public class SpeciesService : ISpeciesService
         var count = await query.CountAsync(ct);
 
         var items = await query
-            .Select(s => SpeciesMapper.MapToSpeciesDto(s))
+            .Select(s => SpeciesMappers.MapToSpeciesDto(s))
             .Paginate(pageQueryFilter.Page, pageQueryFilter.PageSize)
             .ToListAsync(ct);
 
@@ -46,7 +46,7 @@ public class SpeciesService : ISpeciesService
             throw new NotFoundException("Species not found");
         }
 
-        var speciesDto = SpeciesMapper.MapToSpeciesDto(species);
+        var speciesDto = SpeciesMappers.MapToSpeciesDto(species);
 
         return speciesDto;
     }
