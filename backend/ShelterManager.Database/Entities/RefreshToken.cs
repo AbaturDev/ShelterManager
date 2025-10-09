@@ -21,6 +21,8 @@ public sealed record RefreshToken : BaseEntity
             builder.HasOne(x => x.User)
                 .WithMany()
                 .HasForeignKey(x => x.UserId);
+            
+            builder.HasQueryFilter(x => !x.User.IsDeleted);
         }
     }
 }

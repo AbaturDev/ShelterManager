@@ -3,7 +3,7 @@ using ShelterManager.Services.Dtos.Animals;
 
 namespace ShelterManager.Services.Mappers;
 
-public static class AnimalMapper
+public static class AnimalMappers
 {
     public static AnimalDto MapToAnimalDto(Animal animal)
     {

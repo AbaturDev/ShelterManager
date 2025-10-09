@@ -3,7 +3,7 @@ using ShelterManager.Services.Dtos.Breeds;
 
 namespace ShelterManager.Services.Mappers;
 
-public static class BreedMapper
+public static class BreedMappers
 {
     public static BreedDto MapToBreedDto(Breed breed)
     {

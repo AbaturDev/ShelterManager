@@ -15,6 +15,6 @@ public sealed record EventDto
     public MoneyDto? Cost { get; set; }
     public required string Location { get; init; }
     public Guid AnimalId { get; init; }
-    public Guid UserId { get; init; }
+    public Guid? UserId { get; init; }
     public Guid? CompletedByUserId { get; init; }
 }

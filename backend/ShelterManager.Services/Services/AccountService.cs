@@ -70,7 +70,12 @@ public class AccountService : IAccountService
 
     public async Task RegisterAsync(RegisterRequest request, string languageCode)
     {
-        if (await _userManager.FindByEmailAsync(request.Email) is not null)
+        var userExists = await _userManager.Users
+            .AsNoTracking()
+            .IgnoreQueryFilters()
+            .AnyAsync(u => u.Email == request.Email);
+        
+        if (userExists)
         {
             throw new BadRequestException("Email is already taken");
         }
@@ -87,7 +92,6 @@ public class AccountService : IAccountService
         var password = PasswordGenerator.GeneratePassword(DefaultPasswordLength);
 
         var result = await _userManager.CreateAsync(user, password);
-        
         if (!result.Succeeded)
         {
             var errors = string.Join(";", result.Errors.Select(e => e.Description));

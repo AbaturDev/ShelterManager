@@ -27,7 +27,7 @@ public class AnimalService : IAnimalService
         var count = await query.CountAsync(ct);
 
         var animals = await query
-            .Select(a => AnimalMapper.MapToAnimalDto(a))
+            .Select(a => AnimalMappers.MapToAnimalDto(a))
             .Paginate(pageQueryFilter.Page, pageQueryFilter.PageSize)
             .ToListAsync(ct);
 
@@ -45,7 +45,7 @@ public class AnimalService : IAnimalService
             throw new NotFoundException("Animal not found");
         }
 
-        var dto = AnimalMapper.MapToAnimalDto(animal);
+        var dto = AnimalMappers.MapToAnimalDto(animal);
 
         return dto;
     }
