@@ -24,5 +24,6 @@ public static class Setup
         builder.Services.AddSingleton<ITemplateService, TemplateService>();
         builder.Services.AddScoped<IUserContextService, UserContextService>();
         builder.Services.AddScoped<IEmailService, EmailService>();
+        builder.Services.AddSingleton<IFileService, AzureFileService>();
     }
 }

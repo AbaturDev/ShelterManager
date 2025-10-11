@@ -19,5 +19,6 @@ public static class Setup
         builder.Services.AddScoped<IAccountService, AccountService>();
         builder.Services.AddScoped<IEventService, EventService>();
         builder.Services.AddScoped<IUserService, UserService>();
+        builder.Services.AddScoped<IAnimalFileService, AnimalFileService>();
     }
 }
