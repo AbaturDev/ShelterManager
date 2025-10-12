@@ -105,7 +105,7 @@ public static class AnimalEndpoints
         CancellationToken ct)
     {
         var extension = Path.GetExtension(file.FileName);
-        if (FileExtensionUtils.IsValidImageExtension(extension))
+        if (!FileExtensionUtils.IsValidImageExtension(extension))
         {
             throw new BadRequestException("File format is not supported");
         }
@@ -142,7 +142,7 @@ public static class AnimalEndpoints
     
     private static async Task<IResult> GetFile(
         Guid id,
-        string fileName,
+        [FromRoute] string fileName,
         [FromServices] IAnimalFileService animalFileService,
         CancellationToken ct)
     {

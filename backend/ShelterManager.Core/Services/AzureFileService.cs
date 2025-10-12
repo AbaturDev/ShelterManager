@@ -84,9 +84,15 @@ public class AzureFileService : IFileService
         }
         
         var containerClient = _blobServiceClient.GetBlobContainerClient(container);
+        
+        var prefix = RemoveContainer(path, container).Trim('/');
+        var hasSubPath = prefix.Contains('/');
+        if (hasSubPath)
+            prefix = $"{prefix}/";
+        
         var items = new List<IFileService.FileInfo>();
         
-        await foreach (var blob in containerClient.GetBlobsByHierarchyAsync(prefix: RemoveContainer(path, container), delimiter: "/"))
+        await foreach (var blob in containerClient.GetBlobsByHierarchyAsync(prefix: prefix, delimiter: "/"))
         {
             items.Add(new IFileService.FileInfo
             {
