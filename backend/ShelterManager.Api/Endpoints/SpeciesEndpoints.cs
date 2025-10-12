@@ -17,6 +17,8 @@ public static class SpeciesEndpoints
         var groupRoute = ApiRouteBuilder.BuildBaseGroupRoute(ApiRoutes.SpeciesRoute, apiVersion);
 
         var group = route.MapGroup(groupRoute)
+            .RequireAuthorization(AuthorizationPolicies.UserPolicyName)
+            .RequireAuthorization(AuthorizationPolicies.MustChangePasswordPolicyName)
             .RequireRateLimiting(RateLimiters.DefaultRateLimiterName)
             .WithTags(nameof(SpeciesEndpoints));
 

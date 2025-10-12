@@ -2,6 +2,7 @@
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ShelterManager.Services.BackgroundServices;
 using ShelterManager.Services.Services;
 using ShelterManager.Services.Services.Abstractions;
 
@@ -12,6 +13,8 @@ public static class Setup
     public static void AddServices(this IHostApplicationBuilder builder)
     {
         builder.Services.AddValidatorsFromAssembly(Assembly.GetAssembly(typeof(Setup)));
+
+        builder.Services.AddHostedService<DailyTaskBackgroundService>();
         
         builder.Services.AddScoped<IAnimalService, AnimalService>();
         builder.Services.AddScoped<ISpeciesService, SpeciesService>();

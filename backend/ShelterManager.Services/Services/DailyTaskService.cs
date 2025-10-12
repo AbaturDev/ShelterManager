@@ -141,8 +141,8 @@ public class DailyTaskService : IDailyTaskService
         
         await _context.SaveChangesAsync(ct);
     }
-
-    public async Task AddDefaultDailyTaskAsync(Guid animalId, AddDefaultDailyTaskEntryDto dto, CancellationToken ct)
+    
+    public async Task AddDefaultDailyTaskEntryAsync(Guid animalId, AddDefaultDailyTaskEntryDto dto, CancellationToken ct)
     {
         if (!await _context.Animals.AnyAsync(x => x.Id == animalId, ct))
         {
@@ -160,7 +160,7 @@ public class DailyTaskService : IDailyTaskService
         await _context.SaveChangesAsync(ct);
     }
 
-    public async Task RemoveDefaultDailyTaskAsync(Guid animalId, Guid defaultEntryId, CancellationToken ct)
+    public async Task RemoveDefaultDailyTaskEntryAsync(Guid animalId, Guid defaultEntryId, CancellationToken ct)
     {
         var defaultEntry = await _context.DailyTaskDefaultEntries
             .FirstOrDefaultAsync(x => x.Id == defaultEntryId && x.AnimalId == animalId, ct);
@@ -174,7 +174,7 @@ public class DailyTaskService : IDailyTaskService
         await _context.SaveChangesAsync(ct);
     }
 
-    public async Task<PaginatedResponse<DailyTaskDefaultEntryDto>> GetDefaultDailyTaskAsync(Guid animalId, PageQueryFilter queryFilter, CancellationToken ct)
+    public async Task<PaginatedResponse<DailyTaskDefaultEntryDto>> GetDefaultDailyTaskEntriesAsync(Guid animalId, PageQueryFilter queryFilter, CancellationToken ct)
     {
         var defaultEntries = _context.DailyTaskDefaultEntries
             .AsNoTracking()
@@ -199,7 +199,7 @@ public class DailyTaskService : IDailyTaskService
         return new PaginatedResponse<DailyTaskDefaultEntryDto>(items, queryFilter.Page, queryFilter.PageSize, totalCount);
     }
 
-    public async Task UpdateDefaultDailyTaskAsync(Guid animalId, Guid defaultEntryId, UpdateDefaultDailyTaskEntryDto dto,
+    public async Task UpdateDefaultDailyTaskEntryAsync(Guid animalId, Guid defaultEntryId, UpdateDefaultDailyTaskEntryDto dto,
         CancellationToken ct)
     {
         var defaultEntry = await _context.DailyTaskDefaultEntries

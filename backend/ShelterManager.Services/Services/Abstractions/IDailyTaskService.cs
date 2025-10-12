@@ -9,8 +9,8 @@ public interface IDailyTaskService
     Task AddDailyTaskEntryAsync(Guid animalId, AddDailyTaskEntryDto dto, CancellationToken ct);
     Task RemoveDailyTaskEntryAsync(Guid animalId, Guid entryId, CancellationToken ct);
     Task EndDailyTaskEntryAsync(Guid animalId, Guid entryId, CancellationToken ct);
-    Task AddDefaultDailyTaskAsync(Guid animalId, AddDefaultDailyTaskEntryDto dto, CancellationToken ct);
-    Task RemoveDefaultDailyTaskAsync(Guid animalId, Guid defaultEntryId, CancellationToken ct);
-    Task<PaginatedResponse<DailyTaskDefaultEntryDto>> GetDefaultDailyTaskAsync(Guid animalId, PageQueryFilter queryFilter, CancellationToken ct);
-    Task UpdateDefaultDailyTaskAsync(Guid animalId, Guid defaultEntryId, UpdateDefaultDailyTaskEntryDto dto, CancellationToken ct);
+    Task AddDefaultDailyTaskEntryAsync(Guid animalId, AddDefaultDailyTaskEntryDto dto, CancellationToken ct);
+    Task RemoveDefaultDailyTaskEntryAsync(Guid animalId, Guid defaultEntryId, CancellationToken ct);
+    Task<PaginatedResponse<DailyTaskDefaultEntryDto>> GetDefaultDailyTaskEntriesAsync(Guid animalId, PageQueryFilter queryFilter, CancellationToken ct);
+    Task UpdateDefaultDailyTaskEntryAsync(Guid animalId, Guid defaultEntryId, UpdateDefaultDailyTaskEntryDto dto, CancellationToken ct);
 }

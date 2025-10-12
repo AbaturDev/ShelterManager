@@ -18,5 +18,6 @@ public static class RegisterEndpointsExtensions
         app.MapAccountEndpoints(apiVersion);
         app.MapEventEndpoints(apiVersion);
         app.MapUserEndpoints(apiVersion);
+        app.MapDailyTaskEndpoints(apiVersion);
     }
 }

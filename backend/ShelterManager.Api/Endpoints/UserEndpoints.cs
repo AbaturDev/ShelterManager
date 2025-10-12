@@ -16,6 +16,7 @@ public static class UserEndpoints
         var groupRoute = ApiRouteBuilder.BuildBaseGroupRoute(ApiRoutes.UserRoute, apiVersion);
 
         var group = route.MapGroup(groupRoute)
+            .RequireAuthorization(AuthorizationPolicies.MustChangePasswordPolicyName)
             .RequireRateLimiting(RateLimiters.DefaultRateLimiterName)
             .WithTags(nameof(UserEndpoints));
 

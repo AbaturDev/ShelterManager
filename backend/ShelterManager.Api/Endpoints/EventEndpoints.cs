@@ -16,6 +16,8 @@ public static class EventEndpoints
         var groupRoute = ApiRouteBuilder.BuildBaseGroupRoute(ApiRoutes.EventRoute, apiVersion);
 
         var group = route.MapGroup(groupRoute)
+            .RequireAuthorization(AuthorizationPolicies.UserPolicyName)
+            .RequireAuthorization(AuthorizationPolicies.MustChangePasswordPolicyName)
             .RequireRateLimiting(RateLimiters.DefaultRateLimiterName)
             .WithTags(nameof(EventEndpoints));
 
