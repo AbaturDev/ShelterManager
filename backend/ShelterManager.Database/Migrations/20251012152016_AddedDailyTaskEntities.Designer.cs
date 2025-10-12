@@ -12,7 +12,7 @@ using ShelterManager.Database.Contexts;
 namespace ShelterManager.Database.Migrations
 {
     [DbContext(typeof(ShelterManagerContext))]
-    [Migration("20251012115513_AddedDailyTaskEntities")]
+    [Migration("20251012152016_AddedDailyTaskEntities")]
     partial class AddedDailyTaskEntities
     {
         /// <inheritdoc />
@@ -266,7 +266,7 @@ namespace ShelterManager.Database.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

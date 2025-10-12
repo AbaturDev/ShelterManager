@@ -5,7 +5,7 @@ namespace ShelterManager.Database.Entities;
 
 public sealed record DailyTaskDefaultEntry : BaseEntity
 {
-    public required string Name { get; set; }
+    public required string Title { get; set; }
     public string? Description { get; set; }
     public Guid AnimalId { get; set; }
 
