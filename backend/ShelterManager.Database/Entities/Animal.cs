@@ -16,6 +16,8 @@ public sealed record Animal : BaseEntity
     public Guid BreedId { get; set; }
     public Breed Breed { get; set; } = null!;
     public ICollection<Event> Events { get; set; } = new List<Event>();
+    public ICollection<DailyTask> DailyTasks { get; set; } = new List<DailyTask>();
+    public ICollection<DailyTaskDefaultEntry> DailyTaskDefaultEntries { get; set; } = new List<DailyTaskDefaultEntry>();
     private sealed class Configuration : BaseEntityConfiguration<Animal>
     {
         public override void Configure(EntityTypeBuilder<Animal> builder)
@@ -34,6 +36,14 @@ public sealed record Animal : BaseEntity
             builder.HasMany(a => a.Events)
                 .WithOne(e => e.Animal)
                 .HasForeignKey(e => e.AnimalId);
+            
+            builder.HasMany(a => a.DailyTasks)
+                .WithOne(d => d.Animal)
+                .HasForeignKey(d => d.AnimalId);
+            
+            builder.HasMany(a => a.DailyTaskDefaultEntries)
+                .WithOne(d => d.Animal)
+                .HasForeignKey(d => d.AnimalId);
         }
     }
 }
