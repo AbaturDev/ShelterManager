@@ -24,6 +24,9 @@ public sealed class ShelterManagerContext : IdentityDbContext<User, IdentityRole
     public DbSet<Breed> Breeds { get; init; }
     public DbSet<Event> Events { get; init; }
     public DbSet<RefreshToken> RefreshTokens { get; init; }
+    public DbSet<DailyTask> DailyTasks { get; init; }
+    public DbSet<DailyTaskEntry> DailyTaskEntries { get; init; }
+    public DbSet<DailyTaskDefaultEntry> DailyTaskDefaultEntries { get; init; }
     
     protected override void OnModelCreating(ModelBuilder builder)
     {

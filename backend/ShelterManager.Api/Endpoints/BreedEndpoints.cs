@@ -17,6 +17,7 @@ public static class BreedEndpoints
 
         var group = route.MapGroup(groupRoute + "/{speciesId:guid}/" + ApiRoutes.BreedRoute)
             .RequireAuthorization(AuthorizationPolicies.MustChangePasswordPolicyName)
+            .RequireAuthorization(AuthorizationPolicies.UserPolicyName)
             .RequireRateLimiting(RateLimiters.DefaultRateLimiterName)
             .WithTags(nameof(BreedEndpoints));
 
