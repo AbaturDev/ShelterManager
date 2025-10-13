@@ -47,7 +47,7 @@ public class DailyTaskBackgroundService : BackgroundService
 
                 var animals = await context.Animals
                     .Include(a => a.DailyTaskDefaultEntries)
-                    .Include(x => x.DailyTasks)
+                    .Include(a => a.DailyTasks)
                     .ToListAsync(stoppingToken);
 
                 var date = DateOnly.FromDateTime(_timeProvider.GetUtcNow().UtcDateTime);
