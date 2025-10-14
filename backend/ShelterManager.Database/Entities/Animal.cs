@@ -1,3 +1,4 @@
+using System.Collections;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ShelterManager.Database.Commons;
@@ -18,6 +19,8 @@ public sealed record Animal : BaseEntity
     public ICollection<Event> Events { get; set; } = new List<Event>();
     public ICollection<DailyTask> DailyTasks { get; set; } = new List<DailyTask>();
     public ICollection<DailyTaskDefaultEntry> DailyTaskDefaultEntries { get; set; } = new List<DailyTaskDefaultEntry>();
+    public ICollection<Adoption> Adoptions { get; set; }
+    
     private sealed class Configuration : BaseEntityConfiguration<Animal>
     {
         public override void Configure(EntityTypeBuilder<Animal> builder)
@@ -44,6 +47,10 @@ public sealed record Animal : BaseEntity
             builder.HasMany(a => a.DailyTaskDefaultEntries)
                 .WithOne(d => d.Animal)
                 .HasForeignKey(d => d.AnimalId);
+            
+            builder.HasMany(a => a.Adoptions)
+                .WithOne(ad => ad.Animal)
+                .HasForeignKey(ad => ad.AnimalId);
         }
     }
 }

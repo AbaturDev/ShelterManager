@@ -14,4 +14,5 @@ public static class EventQueryExtensions
             query = query.Where(x => x.IsDone == filter.IsDone);
 
         return query;
-    }}
+    }
+}

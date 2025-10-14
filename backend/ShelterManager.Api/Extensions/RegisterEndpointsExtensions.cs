@@ -19,5 +19,6 @@ public static class RegisterEndpointsExtensions
         app.MapEventEndpoints(apiVersion);
         app.MapUserEndpoints(apiVersion);
         app.MapDailyTaskEndpoints(apiVersion);
+        app.MapAdoptionEndpoints(apiVersion);
     }
 }
