@@ -14,12 +14,13 @@ public sealed record Animal : BaseEntity
     public int? Age { get; set; }
     public string? ImagePath { get; set; }
     public string? Description { get; set; }
+    public required Sex Sex { get; init; }
     public Guid BreedId { get; set; }
     public Breed Breed { get; set; } = null!;
     public ICollection<Event> Events { get; set; } = new List<Event>();
     public ICollection<DailyTask> DailyTasks { get; set; } = new List<DailyTask>();
     public ICollection<DailyTaskDefaultEntry> DailyTaskDefaultEntries { get; set; } = new List<DailyTaskDefaultEntry>();
-    public ICollection<Adoption> Adoptions { get; set; }
+    public ICollection<Adoption> Adoptions { get; set; } = new List<Adoption>();
     
     private sealed class Configuration : BaseEntityConfiguration<Animal>
     {
@@ -30,6 +31,9 @@ public sealed record Animal : BaseEntity
             builder.ToTable("Animals");
             
             builder.Property(a => a.Status)
+                .HasConversion<string>();
+            
+            builder.Property(a => a.Sex)
                 .HasConversion<string>();
             
             builder.HasOne(a => a.Breed)

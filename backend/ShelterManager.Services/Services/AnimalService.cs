@@ -66,6 +66,7 @@ public class AnimalService : IAnimalService
             Name = animalDto.Name,
             AdmissionDate = animalDto.AdmissionDate,
             Age = animalDto.Age,
+            Sex = animalDto.Sex,
             Status = AnimalStatus.InShelter,
             Description = animalDto.Description,
             ImagePath = animalDto.ImagePath,

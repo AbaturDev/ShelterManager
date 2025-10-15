@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using DinkToPdf;
+using DinkToPdf.Contracts;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ShelterManager.Core.Extensions;
 using ShelterManager.Core.Options;
@@ -25,5 +27,7 @@ public static class Setup
         builder.Services.AddScoped<IUserContextService, UserContextService>();
         builder.Services.AddScoped<IEmailService, EmailService>();
         builder.Services.AddSingleton<IFileService, AzureFileService>();
+        builder.Services.AddSingleton<IConverter>(new SynchronizedConverter(new PdfTools()));
+        builder.Services.AddSingleton<IPdfService, PdfService>();
     }
 }

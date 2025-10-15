@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adoption Agreement</title>
+    <style>
+        body {
+            font-family: "DejaVu Sans", sans-serif;
+            font-size: 12px;
+            color: #000;
+            margin: 40px;
+            line-height: 1.4;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .shelter-info {
+            text-align: left;
+        }
+
+        .shelter-info h3 {
+            margin: 0;
+        }
+
+        .date {
+            text-align: right;
+            font-size: 12px;
+        }
+
+        .title {
+            text-align: center;
+            margin: 10px 0 20px 0;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-weight: bold;
+            margin-top: 20px;
+            text-decoration: underline;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 5px;
+        }
+
+        td, th {
+            border: 1px solid #000;
+            padding: 4px;
+            vertical-align: top;
+        }
+
+        .signatures {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .signatures div {
+            width: 45%;
+            text-align: center;
+        }
+
+        .small {
+            font-size: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="shelter-info">
+        <h3>ShelterManager Animal Shelter</h3>
+        <div>[shelter address], [postal code] [city]</div>
+        <div>tel. [phone], e-mail: [email]</div>
+    </div>
+    <div class="date">
+        Date: {{Adoption.StartDate}}
+    </div>
+</div>
+
+<div class="title">ADOPTION AGREEMENT</div>
+
+<p>
+    Concluded between the Animal Shelter “ShelterManager”, hereinafter referred to as the <strong>Shelter</strong>,
+    represented by the authorized employee: {{UserName}} {{UserSurname}}, and:
+</p>
+
+<table>
+    <tr><td>Full name</td><td>{{PersonName}} {{PersonSurname}}</td></tr>
+    <tr><td>ID card series and number</td><td>{{PersonIdNumber}}</td></tr>
+    <tr><td>PESEL</td><td>{{PersonPesel}}</td></tr>
+    <tr><td>Address</td><td>{{PersonStreet}}, {{PersonPostalCode}} {{PersonCity}}</td></tr>
+    <tr><td>Phone / Email</td><td>{{PersonPhoneNumber}} / {{PersonEmail}}</td></tr>
+</table>
+
+<h4 class="section-title">Animal Information</h4>
+<table>
+    <tr><td>Name</td><td>{{AnimalName}}</td></tr>
+    <tr><td>Species / Breed</td><td>{{AnimalSpecies}} / {{AnimalBreed}}</td></tr>
+    <tr><td>Sex</td><td>{{AnimalSex}}</td></tr>
+    <tr><td>Age</td><td>{{AnimalAge}}</td></tr>
+    <tr><td>Identifier</td><td>{{AnimalId}}</td></tr>
+</table>
+
+<h4 class="section-title">Adopter’s Responsibilities</h4>
+<ol>
+    <li>To provide the animal with proper living conditions, food, and veterinary care.</li>
+    <li>Not to transfer the animal to third parties without the Shelter’s consent.</li>
+    <li>To inform the Shelter of any change of address or in case of the animal’s death.</li>
+    <li>To allow authorized Shelter staff to inspect the animal’s living conditions.</li>
+</ol>
+
+<h4 class="section-title">Final Provisions</h4>
+<p>
+    The adopter declares that they have read and accepted the terms of this agreement.
+    The Shelter reserves the right to revoke the adoption in case of animal mistreatment or failure to comply with the agreement.
+</p>
+
+<div class="signatures">
+    <div>
+        ..................................................<br>
+        <span class="small">adopter’s signature</span>
+    </div>
+    <div>
+        ..................................................<br>
+        <span class="small">shelter staff signature</span>
+    </div>
+</div>
+</body>
+</html>

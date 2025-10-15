@@ -7,6 +7,7 @@ public sealed record AnimalDto
     public required Guid Id { get; init; }
     public required DateTimeOffset CreatedAt { get; init; }
     public required DateTimeOffset UpdatedAt { get; init; }
+    public required Sex Sex { get; init; }
     public required string Name { get; init; }
     public required DateTimeOffset AdmissionDate { get; init; }
     public required AnimalStatus Status { get; init; }

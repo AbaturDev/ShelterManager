@@ -52,6 +52,8 @@ public class AdoptionService : IAdoptionService
             {
                 Name = adoption.Person.Name,
                 Surname = adoption.Person.Surname,
+                DocumentId = adoption.Person.DocumentId,
+                Pesel = adoption.Person.Pesel,
                 Email = adoption.Person.Email,
                 PhoneNumber = adoption.Person.PhoneNumber,
                 City = adoption.Person.City,
@@ -108,6 +110,8 @@ public class AdoptionService : IAdoptionService
             {
                 Name = dto.Person.Name,
                 Surname = dto.Person.Surname,
+                Pesel = dto.Person.Pesel,
+                DocumentId = dto.Person.DocumentId,
                 Email = dto.Person.Email,
                 PhoneNumber = dto.Person.PhoneNumber,
                 City = dto.Person.City,

@@ -38,5 +38,13 @@ public class CreateAdoptionDtoValidator : AbstractValidator<CreateAdoptionDto>
         RuleFor(x => x.Person.PostalCode)
             .NotEmpty().WithMessage("Postal code is required.")
             .MaximumLength(20).WithMessage("Postal code must not exceed 20 characters.");
+        
+        RuleFor(x => x.Person.Pesel)
+            .NotEmpty().WithMessage("Pesel is required.")
+            .Matches(@"^\d{11}$").WithMessage("Pesel must be exactly 11 digits.");
+
+        RuleFor(x => x.Person.DocumentId)
+            .NotEmpty().WithMessage("Document ID is required.")
+            .MaximumLength(20).WithMessage("Document ID must not exceed 20 characters.");
     }
 }

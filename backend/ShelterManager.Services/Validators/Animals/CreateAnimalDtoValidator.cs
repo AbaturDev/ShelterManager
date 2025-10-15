@@ -17,6 +17,9 @@ public class CreateAnimalDtoValidator : AbstractValidator<CreateAnimalDto>
         RuleFor(x => x.Age)
             .InclusiveBetween(0, 50).WithMessage("Age must be between 0 and 50");
 
+        RuleFor(x => x.Sex)
+            .IsInEnum().WithMessage("Sex must be valid enum value");
+        
         RuleFor(x => x.AdmissionDate)
             .LessThanOrEqualTo(timeProvider.GetUtcNow())
             .WithMessage("Admission date cannot be in the future");
