@@ -12,4 +12,5 @@ public static class ApiRoutes
     public const string DailyTaskRoute = "daily-tasks";
     public const string DailyTaskEntriesRoute = "entries";
     public const string DailyTaskDefaultEntriesRoute = "default-entries";
+    public const string AdoptionRoute = "adoptions";
 }

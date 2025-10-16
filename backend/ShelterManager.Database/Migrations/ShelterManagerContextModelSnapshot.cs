@@ -153,6 +153,41 @@ namespace ShelterManager.Database.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("ShelterManager.Database.Entities.Adoption", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTimeOffset?>("AdoptionDate")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<Guid>("AnimalId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("StartAdoptionProcess")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("UpdatedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AnimalId");
+
+                    b.ToTable("Adoptions");
+                });
+
             modelBuilder.Entity("ShelterManager.Database.Entities.Animal", b =>
                 {
                     b.Property<Guid>("Id")
@@ -178,6 +213,10 @@ namespace ShelterManager.Database.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Sex")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -403,6 +442,47 @@ namespace ShelterManager.Database.Migrations
                     b.ToTable("RefreshTokens");
                 });
 
+            modelBuilder.Entity("ShelterManager.Database.Entities.ShelterConfiguration", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PostalCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Street")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("UpdatedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ShelterConfigurations");
+                });
+
             modelBuilder.Entity("ShelterManager.Database.Entities.Species", b =>
                 {
                     b.Property<Guid>("Id")
@@ -561,6 +641,69 @@ namespace ShelterManager.Database.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("ShelterManager.Database.Entities.Adoption", b =>
+                {
+                    b.HasOne("ShelterManager.Database.Entities.Animal", "Animal")
+                        .WithMany("Adoptions")
+                        .HasForeignKey("AnimalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.OwnsOne("ShelterManager.Database.Entities.Owned.AdoptionPerson", "Person", b1 =>
+                        {
+                            b1.Property<Guid>("AdoptionId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<string>("City")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("DocumentId")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("Email")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("Name")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("Pesel")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("PhoneNumber")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("PostalCode")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("Street")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("Surname")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.HasKey("AdoptionId");
+
+                            b1.ToTable("Adoptions");
+
+                            b1.WithOwner()
+                                .HasForeignKey("AdoptionId");
+                        });
+
+                    b.Navigation("Animal");
+
+                    b.Navigation("Person")
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("ShelterManager.Database.Entities.Animal", b =>
                 {
                     b.HasOne("ShelterManager.Database.Entities.Breed", "Breed")
@@ -682,6 +825,8 @@ namespace ShelterManager.Database.Migrations
 
             modelBuilder.Entity("ShelterManager.Database.Entities.Animal", b =>
                 {
+                    b.Navigation("Adoptions");
+
                     b.Navigation("DailyTaskDefaultEntries");
 
                     b.Navigation("DailyTasks");

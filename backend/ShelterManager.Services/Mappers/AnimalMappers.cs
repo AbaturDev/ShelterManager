@@ -13,6 +13,7 @@ public static class AnimalMappers
             CreatedAt = animal.CreatedAt,
             UpdatedAt = animal.UpdatedAt,
             Name = animal.Name,
+            Sex = animal.Sex,
             Description = animal.Description,
             AdmissionDate = animal.AdmissionDate,
             Age = animal.Age,

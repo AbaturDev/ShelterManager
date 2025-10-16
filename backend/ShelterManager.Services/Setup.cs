@@ -24,5 +24,6 @@ public static class Setup
         builder.Services.AddScoped<IUserService, UserService>();
         builder.Services.AddScoped<IAnimalFileService, AnimalFileService>();
         builder.Services.AddScoped<IDailyTaskService, DailyTaskService>();
+        builder.Services.AddScoped<IAdoptionService, AdoptionService>();
     }
 }

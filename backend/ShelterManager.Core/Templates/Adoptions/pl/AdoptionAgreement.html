@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Umowa adopcyjna</title>
+  <style>
+    body {
+      font-family: "DejaVu Sans", sans-serif;
+      font-size: 12px;
+      color: #000;
+      margin: 40px;
+      line-height: 1.4;
+    }
+
+    .header {
+      width: 100%;
+      border-bottom: 2px solid #000;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    .header table {
+      width: 100%;
+      border: none;
+      border-collapse: collapse;
+    }
+
+    .header table td {
+      border: none;
+      padding: 0;
+      vertical-align: top;
+    }
+
+    .header table td:first-child {
+      width: 65%;
+      text-align: left;
+    }
+
+    .header table td:last-child {
+      width: 35%;
+      text-align: right;
+    }
+
+    .shelter-info h3 {
+      margin: 0 0 5px 0;
+    }
+
+    .title {
+      text-align: center;
+      margin: 10px 0 20px 0;
+      font-size: 18px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      font-weight: bold;
+      margin-top: 20px;
+      text-decoration: underline;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 5px;
+    }
+
+    table.data-table td {
+      border: 1px solid #000;
+      padding: 4px;
+      vertical-align: top;
+    }
+
+    table.data-table td:first-child {
+      width: 40%;
+    }
+
+    table.data-table td:last-child {
+      width: 60%;
+    }
+
+    .signatures {
+      margin-top: 40px;
+      width: 100%;
+    }
+
+    .signatures table {
+      width: 100%;
+      border: none;
+    }
+
+    .signatures table td {
+      width: 50%;
+      text-align: center;
+      border: none;
+      padding: 0 10px;
+      vertical-align: bottom;
+    }
+
+    .sig-line {
+      display: block;
+      width: 100%;
+      text-align: center;
+      margin-bottom: 5px;
+    }
+
+    .small {
+      font-size: 10px;
+    }
+  </style>
+</head>
+<body>
+<div class="header">
+  <table>
+    <tr>
+      <td>
+        <div class="shelter-info">
+          <h3>Schronisko dla Zwierząt {{ShelterName}}</h3>
+          <div>ul. {{ShelterStreet}}, {{ShelterPostalCode}} {{ShelterCity}}</div>
+          <div>tel. {{ShelterPhoneNumber}}, e-mail: {{ShelterEmail}}</div>
+        </div>
+      </td>
+      <td>
+        <div class="date">
+          Data: {{AdoptionStartDate}}
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="title">UMOWA ADOPCYJNA</div>
+
+<p>
+  Zawarta pomiędzy Schroniskiem dla Zwierząt „ShelterManager", zwanym dalej <strong>Schroniskiem</strong>,
+  reprezentowanym przez upoważnionego pracownika: {{UserName}} {{UserSurname}}, a:
+</p>
+
+<table class="data-table">
+  <tr><td>Imię i nazwisko</td><td>{{PersonName}} {{PersonSurname}}</td></tr>
+  <tr><td>Seria i nr dowodu osobistego</td><td>{{PersonDocumentId}}</td></tr>
+  <tr><td>PESEL</td><td>{{PersonPesel}}</td></tr>
+  <tr><td>Adres</td><td>{{PersonStreet}}, {{PersonPostalCode}} {{PersonCity}}</td></tr>
+  <tr><td>Telefon / Email</td><td>{{PersonPhoneNumber}} / {{PersonEmail}}</td></tr>
+</table>
+
+<h4 class="section-title">Dane zwierzęcia</h4>
+<table class="data-table">
+  <tr><td>Imię</td><td>{{AnimalName}}</td></tr>
+  <tr><td>Gatunek / Rasa</td><td>{{AnimalSpecies}} / {{AnimalBreed}}</td></tr>
+  <tr><td>Płeć</td><td>{{AnimalSex}}</td></tr>
+  <tr><td>Wiek</td><td>{{AnimalAge}}</td></tr>
+  <tr><td>Identyfikator</td><td>{{AnimalId}}</td></tr>
+</table>
+
+<h4 class="section-title">Zobowiązania adoptującego</h4>
+<ol>
+  <li>Zapewnienia zwierzęciu odpowiednich warunków bytowych, wyżywienia i opieki weterynaryjnej.</li>
+  <li>Nieprzekazywania zwierzęcia osobom trzecim bez zgody Schroniska.</li>
+  <li>Informowania Schroniska o zmianie adresu lub w razie śmierci zwierzęcia.</li>
+  <li>Wyrażenia zgody na kontrolę warunków bytowych przez upoważnionych pracowników Schroniska.</li>
+</ol>
+
+<h4 class="section-title">Postanowienia końcowe</h4>
+<p>
+  Adoptujący oświadcza, że zapoznał się z treścią niniejszej umowy i przyjmuje jej warunki.
+  Schronisko zastrzega sobie prawo do cofnięcia adopcji w przypadku stwierdzenia niewłaściwego traktowania zwierzęcia.
+</p>
+
+<div class="signatures">
+  <table>
+    <tr>
+      <td>
+        <span class="sig-line">..................................................</span>
+        <span class="small">podpis adoptującego</span>
+      </td>
+      <td>
+        <span class="sig-line">..................................................</span>
+        <span class="small">podpis pracownika schroniska</span>
+      </td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>
