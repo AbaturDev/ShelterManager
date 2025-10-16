@@ -71,12 +71,6 @@
       text-align: center;
     }
 
-    .footer {
-      text-align: center;
-      font-size: 10px;
-      margin-top: 40px;
-    }
-
     .small {
       font-size: 10px;
     }
@@ -85,12 +79,12 @@
 <body>
 <div class="header">
   <div class="shelter-info">
-    <h3>Schronisko dla Zwierząt ShelterManager</h3>
-    <div>ul. [adres schroniska], [kod] [miasto]</div>
-    <div>tel. [telefon], e-mail: [email]</div>
+    <h3>Schronisko dla Zwierząt {{ShelterName}}</h3>
+    <div>ul. {{ShelterStreet}}, {{ShelterPostalCode}} {{ShelterCity}}</div>
+    <div>tel. {{ShelterPhoneNumber}}, e-mail: {{ShelterEmail}}</div>
   </div>
   <div class="date">
-    Data: {{Adoption.StartDate}}
+    Data: {{AdoptionStartDate}}
   </div>
 </div>
 
@@ -103,7 +97,7 @@
 
 <table>
   <tr><td>Imię i nazwisko</td><td>{{PersonName}} {{PersonSurname}}</td></tr>
-  <tr><td>Seria i nr dowodu osobistego</td><td>{{PersonIdNumber}}</td></tr>
+  <tr><td>Seria i nr dowodu osobistego</td><td>{{PersonDocumentId}}</td></tr>
   <tr><td>PESEL</td><td>{{PersonPesel}}</td></tr>
   <tr><td>Adres</td><td>{{PersonStreet}}, {{PersonPostalCode}} {{PersonCity}}</td></tr>
   <tr><td>Telefon / Email</td><td>{{PersonPhoneNumber}} / {{PersonEmail}}</td></tr>

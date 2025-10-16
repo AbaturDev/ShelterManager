@@ -1,9 +1,10 @@
+using ShelterManager.Services.Constants;
+
 namespace ShelterManager.Api.Utils;
 
 public static class LanguageUtils
 {
-    private const string DefaultLanguageCode = "en";
-    private static readonly HashSet<string> SupportedLanguages = ["en", "pl"];
+    private const string DefaultLanguageCode = SupportedLanguages.English;
 
     public static string GetLanguageCode(string? language)
     {
@@ -13,6 +14,6 @@ public static class LanguageUtils
         }
 
         var langCode = language.ToLowerInvariant();
-        return SupportedLanguages.Contains(langCode) ? langCode : DefaultLanguageCode;
+        return SupportedLanguages.AllSupportedLanguages.Contains(langCode) ? langCode : DefaultLanguageCode;
     }
 }

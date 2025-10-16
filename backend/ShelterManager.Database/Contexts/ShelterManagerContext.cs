@@ -28,6 +28,7 @@ public sealed class ShelterManagerContext : IdentityDbContext<User, IdentityRole
     public DbSet<DailyTaskEntry> DailyTaskEntries { get; init; }
     public DbSet<DailyTaskDefaultEntry> DailyTaskDefaultEntries { get; init; }
     public DbSet<Adoption> Adoptions { get; init; }
+    public DbSet<ShelterConfiguration> ShelterConfigurations { get; init; }
     
     protected override void OnModelCreating(ModelBuilder builder)
     {

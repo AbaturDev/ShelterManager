@@ -15,7 +15,7 @@ public class PdfService : IPdfService
     
     public Stream GeneratePdfFromHtml(string htmlContent)
     {
-        var document = new HtmlToPdfDocument()
+        var document = new HtmlToPdfDocument
         {
             GlobalSettings = {
                 ColorMode = ColorMode.Color,
