@@ -4,13 +4,17 @@ using ShelterManager.Core.Exceptions;
 using ShelterManager.Core.Services.Abstractions;
 using ShelterManager.Database.Contexts;
 using ShelterManager.Database.Entities;
+using ShelterManager.Database.Enums;
 using ShelterManager.Services.Constants;
+using ShelterManager.Services.Dtos.Commons;
 
 namespace ShelterManager.Services.Features.Adoptions;
 
 public static class GetAdoptionAgreement
 {
-    public static async Task<Stream> GetAdoptionAgreementAsync(
+    private const string PdfFileExtension = ".pdf";
+    
+    public static async Task<FileStreamDto> GetAdoptionAgreementAsync(
         Guid adoptionId,
         string lang,
         ShelterManagerContext context,
@@ -65,7 +69,7 @@ public static class GetAdoptionAgreement
             {"AnimalName", adoption.Animal.Name},
             {"AnimalSpecies", adoption.Animal.Breed.Species.Name},
             {"AnimalBreed", adoption.Animal.Breed.Name},
-            {"AnimalSex", adoption.Animal.Sex.ToString()},
+            {"AnimalSex", SexLanguageTranslation(adoption.Animal.Sex, lang)},
             {"AnimalAge", adoption.Animal.Age.ToString() ?? UnknownAgeByLanguage(lang)},
             {"AnimalId", adoption.Animal.Id.ToString()},
         };
@@ -73,7 +77,11 @@ public static class GetAdoptionAgreement
 
         var pdfStream = pdfService.GeneratePdfFromHtml(content);
         
-        return pdfStream;
+        return new FileStreamDto
+        {
+            Stream = pdfStream,
+            FileExtension = PdfFileExtension
+        };
     }
 
     private static string UnknownAgeByLanguage(string lang)
@@ -83,6 +91,21 @@ public static class GetAdoptionAgreement
             SupportedLanguages.Polish  => "Wiek nieznany",
             SupportedLanguages.English => "Unknown age",
             _ => "Unknown age"
+        };
+    }
+
+    private static string SexLanguageTranslation(Sex sex, string lang)
+    {
+        if (lang == SupportedLanguages.English)
+        {
+            return sex.ToString();
+        }
+
+        return sex switch
+        {
+            Sex.Male when lang == SupportedLanguages.Polish => "Samiec",
+            Sex.Female when lang == SupportedLanguages.Polish => "Samica",
+            _ => throw new ArgumentOutOfRangeException(nameof(sex), sex, null)
         };
     }
 }

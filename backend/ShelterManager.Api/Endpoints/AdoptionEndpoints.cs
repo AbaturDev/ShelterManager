@@ -1,10 +1,15 @@
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ShelterManager.Api.Constants;
 using ShelterManager.Api.Extensions;
 using ShelterManager.Api.Utils;
+using ShelterManager.Core.Services.Abstractions;
+using ShelterManager.Database.Contexts;
+using ShelterManager.Database.Entities;
 using ShelterManager.Services.Dtos.Adoptions;
 using ShelterManager.Services.Dtos.Commons;
+using ShelterManager.Services.Features.Adoptions;
 using ShelterManager.Services.Services.Abstractions;
 
 namespace ShelterManager.Api.Endpoints;
@@ -28,6 +33,7 @@ public static class AdoptionEndpoints
         group.MapPut("/{id:guid}", UpdateAdoptionStatus)
             .WithRequestValidation<UpdateAdoptionDto>();
         group.MapDelete("/{id:guid}", DeleteAdoption);
+        group.MapGet("/{id:guid}/adoption-agreement", GetAdoptionAgreementFile);
         
         return group;
     }
@@ -86,5 +92,24 @@ public static class AdoptionEndpoints
         await adoptionService.UpdateAdoptionStatusAsync(id, dto, ct);
         
         return TypedResults.Ok();
+    }
+
+    private static async Task<IResult> GetAdoptionAgreementFile(
+        Guid id,
+        [FromHeader(Name = "Accept-Language")] string? language,
+        ShelterManagerContext context,
+        IPdfService pdfService,
+        ITemplateService templateService,
+        TimeProvider timeProvider,
+        IUserContextService userContext,
+        UserManager<User> userManager,
+        CancellationToken ct)
+    {
+        var lang = LanguageUtils.GetLanguageCode(language);
+        
+        var fileStreamDto = await GetAdoptionAgreement.GetAdoptionAgreementAsync(id, lang, context, pdfService, templateService, timeProvider, userContext, userManager, ct);
+        var contentType = FileExtensionUtils.MapToContentType(fileStreamDto.FileExtension);
+        
+        return Results.File(fileStreamDto.Stream, contentType);
     }
 }
