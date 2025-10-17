@@ -18,7 +18,17 @@ public static class AnimalMappers
             AdmissionDate = animal.AdmissionDate,
             Age = animal.Age,
             Status = animal.Status,
-            ImagePath = animal.ImagePath
+            ImagePath = animal.ImagePath,
+            Species = new AnimalSpeciesDto
+            {
+                Id = animal.Breed.SpeciesId,
+                Name = animal.Breed.Species.Name,
+                Breed = new AnimalBreedDto
+                {
+                    Id = animal.BreedId,
+                    Name = animal.Breed.Name                    
+                }
+            }
         };
         
         return dto;
