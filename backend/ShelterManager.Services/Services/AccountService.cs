@@ -1,4 +1,5 @@
 using System.IdentityModel.Tokens.Jwt;
+using System.Net;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
@@ -29,8 +30,9 @@ public class AccountService : IAccountService
     private readonly IEmailService _emailService;
     private readonly ITemplateService _templateService;
     private readonly ShelterManagerContext _context;
+    private readonly IOptions<FrontendOptions> _frontendOptions;
     
-    public AccountService(UserManager<User> userManager, IOptions<JwtOptions> jwtOptions, TimeProvider timeProvider, IEmailService emailService, ITemplateService templateService, ShelterManagerContext context)
+    public AccountService(UserManager<User> userManager, IOptions<JwtOptions> jwtOptions, TimeProvider timeProvider, IEmailService emailService, ITemplateService templateService, ShelterManagerContext context, IOptions<FrontendOptions> frontendOptions)
     {
         _userManager = userManager;
         _jwtOptions = jwtOptions;
@@ -38,6 +40,7 @@ public class AccountService : IAccountService
         _emailService = emailService;
         _templateService = templateService;
         _context = context;
+        _frontendOptions = frontendOptions;
     }
     
     public async Task<LoginResponse> LoginAsync(LoginRequest request)
@@ -116,7 +119,8 @@ public class AccountService : IAccountService
             { "Password", password }
         };
 
-        var htmlMessage = _templateService.LoadTemplate($"Templates\\Emails\\{languageCode}\\RegisterEmail.html", templateParameters);
+        var path = Path.Combine("Templates", "Emails", languageCode, "RegisterEmail.html");
+        var htmlMessage = _templateService.LoadTemplate(path, templateParameters);
         
         await _emailService.SendEmailAsync(user.Email, userFullName, RegisterEmailSubjects.GetSubject(languageCode), htmlMessage);
     }
@@ -150,6 +154,48 @@ public class AccountService : IAccountService
             JwtToken = await GenerateToken(refreshToken.User),
             RefreshToken = newRefreshToken.Token
         };
+    }
+
+    public async Task SendResetPasswordEmailAsync(ForgotPasswordRequest request, string lang)
+    {
+        var user = await _userManager.FindByEmailAsync(request.Email);
+        if (user is null)
+        {
+            throw new NotFoundException("User not found");
+        }
+
+        var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+        var encodedToken = WebUtility.UrlEncode(token);
+        
+        var userFullName = $"{user.Name} {user.Surname}";
+        
+        var templateParameters = new Dictionary<string, string>
+        {
+            { "User", userFullName },
+            { "ResetLink", $"{_frontendOptions.Value.Url}/reset-password?token={encodedToken}&email={user.Email}" }
+        };
+
+        var path = Path.Combine("Templates", "Emails", lang, "ResetPasswordEmail.html");
+        var htmlMessage = _templateService.LoadTemplate(path, templateParameters);
+        await _emailService.SendEmailAsync(user.Email!, userFullName, ResetPasswordEmailSubjects.GetSubject(lang), htmlMessage);
+    }
+
+    public async Task ResetPasswordAsync(ResetPasswordRequest request)
+    {
+        var user = await _userManager.FindByEmailAsync(request.Email);
+        if (user is null)
+        {
+            throw new NotFoundException("User not found");
+        }
+
+        var token = WebUtility.UrlDecode(request.Token);
+        
+        var result = await _userManager.ResetPasswordAsync(user, token, request.NewPassword);
+        if (!result.Succeeded)
+        {
+            var errors = string.Join(";", result.Errors.Select(e => e.Description));
+            throw new BadRequestException(errors);
+        }
     }
 
     public async Task ChangePasswordAsync(ChangePasswordRequest request)

@@ -25,8 +25,9 @@ public static class Setup
         builder.Services.AddOptionsWithValidation<AdminOptions>(AdminOptions.SectionName);
         builder.Services.AddOptionsWithValidation<EmailOptions>(EmailOptions.SectionName);
         builder.Services.AddOptionsWithValidation<ShelterConfigurationOptions>(ShelterConfigurationOptions.SectionName);
-        
-        var wkthmlPath = Path.Combine(AppContext.BaseDirectory, $"native\\libwkhtmltox{OsUtils.GetWkhtmlExtension()}");
+        builder.Services.AddOptionsWithValidation<FrontendOptions>(FrontendOptions.SectionName);
+
+        var wkthmlPath = Path.Combine(AppContext.BaseDirectory,"native", $"libwkhtmltox{OsUtils.GetWkhtmlExtension()}");
         var context = new CustomAssemblyLoadContext();
         context.LoadUnmanagedLibrary(wkthmlPath);
         builder.Services.AddSingleton<IConverter>(new SynchronizedConverter(new PdfTools()));
