@@ -29,6 +29,12 @@ public static class AccountEndpoints
             .WithRequestValidation<ChangePasswordRequest>();
         group.MapPost("/refresh-token", RefreshToken)
             .AllowAnonymous();
+        group.MapPost("/forgot-password", ForgotPassword)
+            .WithRequestValidation<ForgotPasswordRequest>()
+            .AllowAnonymous();
+        group.MapPost("/reset-password", ResetPassword)
+            .WithRequestValidation<ResetPasswordRequest>()
+            .AllowAnonymous();
         
         return group;
     }
@@ -73,5 +79,27 @@ public static class AccountEndpoints
         var response = await accountService.RefreshTokenAsync(request);
 
         return TypedResults.Ok(response);
+    }
+    
+    private static async Task<Ok> ForgotPassword(
+        [FromHeader(Name = "Accept-Language")] string? language,
+        [FromBody] ForgotPasswordRequest request,
+        [FromServices] IAccountService accountService
+    )
+    {
+        var languageCode = LanguageUtils.GetLanguageCode(language);
+        await accountService.SendResetPasswordEmailAsync(request, languageCode);
+
+        return TypedResults.Ok();
+    }
+    
+    private static async Task<Ok> ResetPassword(
+        [FromBody] ResetPasswordRequest request,
+        [FromServices] IAccountService accountService
+    )
+    {
+        await accountService.ResetPasswordAsync(request);
+
+        return TypedResults.Ok();
     }
 }

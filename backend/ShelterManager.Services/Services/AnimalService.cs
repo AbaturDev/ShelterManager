@@ -20,9 +20,14 @@ public class AnimalService : IAnimalService
         _context = context;
     }
     
-    public async Task<PaginatedResponse<AnimalDto>> ListAnimalsAsync(PageQueryFilter pageQueryFilter, CancellationToken ct)
+    public async Task<PaginatedResponse<AnimalDto>> ListAnimalsAsync(AnimalPageQueryFilter pageQueryFilter, CancellationToken ct)
     {
-        var query = _context.Animals.AsNoTracking();
+        var query = _context.Animals
+            .Include(a => a.Breed)
+            .ThenInclude(b => b.Species)
+            .ApplyFilters(pageQueryFilter)
+            .AsNoTracking()
+            .AsQueryable();
 
         var count = await query.CountAsync(ct);
 
@@ -37,6 +42,8 @@ public class AnimalService : IAnimalService
     public async Task<AnimalDto> GetAnimalByIdAsync(Guid id, CancellationToken ct)
     {
         var animal = await _context.Animals
+            .Include(a => a.Breed)
+            .ThenInclude(b => b.Species)
             .AsNoTracking()
             .FirstOrDefaultAsync(a => a.Id == id, ct);
 

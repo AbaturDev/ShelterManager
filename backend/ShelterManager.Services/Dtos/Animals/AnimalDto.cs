@@ -14,4 +14,5 @@ public sealed record AnimalDto
     public int? Age { get; init; }
     public string? ImagePath { get; init; }
     public string? Description { get; init; }
+    public required AnimalSpeciesDto Species { get; init; }
 }

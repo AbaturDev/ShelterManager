@@ -45,7 +45,7 @@ public static class AnimalEndpoints
     }
 
     private static async Task<Ok<PaginatedResponse<AnimalDto>>> ListAnimals(
-        [AsParameters] PageQueryFilter pageQueryFilter,
+        [AsParameters] AnimalPageQueryFilter pageQueryFilter,
         [FromServices] IAnimalService animalService,
         CancellationToken ct)
     {

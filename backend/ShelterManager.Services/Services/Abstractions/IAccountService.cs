@@ -9,4 +9,6 @@ public interface IAccountService
     Task RegisterAsync(RegisterRequest request, string languageCode);
     Task ChangePasswordAsync(ChangePasswordRequest request);
     Task<LoginResponse> RefreshTokenAsync(RefreshTokenRequest request);
+    Task SendResetPasswordEmailAsync(ForgotPasswordRequest request, string lang);
+    Task ResetPasswordAsync(ResetPasswordRequest request);
 }
