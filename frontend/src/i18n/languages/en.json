@@ -1,0 +1,10 @@
+{
+  "navigation": {
+    "home": "Home",
+    "animals": "Animals",
+    "species": "Species",
+    "events": "Events",
+    "adoptions": "Adoptions"
+  },
+  "test": "english"
+}

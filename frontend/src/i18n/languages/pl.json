@@ -1,0 +1,10 @@
+{
+  "navigation": {
+    "home": "Strona startowa",
+    "animals": "Zwierzęta",
+    "species": "Gatunki",
+    "events": "Wydarzenia",
+    "adoptions": "Adopcje"
+  },
+  "test": "polski"
+}
