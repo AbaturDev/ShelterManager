@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using DinkToPdf;
+﻿using DinkToPdf;
 using DinkToPdf.Contracts;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,7 +26,7 @@ public static class Setup
         builder.Services.AddOptionsWithValidation<ShelterConfigurationOptions>(ShelterConfigurationOptions.SectionName);
         builder.Services.AddOptionsWithValidation<FrontendOptions>(FrontendOptions.SectionName);
 
-        var wkthmlPath = Path.Combine(AppContext.BaseDirectory,"native", $"libwkhtmltox{OsUtils.GetWkhtmlExtension()}");
+        var wkthmlPath = Path.Combine(AppContext.BaseDirectory, "native", $"libwkhtmltox{OsUtils.GetWkhtmlExtension()}");
         var context = new CustomAssemblyLoadContext();
         context.LoadUnmanagedLibrary(wkthmlPath);
         builder.Services.AddSingleton<IConverter>(new SynchronizedConverter(new PdfTools()));
