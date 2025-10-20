@@ -3,7 +3,7 @@ import { Layout } from "./Layout";
 import { Toaster } from "./components/ui/toaster";
 import i18n from "./i18n/i18n";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Home } from "./pages";
+import { HomePage, LoginPage } from "./pages";
 
 function App() {
   return (
@@ -13,7 +13,8 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route element={<Layout />}>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<HomePage />} />
+              <Route path="/login" element={<LoginPage />} />
             </Route>
           </Routes>
         </BrowserRouter>

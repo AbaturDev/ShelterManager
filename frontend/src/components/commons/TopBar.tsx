@@ -7,7 +7,7 @@ export const TopBar = () => {
   return (
     <Flex
       as="header"
-      bg="green.300"
+      bg="green.400"
       color="white"
       boxShadow="md"
       px={6}

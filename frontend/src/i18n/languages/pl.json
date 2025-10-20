@@ -6,5 +6,11 @@
     "events": "Wydarzenia",
     "adoptions": "Adopcje"
   },
+  "login": {
+    "email": "Email",
+    "password": "Hasło",
+    "login": "Zaloguj",
+    "forgotPassword": "Zapomniałeś hasła?"
+  },
   "test": "polski"
 }

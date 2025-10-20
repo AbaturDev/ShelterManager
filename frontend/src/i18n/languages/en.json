@@ -6,5 +6,11 @@
     "events": "Events",
     "adoptions": "Adoptions"
   },
+  "login": {
+    "email": "Email",
+    "password": "Password",
+    "login": "Login",
+    "forgotPassword": "Forgot Password?"
+  },
   "test": "english"
 }

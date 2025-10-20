@@ -9,6 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { FlagEnIcon, FlagPlIcon } from "../../assets/flags";
+import { useEffect } from "react";
 
 interface Language {
   value: string;
@@ -38,6 +39,13 @@ const LanguageSelectTrigger = () => {
 export const LanguageSelector = () => {
   const { i18n } = useTranslation();
 
+  useEffect(() => {
+    const savedLang = localStorage.getItem("lang");
+    if (savedLang && savedLang !== i18n.language) {
+      i18n.changeLanguage(savedLang);
+    }
+  }, []);
+
   const languages = createListCollection({
     items: [
       { value: "pl", label: "PL", flag: <FlagPlIcon /> },
@@ -47,12 +55,13 @@ export const LanguageSelector = () => {
 
   const onLanguageSelect = (language: string) => {
     i18n.changeLanguage(language);
+    localStorage.setItem("lang", language);
   };
 
   return (
     <Select.Root
       collection={languages}
-      defaultValue={["pl"]}
+      value={[i18n.language]}
       onValueChange={(e) => onLanguageSelect(e.value[0])}
     >
       <Select.HiddenSelect />
