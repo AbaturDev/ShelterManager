@@ -10,7 +10,13 @@
     "email": "Email",
     "password": "Hasło",
     "login": "Zaloguj",
-    "forgotPassword": "Zapomniałeś hasła?"
+    "forgotPassword": "Zapomniałeś hasła?",
+    "emailError": "Niepoprawny format email",
+    "passwordError": "Hasło musi mieć conajmniej 8 znaków",
+    "error": "Niepoprawny email lub hasło"
   },
+  "errorTooManyRequests": "Zbyt wiele zapytań. Spróbuj ponownie później",
+  "error": "Wystąpił błąd",
+  "tryAgain": "Spróbuj ponownie później",
   "test": "polski"
 }

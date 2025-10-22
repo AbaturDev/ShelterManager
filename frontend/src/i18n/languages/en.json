@@ -10,7 +10,13 @@
     "email": "Email",
     "password": "Password",
     "login": "Login",
-    "forgotPassword": "Forgot Password?"
+    "forgotPassword": "Forgot Password?",
+    "emailError": "Invalid email type",
+    "passwordError": "Password must be at least 8 characters",
+    "error": "Invalid email or password"
   },
+  "errorTooManyRequests": "Too many requests",
+  "error": "An error occured",
+  "tryAgain": "Try again later",
   "test": "english"
 }
