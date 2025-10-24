@@ -12,14 +12,13 @@ import { PasswordInput } from "../ui/password-input";
 import { useTranslation } from "react-i18next";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AccountService } from "../../api/services/account-service";
 import {
   getFormErrorMessage,
   setFormErrorMessage,
 } from "../../utils/form-error-handlers";
-import { useNavigate } from "react-router-dom";
 import { toaster } from "../ui/toaster";
 import { AxiosError } from "axios";
+import { useAuth } from "../../utils/AuthProvider";
 
 const loginSchema = z.object({
   email: z.string().email(setFormErrorMessage("login.emailError")),
@@ -29,8 +28,8 @@ const loginSchema = z.object({
 type LoginData = z.infer<typeof loginSchema>;
 
 export const LoginForm = () => {
+  const auth = useAuth();
   const { t } = useTranslation();
-  const navigate = useNavigate();
 
   const {
     register,
@@ -43,15 +42,7 @@ export const LoginForm = () => {
 
   const onSubmit = async (data: LoginData) => {
     try {
-      const response = await AccountService.login({
-        email: data.email,
-        password: data.password,
-      });
-
-      localStorage.setItem("jwtToken", response.jwtToken);
-      localStorage.setItem("refreshToken", response.refreshToken);
-
-      navigate(`/`);
+      await auth?.login(data.email, data.password);
     } catch (err) {
       let message: string | null = null;
       if (err instanceof AxiosError) {

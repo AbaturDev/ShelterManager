@@ -15,7 +15,7 @@
     "passwordError": "Password must be at least 8 characters",
     "error": "Invalid email or password"
   },
-  "errorTooManyRequests": "Too many requests",
+  "errorTooManyRequests": "Too many requests. Try again later",
   "error": "An error occured",
   "tryAgain": "Try again later",
   "test": "english"

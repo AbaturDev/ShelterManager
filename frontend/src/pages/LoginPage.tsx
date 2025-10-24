@@ -1,5 +1,5 @@
 import { Box, Flex } from "@chakra-ui/react";
-import { LoginForm } from "../components/login/LoginForm";
+import { LoginForm } from "../components/login";
 
 export const LoginPage = () => {
   return (

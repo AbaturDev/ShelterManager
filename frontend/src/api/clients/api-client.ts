@@ -40,7 +40,7 @@ apiClient.interceptors.response.use(
 
         return apiClient(originalRequest);
       } catch (refreshError) {
-        localStorage.removeItem("accessToken");
+        localStorage.removeItem("jwtToken");
         localStorage.removeItem("refreshToken");
 
         window.location.href = "/login";
