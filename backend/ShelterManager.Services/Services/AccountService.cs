@@ -239,13 +239,9 @@ public class AccountService : IAccountService
         {
             new(ClaimTypes.NameIdentifier, user.Id.ToString()),
             new(ClaimTypes.Name, $"{user.Email}"),
-            new(nameof(user.MustChangePassword), user.MustChangePassword.ToString())
+            new(ClaimTypes.Role, userRoles.First()),
+            new("mustChangePassword", user.MustChangePassword.ToString())
         };
-
-        foreach (var role in userRoles)
-        {
-            claims.Add(new Claim(ClaimTypes.Role, role));
-        }
         
         var tokenDescriptor = new SecurityTokenDescriptor
         {

@@ -1,0 +1,26 @@
+import { Route, Routes } from "react-router-dom";
+import { AuthLayout, PublicLayout } from "./Layout";
+import { NonAuthRoute } from "./utils/NonAuthRoute";
+import { ProtectedRoute } from "./utils/ProtectedRoute";
+import { ChangePasswordPage, HomePage, LoginPage } from "./pages";
+import { MustChangePasswordRoute } from "./utils/MustChangePasswordRoute";
+
+export const AppRoutes = () => {
+  return (
+    <Routes>
+      <Route element={<PublicLayout />}>
+        <Route element={<NonAuthRoute />}>
+          <Route path="/login" element={<LoginPage />} />
+        </Route>
+      </Route>
+      <Route element={<ProtectedRoute />}>
+        <Route element={<AuthLayout />}>
+          <Route path="/change-password" element={<ChangePasswordPage />} />
+          <Route element={<MustChangePasswordRoute />}>
+            <Route path="/" element={<HomePage />} />
+          </Route>
+        </Route>
+      </Route>
+    </Routes>
+  );
+};

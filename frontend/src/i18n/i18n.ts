@@ -18,7 +18,7 @@ i18n
         translation: pl,
       },
     },
-    fallbackLng: "en",
+    fallbackLng: localStorage.getItem("lang") ?? "en",
 
     interpolation: {
       escapeValue: false,
