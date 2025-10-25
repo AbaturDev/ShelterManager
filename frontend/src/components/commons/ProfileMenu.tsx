@@ -19,19 +19,27 @@ export const ProfileMenu = () => {
       <Portal>
         <Menu.Positioner>
           <Menu.Content>
-            <Menu.Item value="profile">
+            <Menu.Item
+              value="profile"
+              _hover={{ bg: "green.600", color: "white" }}
+            >
               <Icon as={ImProfile} />
               <Box flex={"1"}>{t("profileMenu.profile")}</Box>
             </Menu.Item>
             <Menu.Item
               value="password"
               onSelect={() => navigate("/change-password")}
+              _hover={{ bg: "green.600", color: "white" }}
             >
               <Icon as={MdKey} />
               <Box flex={"1"}>{t("profileMenu.changePassword")}</Box>
             </Menu.Item>
             <Menu.Separator />
-            <Menu.Item value="logout" onSelect={auth?.logout}>
+            <Menu.Item
+              value="logout"
+              onSelect={auth?.logout}
+              _hover={{ bg: "green.600", color: "white" }}
+            >
               <Icon as={MdLogout} />
               <Box flex={"1"}>{t("profileMenu.logout")}</Box>
             </Menu.Item>

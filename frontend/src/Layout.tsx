@@ -1,8 +1,8 @@
 import { Box, Flex } from "@chakra-ui/react";
 import { Outlet } from "react-router-dom";
-import { SideBar, TopBar } from "./components/commons";
+import { PublicTopBar, SideBar, TopBar } from "./components/commons";
 
-export const Layout = () => {
+export const AuthLayout = () => {
   return (
     <Flex direction="column" height="100vh">
       <Box borderBottom="1px solid" borderBottomColor="gray.300">
@@ -18,6 +18,20 @@ export const Layout = () => {
           <Outlet />
         </Box>
       </Flex>
+    </Flex>
+  );
+};
+
+export const PublicLayout = () => {
+  return (
+    <Flex direction="column" height="100vh">
+      <Box borderBottom="1px solid" borderBottomColor="gray.300">
+        <PublicTopBar />
+      </Box>
+
+      <Box flex="1" padding={6}>
+        <Outlet />
+      </Box>
     </Flex>
   );
 };

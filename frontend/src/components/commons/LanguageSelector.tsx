@@ -63,6 +63,7 @@ export const LanguageSelector = () => {
       collection={languages}
       value={[i18n.language]}
       onValueChange={(e) => onLanguageSelect(e.value[0])}
+      positioning={{ placement: "bottom-start" }}
     >
       <Select.HiddenSelect />
       <Select.Control>
