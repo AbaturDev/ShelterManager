@@ -23,5 +23,35 @@
   "errorTooManyRequests": "Too many requests. Try again later",
   "error": "An error occured",
   "tryAgain": "Try again later",
-  "test": "english"
+  "test": "english",
+  "loading": "Loading...",
+  "species": {
+    "header": "Species List",
+    "name": "Species",
+    "error": "Failed to load species data",
+    "createdAt": "Created at",
+    "actions": "Actions",
+    "details": "Species details",
+    "delete": "Delete",
+    "create": {
+      "toast": {
+        "success": "Successfully added a new species",
+        "error": "Failed to add a new species",
+        "exsists": "Species already exsists"
+      },
+      "button": "Add Species",
+      "dialogTitle": "Add New Species",
+      "name": "Species Name",
+      "namePlaceholder": "Species name (e.g., Dog)"
+    }
+  },
+  "cancel": "Cancel",
+  "save": "Save",
+  "success": "Success",
+  "deleteDialog": {
+    "confirm": "Delete",
+    "cancel": "Cancel",
+    "title": "Confirm delete",
+    "body": "Are you sure you want to delete this item?"
+  }
 }

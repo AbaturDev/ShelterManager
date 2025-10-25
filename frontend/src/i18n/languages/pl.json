@@ -23,5 +23,39 @@
   "errorTooManyRequests": "Zbyt wiele zapytań. Spróbuj ponownie później",
   "error": "Wystąpił błąd",
   "tryAgain": "Spróbuj ponownie później",
-  "test": "polski"
+  "test": "polski",
+  "loading": "Ładowanie strony...",
+  "species": {
+    "header": "Lista Gatunków",
+    "name": "Gatunek",
+    "error": "Nie udało się załadować danych gatunków",
+    "createdAt": "Data utworzenia",
+    "actions": "Akcje",
+    "details": "Szczegóły gatunku",
+    "delete": "Usuń",
+    "create": {
+      "toast": {
+        "success": "Pomyślnie dodano nowy gatunek",
+        "error": "Nie udało się dodać nowego gatunku",
+        "exsists": "Gatunek już istnieje"
+      },
+      "button": "Dodaj gatunek",
+      "dialogTitle": "Dodaj nowy gatunek",
+      "name": "Nazwa gatunku",
+      "namePlaceholder": "Nazwa gatunku (np. Pies)"
+    },
+    "deleteToast": {
+      "success": "Pomyślnie usunięto gatunek",
+      "error": "Nie udało się usunąć gatunku"
+    }
+  },
+  "cancel": "Anuluj",
+  "save": "Zapisz",
+  "success": "Sukces",
+  "deleteDialog": {
+    "confirm": "Usuń",
+    "cancel": "Anuluj",
+    "title": "Potwierdź operacje usuwania",
+    "body": "Czy jesteś pewny, że chcesz usunąć ten element?"
+  }
 }
