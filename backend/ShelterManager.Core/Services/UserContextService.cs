@@ -34,7 +34,7 @@ public class UserContextService : IUserContextService
             return null;
         }
         
-        var mustChangePassword = _httpContext.HttpContext.User.FindFirst("MustChangePassword");
+        var mustChangePassword = _httpContext.HttpContext.User.FindFirst("mustChangePassword");
 
         if (mustChangePassword is not null && bool.TryParse(mustChangePassword.Value, out var mustChangePasswordResult))
         {
