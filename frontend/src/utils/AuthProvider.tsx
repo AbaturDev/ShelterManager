@@ -8,10 +8,11 @@ import {
 import { AccountService } from "../api/services/account-service";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import { praseBool } from "./utils";
 
 interface JwtPayload {
   role: string;
-  mustChangePassword: boolean;
+  mustChangePassword: string;
 }
 
 interface AuthContextType {
@@ -42,7 +43,7 @@ const AuthProvider = ({ children }: { children: ReactElement }) => {
     try {
       const decoded = jwtDecode<JwtPayload>(token);
       setRole(decoded.role);
-      setMustChangePassword(decoded.mustChangePassword);
+      setMustChangePassword(praseBool(decoded.mustChangePassword));
     } catch {
       setRole(null);
       setMustChangePassword(false);

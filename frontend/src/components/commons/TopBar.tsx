@@ -1,7 +1,7 @@
-import { Icon, Flex, Image, Text, HStack } from "@chakra-ui/react";
-import { FaUserCircle } from "react-icons/fa";
+import { Flex, Image, Text, HStack } from "@chakra-ui/react";
 import { LanguageSelector } from "./LanguageSelector";
 import { NavLink } from "react-router-dom";
+import { ProfileMenu } from "./ProfileMenu";
 
 export const TopBar = () => {
   return (
@@ -33,7 +33,7 @@ export const TopBar = () => {
       </NavLink>
       <HStack gap={3}>
         <LanguageSelector />
-        <Icon as={FaUserCircle} boxSize={"8"} />
+        <ProfileMenu />
       </HStack>
     </Flex>
   );

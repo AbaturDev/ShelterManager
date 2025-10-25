@@ -240,7 +240,7 @@ public class AccountService : IAccountService
             new(ClaimTypes.NameIdentifier, user.Id.ToString()),
             new(ClaimTypes.Name, $"{user.Email}"),
             new(ClaimTypes.Role, userRoles.First()),
-            new(nameof(user.MustChangePassword), user.MustChangePassword.ToString())
+            new("mustChangePassword", user.MustChangePassword.ToString())
         };
         
         var tokenDescriptor = new SecurityTokenDescriptor

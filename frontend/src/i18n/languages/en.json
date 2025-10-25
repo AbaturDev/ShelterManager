@@ -15,6 +15,11 @@
     "passwordError": "Password must be at least 8 characters",
     "error": "Invalid email or password"
   },
+  "profileMenu": {
+    "profile": "Profile",
+    "changePassword": "Change password",
+    "logout": "Logout"
+  },
   "errorTooManyRequests": "Too many requests. Try again later",
   "error": "An error occured",
   "tryAgain": "Try again later",

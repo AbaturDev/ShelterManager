@@ -3,10 +3,11 @@ import { Layout } from "./Layout";
 import { Toaster } from "./components/ui/toaster";
 import i18n from "./i18n/i18n";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { HomePage, LoginPage } from "./pages";
+import { ChangePasswordPage, HomePage, LoginPage } from "./pages";
 import AuthProvider from "./utils/AuthProvider";
 import { NonAuthRoute } from "./utils/NonAuthRoute";
 import { ProtectedRoute } from "./utils/ProtectedRoute";
+import { MustChangePasswordRoute } from "./utils/MustChangePasswordRoute";
 
 function App() {
   return (
@@ -21,7 +22,13 @@ function App() {
               </Route>
               <Route element={<ProtectedRoute />}>
                 <Route element={<Layout />}>
-                  <Route path="/" element={<HomePage />} />
+                  <Route
+                    path="/change-password"
+                    element={<ChangePasswordPage />}
+                  />
+                  <Route element={<MustChangePasswordRoute />}>
+                    <Route path="/" element={<HomePage />} />
+                  </Route>
                 </Route>
               </Route>
             </Routes>

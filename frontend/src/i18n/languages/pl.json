@@ -15,6 +15,11 @@
     "passwordError": "Hasło musi mieć conajmniej 8 znaków",
     "error": "Niepoprawny email lub hasło"
   },
+  "profileMenu": {
+    "profile": "Profil",
+    "changePassword": "Zmień hasło",
+    "logout": "Wyloguj"
+  },
   "errorTooManyRequests": "Zbyt wiele zapytań. Spróbuj ponownie później",
   "error": "Wystąpił błąd",
   "tryAgain": "Spróbuj ponownie później",
