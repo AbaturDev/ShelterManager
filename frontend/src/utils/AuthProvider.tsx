@@ -12,6 +12,7 @@ import { praseBool } from "./utils";
 import { useQueryClient } from "@tanstack/react-query";
 
 interface JwtPayload {
+  unique_name: string;
   role: string;
   mustChangePassword: string;
 }
@@ -20,6 +21,7 @@ interface AuthContextType {
   jwtToken: string | null;
   role: string | null;
   mustChangePassword: boolean;
+  email: string | null;
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
 }
@@ -31,6 +33,7 @@ const AuthProvider = ({ children }: { children: ReactElement }) => {
     localStorage.getItem("jwtToken")
   );
   const [role, setRole] = useState<string | null>(null);
+  const [email, setEmail] = useState<string | null>(null);
   const [mustChangePassword, setMustChangePassword] = useState(false);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -39,6 +42,7 @@ const AuthProvider = ({ children }: { children: ReactElement }) => {
     if (!token) {
       setRole(null);
       setMustChangePassword(false);
+      setEmail(null);
       return;
     }
 
@@ -46,8 +50,10 @@ const AuthProvider = ({ children }: { children: ReactElement }) => {
       const decoded = jwtDecode<JwtPayload>(token);
       setRole(decoded.role);
       setMustChangePassword(praseBool(decoded.mustChangePassword));
+      setEmail(decoded.unique_name);
     } catch {
       setRole(null);
+      setEmail(null);
       setMustChangePassword(false);
     }
   };
@@ -95,7 +101,7 @@ const AuthProvider = ({ children }: { children: ReactElement }) => {
 
   return (
     <AuthContext.Provider
-      value={{ jwtToken, role, mustChangePassword, login, logout }}
+      value={{ jwtToken, role, mustChangePassword, login, logout, email }}
     >
       {children}
     </AuthContext.Provider>

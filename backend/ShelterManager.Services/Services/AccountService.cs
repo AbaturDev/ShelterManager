@@ -218,6 +218,16 @@ public class AccountService : IAccountService
         
         user.MustChangePassword = false;
         await _userManager.UpdateAsync(user);
+
+        var refreshTokens = await _context.RefreshTokens
+            .Where(rt => rt.UserId == user.Id).ToListAsync();
+
+        foreach (var token in refreshTokens)
+        {
+            token.IsRevoked = true;
+        }
+        
+        await _context.SaveChangesAsync();
     }
     
     private static string GenerateRefreshToken()
@@ -246,7 +256,7 @@ public class AccountService : IAccountService
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(claims),
-            Expires = _timeProvider.GetUtcNow().UtcDateTime.AddMinutes(60),
+            Expires = _timeProvider.GetUtcNow().UtcDateTime.AddMinutes(15),
             Issuer = _jwtOptions.Value.Issuer,
             Audience = _jwtOptions.Value.Audience,
             SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature)

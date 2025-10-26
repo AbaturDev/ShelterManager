@@ -1,4 +1,5 @@
 import type {
+  ChangePasswordRequest,
   ForgotPasswordRequest,
   LoginRequest,
   LoginResponse,
@@ -32,6 +33,10 @@ const AccountService = {
 
   resetPassword: async (resetPasswordRequest: ResetPasswordRequest) => {
     await apiClient.post("/forgot-password", resetPasswordRequest);
+  },
+
+  changePassword: async (changePasswordRequest: ChangePasswordRequest) => {
+    await apiClient.post("/change-password", changePasswordRequest);
   },
 };
 

@@ -102,5 +102,22 @@
         "notVerified": "Wymagana zmiana hasła"
       }
     }
+  },
+  "changePassword": {
+    "button": "Zmień hasło",
+    "title": "Zmiana hasła",
+    "old": "Stare hasło",
+    "new": "Nowe hasło",
+    "confirmNew": "Potwierdź nowe hasło",
+    "schema": {
+      "min": "Hasło musi mieć co najmniej 8 znaków.",
+      "regex": "Hasło musi zawierać co najmniej jedną małą literę, jedną wielką literę, cyfrę i znak specjalny.",
+      "identical": "Hasła muszą być identyczne.",
+      "notSameAsOld": "Nowe hasło nie może być takie samo jak stare"
+    },
+    "toast": {
+      "success": "Hasło zostało zmienione pomyślnie. Za chwilę zostaniesz wylogowany.",
+      "error": "Nie udało się zaktualizować hasła. Upewnij się, że podałeś poprawne hasło"
+    }
   }
 }

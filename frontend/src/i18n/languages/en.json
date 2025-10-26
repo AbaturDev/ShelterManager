@@ -102,5 +102,22 @@
         "notVerified": "Password change is required"
       }
     }
+  },
+  "changePassword": {
+    "button": "Change Password",
+    "title": "Change Password",
+    "old": "Old Password",
+    "new": "New Password",
+    "confirmNew": "Confirm New Password",
+    "schema": {
+      "min": "Password must be at least 8 characters long.",
+      "regex": "Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character.",
+      "identical": "Passwords must match.",
+      "notSameAsOld": "New password cannot be the same as the old password."
+    },
+    "toast": {
+      "success": "Password has been successfully updated. You will be logged out in a moment",
+      "error": "Failed to update password. Make sure you entered the correct current password."
+    }
   }
 }

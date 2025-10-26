@@ -1,3 +1,10 @@
+import { Flex } from "@chakra-ui/react";
+import { ChangePasswordForm } from "../components/changePassword";
+
 export const ChangePasswordPage = () => {
-  return <div>abc</div>;
+  return (
+    <Flex justify={"center"} align={"center"}>
+      <ChangePasswordForm />
+    </Flex>
+  );
 };
