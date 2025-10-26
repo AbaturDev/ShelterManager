@@ -5,47 +5,59 @@ import { MdLogout, MdKey } from "react-icons/md";
 import { ImProfile } from "react-icons/im";
 import { useAuth } from "../../utils/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { UserProfile } from "../user";
 
 export const ProfileMenu = () => {
   const auth = useAuth();
   const { t } = useTranslation();
   const navigate = useNavigate();
 
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+
   return (
-    <Menu.Root positioning={{ placement: "bottom" }}>
-      <Menu.Trigger rounded="full" focusRing="outside">
-        <Icon as={FaUserCircle} boxSize={"8"} />
-      </Menu.Trigger>
-      <Portal>
-        <Menu.Positioner>
-          <Menu.Content>
-            <Menu.Item
-              value="profile"
-              _hover={{ bg: "green.600", color: "white" }}
-            >
-              <Icon as={ImProfile} />
-              <Box flex={"1"}>{t("profileMenu.profile")}</Box>
-            </Menu.Item>
-            <Menu.Item
-              value="password"
-              onSelect={() => navigate("/change-password")}
-              _hover={{ bg: "green.600", color: "white" }}
-            >
-              <Icon as={MdKey} />
-              <Box flex={"1"}>{t("profileMenu.changePassword")}</Box>
-            </Menu.Item>
-            <Menu.Separator />
-            <Menu.Item
-              value="logout"
-              onSelect={auth?.logout}
-              _hover={{ bg: "green.600", color: "white" }}
-            >
-              <Icon as={MdLogout} />
-              <Box flex={"1"}>{t("profileMenu.logout")}</Box>
-            </Menu.Item>
-          </Menu.Content>
-        </Menu.Positioner>
-      </Portal>
-    </Menu.Root>
+    <>
+      <Menu.Root positioning={{ placement: "bottom" }}>
+        <Menu.Trigger rounded="full" focusRing="outside">
+          <Icon as={FaUserCircle} boxSize={"8"} />
+        </Menu.Trigger>
+        <Portal>
+          <Menu.Positioner>
+            <Menu.Content>
+              <Menu.Item
+                value="profile"
+                _hover={{ bg: "green.600", color: "white" }}
+                onSelect={() => setIsProfileOpen(true)}
+              >
+                <Icon as={ImProfile} />
+                <Box flex={"1"}>{t("profileMenu.profile")}</Box>
+              </Menu.Item>
+              <Menu.Item
+                value="password"
+                onSelect={() => navigate("/change-password")}
+                _hover={{ bg: "green.600", color: "white" }}
+              >
+                <Icon as={MdKey} />
+                <Box flex={"1"}>{t("profileMenu.changePassword")}</Box>
+              </Menu.Item>
+              <Menu.Separator />
+              <Menu.Item
+                value="logout"
+                onSelect={auth?.logout}
+                _hover={{ bg: "green.600", color: "white" }}
+              >
+                <Icon as={MdLogout} />
+                <Box flex={"1"}>{t("profileMenu.logout")}</Box>
+              </Menu.Item>
+            </Menu.Content>
+          </Menu.Positioner>
+        </Portal>
+      </Menu.Root>
+
+      <UserProfile
+        isOpen={isProfileOpen}
+        onClose={() => setIsProfileOpen(false)}
+      />
+    </>
   );
 };

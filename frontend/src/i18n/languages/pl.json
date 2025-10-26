@@ -92,5 +92,15 @@
     }
   },
   "createdAt": "Data utworzenia",
-  "updatedAt": "Data aktualizacji"
+  "updatedAt": "Data aktualizacji",
+  "user": {
+    "profile": {
+      "name": "Profil użytkownika",
+      "error": "Nie udało się załadować danych użytkownika",
+      "password": {
+        "verified": "Hasło zweryfikowane",
+        "notVerified": "Wymagana zmiana hasła"
+      }
+    }
+  }
 }

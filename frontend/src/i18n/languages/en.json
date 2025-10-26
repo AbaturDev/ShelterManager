@@ -92,5 +92,15 @@
     }
   },
   "createdAt": "Created at",
-  "updatedAt": "Updated at"
+  "updatedAt": "Updated at",
+  "user": {
+    "profile": {
+      "name": "User Profile",
+      "error": "Failed to load the user data",
+      "password": {
+        "verified": "Password verified",
+        "notVerified": "Password change is required"
+      }
+    }
+  }
 }

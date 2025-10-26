@@ -9,6 +9,7 @@ import { AccountService } from "../api/services/account-service";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import { praseBool } from "./utils";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface JwtPayload {
   role: string;
@@ -32,6 +33,7 @@ const AuthProvider = ({ children }: { children: ReactElement }) => {
   const [role, setRole] = useState<string | null>(null);
   const [mustChangePassword, setMustChangePassword] = useState(false);
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const updateClaimsFromToken = (token: string | null) => {
     if (!token) {
@@ -76,6 +78,8 @@ const AuthProvider = ({ children }: { children: ReactElement }) => {
     setJwtToken(null);
 
     navigate("/login");
+
+    queryClient.clear();
   };
 
   useEffect(() => {
