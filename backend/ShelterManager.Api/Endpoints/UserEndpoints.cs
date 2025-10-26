@@ -21,6 +21,7 @@ public static class UserEndpoints
             .WithTags(nameof(UserEndpoints));
 
         group.MapGet("/me", GetCurrentUser)
+            .AllowAnonymous()
             .RequireAuthorization(AuthorizationPolicies.UserPolicyName);
         
         group.MapGet("", ListUsers)

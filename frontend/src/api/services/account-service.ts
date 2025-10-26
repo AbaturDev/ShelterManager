@@ -1,4 +1,5 @@
 import type {
+  ChangePasswordRequest,
   ForgotPasswordRequest,
   LoginRequest,
   LoginResponse,
@@ -26,12 +27,23 @@ const AccountService = {
     return data;
   },
 
-  forgotPassword: async (forgotPasswordRequest: ForgotPasswordRequest) => {
-    await apiClient.post("/forgot-password", forgotPasswordRequest);
+  forgotPassword: async (
+    forgotPasswordRequest: ForgotPasswordRequest,
+    lang: string
+  ) => {
+    await apiClient.post("/forgot-password", forgotPasswordRequest, {
+      headers: {
+        "Accept-Language": lang,
+      },
+    });
   },
 
   resetPassword: async (resetPasswordRequest: ResetPasswordRequest) => {
-    await apiClient.post("/forgot-password", resetPasswordRequest);
+    await apiClient.post("/reset-password", resetPasswordRequest);
+  },
+
+  changePassword: async (changePasswordRequest: ChangePasswordRequest) => {
+    await apiClient.post("/change-password", changePasswordRequest);
   },
 };
 

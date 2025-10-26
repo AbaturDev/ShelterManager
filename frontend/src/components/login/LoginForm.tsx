@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import {
+  Box,
   Button,
   Field,
   Input,
@@ -68,39 +69,51 @@ export const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <Stack gap="4" align="flex-start" maxW="sm">
-        <Field.Root>
-          <Field.Label>{t("login.email")}</Field.Label>
-          <Input type="email" {...register("email")} />
-          {errors.email && (
-            <Text color="red">{getFormErrorMessage(errors.email.message)}</Text>
-          )}
-        </Field.Root>
+    <Box
+      marginTop={5}
+      p={8}
+      borderWidth="1px"
+      borderRadius="md"
+      boxShadow="md"
+      bg="white"
+      w="md"
+    >
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Stack gap="4" align="flex-start">
+          <Field.Root>
+            <Field.Label>{t("login.email")}</Field.Label>
+            <Input type="email" {...register("email")} />
+            {errors.email && (
+              <Text color="red">
+                {getFormErrorMessage(errors.email.message)}
+              </Text>
+            )}
+          </Field.Root>
 
-        <Field.Root>
-          <Field.Label>{t("login.password")}</Field.Label>
-          <PasswordInput {...register("password")} />
-          {errors.password && (
-            <Text color="red">
-              {getFormErrorMessage(errors.password.message)}
-            </Text>
-          )}
-        </Field.Root>
-        <Link fontSize={"sm"} color={"green.400"} href="/forgot-password">
-          {t("login.forgotPassword")}
-        </Link>
-        <VStack width={"100%"} justifyContent={"center"}>
-          <Button
-            type="submit"
-            background={"green.400"}
-            size={"lg"}
-            disabled={isSubmitting}
-          >
-            {t("login.login")}
-          </Button>
-        </VStack>
-      </Stack>
-    </form>
+          <Field.Root>
+            <Field.Label>{t("login.password")}</Field.Label>
+            <PasswordInput {...register("password")} />
+            {errors.password && (
+              <Text color="red">
+                {getFormErrorMessage(errors.password.message)}
+              </Text>
+            )}
+          </Field.Root>
+          <Link fontSize={"sm"} color={"green.400"} href="/forgot-password">
+            {t("login.forgotPassword")}
+          </Link>
+          <VStack width={"100%"} justifyContent={"center"}>
+            <Button
+              type="submit"
+              background={"green.400"}
+              size={"lg"}
+              disabled={isSubmitting}
+            >
+              {t("login.login")}
+            </Button>
+          </VStack>
+        </Stack>
+      </form>
+    </Box>
   );
 };

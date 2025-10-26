@@ -92,5 +92,58 @@
     }
   },
   "createdAt": "Data utworzenia",
-  "updatedAt": "Data aktualizacji"
+  "updatedAt": "Data aktualizacji",
+  "user": {
+    "profile": {
+      "name": "Profil użytkownika",
+      "error": "Nie udało się załadować danych użytkownika",
+      "password": {
+        "verified": "Hasło zweryfikowane",
+        "notVerified": "Wymagana zmiana hasła"
+      }
+    }
+  },
+  "changePassword": {
+    "button": "Zmień hasło",
+    "title": "Zmiana hasła",
+    "old": "Stare hasło",
+    "new": "Nowe hasło",
+    "confirmNew": "Potwierdź nowe hasło",
+    "schema": {
+      "min": "Hasło musi mieć co najmniej 8 znaków.",
+      "regex": "Hasło musi zawierać co najmniej jedną małą literę, jedną wielką literę, cyfrę i znak specjalny.",
+      "identical": "Hasła muszą być identyczne.",
+      "notSameAsOld": "Nowe hasło nie może być takie samo jak stare"
+    },
+    "toast": {
+      "success": "Hasło zostało zmienione pomyślnie. Za chwilę zostaniesz wylogowany.",
+      "error": "Nie udało się zaktualizować hasła. Upewnij się, że podałeś poprawne hasło"
+    }
+  },
+  "forgotPassword": {
+    "header": "Zapomniałeś hasła?",
+    "instruction": "Wprowadź swój adres e-mail, a wyślemy Ci instrukcje dotyczące resetowania hasła.",
+    "emailInput": "Adres e-mail",
+    "backToLogin": "Powrót do strony logowania",
+    "button": "Kontynuuj",
+    "emailSentMessage": "Wysłaliśmy do Ciebie e-mail z instrukcjami dotyczącymi resetowania hasła. Sprawdź swoją skrzynkę odbiorczą.",
+    "schema": {
+      "email": "Nieprawidłowy adres e-mail."
+    }
+  },
+  "resetPassword": {
+    "title": "Zresetuj hasło",
+    "instruction": "Wprowadź nowe hasło, aby dokończyć proces resetowania.",
+    "password": "Nowe hasło",
+    "confirmPassword": "Potwierdź hasło",
+    "button": "Zresetuj hasło",
+    "backToLogin": "Powrót do strony logowania",
+    "success": "Hasło zostało pomyślnie zmienione!",
+    "error": "Nie udało się zresetować hasła. Link mógł wygasnąć lub być nieprawidłowy.",
+    "schema": {
+      "min": "Hasło musi mieć co najmniej 8 znaków.",
+      "regex": "Hasło musi zawierać małą i dużą literę, cyfrę oraz znak specjalny.",
+      "identical": "Hasła muszą być identyczne."
+    }
+  }
 }

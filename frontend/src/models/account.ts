@@ -21,3 +21,9 @@ export interface LoginResponse {
   jwtToken: string;
   refreshToken: string;
 }
+
+export interface ChangePasswordRequest {
+  email: string;
+  currentPassword: string;
+  newPassword: string;
+}

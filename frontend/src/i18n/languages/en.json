@@ -92,5 +92,58 @@
     }
   },
   "createdAt": "Created at",
-  "updatedAt": "Updated at"
+  "updatedAt": "Updated at",
+  "user": {
+    "profile": {
+      "name": "User Profile",
+      "error": "Failed to load the user data",
+      "password": {
+        "verified": "Password verified",
+        "notVerified": "Password change is required"
+      }
+    }
+  },
+  "changePassword": {
+    "button": "Change Password",
+    "title": "Change Password",
+    "old": "Old Password",
+    "new": "New Password",
+    "confirmNew": "Confirm New Password",
+    "schema": {
+      "min": "Password must be at least 8 characters long.",
+      "regex": "Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character.",
+      "identical": "Passwords must match.",
+      "notSameAsOld": "New password cannot be the same as the old password."
+    },
+    "toast": {
+      "success": "Password has been successfully updated. You will be logged out in a moment",
+      "error": "Failed to update password. Make sure you entered the correct current password."
+    }
+  },
+  "forgotPassword": {
+    "header": "Forgot your password?",
+    "instruction": "Enter your email addres and we will send you instruction to reset your password",
+    "emailInput": "Email address",
+    "backToLogin": "Back to login page",
+    "button": "Continiue",
+    "emailSentMessage": "We sent you an email with instructions to reset your password. Please check your inbox.",
+    "schema": {
+      "email": "Invalid email type"
+    }
+  },
+  "resetPassword": {
+    "title": "Reset Password",
+    "instruction": "Enter a new password to complete the reset process.",
+    "password": "New Password",
+    "confirmPassword": "Confirm Password",
+    "button": "Reset Password",
+    "backToLogin": "Back to Login",
+    "success": "Your password has been successfully reset!",
+    "error": "Failed to reset the password. The link may have expired or is invalid.",
+    "schema": {
+      "min": "Password must be at least 8 characters long.",
+      "regex": "Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character.",
+      "identical": "Passwords must match."
+    }
+  }
 }
