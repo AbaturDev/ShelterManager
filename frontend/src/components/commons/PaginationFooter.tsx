@@ -8,6 +8,7 @@ interface PaginationFooterProps {
   totalItemsCount: number;
   onPageChange: (page: number) => void;
   onPageSizeChange: (pageSize: number) => void;
+  pageSizeOptions?: number[];
 }
 
 export const PaginationFooter = ({
@@ -16,6 +17,7 @@ export const PaginationFooter = ({
   totalItemsCount,
   onPageChange,
   onPageSizeChange,
+  pageSizeOptions,
 }: PaginationFooterProps) => {
   return (
     <HStack justify="space-between" align="center" width="full">
@@ -34,6 +36,7 @@ export const PaginationFooter = ({
         <PageSizeSelector
           pageSize={pageSize}
           onPageSizeChange={onPageSizeChange}
+          pageSizeOptions={pageSizeOptions}
         />
       </Box>
     </HStack>

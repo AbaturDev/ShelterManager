@@ -1,4 +1,4 @@
-import { Button, Dialog, HStack } from "@chakra-ui/react";
+import { Button, Dialog, HStack, Portal } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { MdDelete } from "react-icons/md";
 
@@ -16,29 +16,31 @@ export const DeleteDialog = ({
   const { t } = useTranslation();
 
   return (
-    <Dialog.Root
-      open={isOpen}
-      onOpenChange={onClose}
-      motionPreset="slide-in-bottom"
-    >
-      <Dialog.Backdrop />
-      <Dialog.Positioner>
-        <Dialog.Content>
-          <Dialog.Header>
-            <Dialog.Title>{t("deleteDialog.title")}</Dialog.Title>
-          </Dialog.Header>
-          <Dialog.Body>{t("deleteDialog.body")}</Dialog.Body>
-          <Dialog.Footer>
-            <HStack justify="space-between" w="100%">
-              <Button onClick={onClose}>{t("deleteDialog.cancel")}</Button>
-              <Button onClick={onConfirm} colorPalette={"red"}>
-                {t("deleteDialog.confirm")}
-                <MdDelete />
-              </Button>
-            </HStack>
-          </Dialog.Footer>
-        </Dialog.Content>
-      </Dialog.Positioner>
-    </Dialog.Root>
+    <Portal>
+      <Dialog.Root
+        open={isOpen}
+        onOpenChange={onClose}
+        motionPreset="slide-in-bottom"
+      >
+        <Dialog.Backdrop />
+        <Dialog.Positioner>
+          <Dialog.Content>
+            <Dialog.Header>
+              <Dialog.Title>{t("deleteDialog.title")}</Dialog.Title>
+            </Dialog.Header>
+            <Dialog.Body>{t("deleteDialog.body")}</Dialog.Body>
+            <Dialog.Footer>
+              <HStack justify="space-between" w="100%">
+                <Button onClick={onClose}>{t("deleteDialog.cancel")}</Button>
+                <Button onClick={onConfirm} colorPalette={"red"}>
+                  {t("deleteDialog.confirm")}
+                  <MdDelete />
+                </Button>
+              </HStack>
+            </Dialog.Footer>
+          </Dialog.Content>
+        </Dialog.Positioner>
+      </Dialog.Root>
+    </Portal>
   );
 };

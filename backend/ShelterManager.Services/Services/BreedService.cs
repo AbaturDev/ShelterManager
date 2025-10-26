@@ -61,7 +61,7 @@ public class BreedService : IBreedService
 
         if (species is null)
         {
-            throw new BadRequestException("Can not create breed for species that not exists");
+            throw new NotFoundException("Species not found");
         }
 
         var breedExists = species.Breeds

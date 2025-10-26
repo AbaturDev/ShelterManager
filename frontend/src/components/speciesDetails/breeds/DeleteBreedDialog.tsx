@@ -1,33 +1,37 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { SpeciesService } from "../../api/services/species-service";
-import { toaster } from "../ui/toaster";
+import { DeleteDialog } from "../../commons";
 import { useTranslation } from "react-i18next";
-import { DeleteDialog } from "../commons";
+import { BreedService } from "../../../api/services/breed-service";
+import { toaster } from "../../ui/toaster";
 
-interface DeleteSpeciesDialogProps {
+interface DeleteBreedDialogProps {
   id: string;
+  speciesId: string;
   isOpen: boolean;
   onClose: () => void;
   onSuccess: () => void;
 }
 
-export const DeleteSpeciesDialog = ({
+export const DeleteBreedDialog = ({
   id,
+  speciesId,
   isOpen,
   onClose,
   onSuccess,
-}: DeleteSpeciesDialogProps) => {
+}: DeleteBreedDialogProps) => {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: () => SpeciesService.deleteSpecies(id),
+    mutationFn: () => BreedService.deleteBreed(id, speciesId),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["species"] });
+      queryClient.invalidateQueries({
+        queryKey: [`species/${speciesId}/breeds`],
+      });
       toaster.create({
         type: "success",
         title: t("success"),
-        description: t("species.deleteToast.success"),
+        description: t("breeds.delete.toast.success"),
         closable: true,
       });
       onSuccess();
@@ -36,7 +40,7 @@ export const DeleteSpeciesDialog = ({
       toaster.create({
         type: "error",
         title: t("error"),
-        description: t("species.deleteToast.error"),
+        description: t("breeds.delete.toast.error"),
         closable: true,
       });
       onClose();

@@ -2,7 +2,13 @@ import { Route, Routes } from "react-router-dom";
 import { AuthLayout, PublicLayout } from "./Layout";
 import { NonAuthRoute } from "./utils/NonAuthRoute";
 import { ProtectedRoute } from "./utils/ProtectedRoute";
-import { ChangePasswordPage, HomePage, LoginPage, SpeciesPage } from "./pages";
+import {
+  ChangePasswordPage,
+  HomePage,
+  LoginPage,
+  SpeciesDetailsPage,
+  SpeciesPage,
+} from "./pages";
 import { MustChangePasswordRoute } from "./utils/MustChangePasswordRoute";
 
 export const AppRoutes = () => {
@@ -19,6 +25,7 @@ export const AppRoutes = () => {
           <Route element={<MustChangePasswordRoute />}>
             <Route path="/" element={<HomePage />} />
             <Route path="/species" element={<SpeciesPage />} />
+            <Route path="/species/:id" element={<SpeciesDetailsPage />} />
           </Route>
         </Route>
       </Route>

@@ -101,6 +101,7 @@ export const SpeciesTable = () => {
             setPageSize(size);
             setPage(1);
           }}
+          pageSizeOptions={[10, 25, 50]}
         />
       </Stack>
       {deleteSpeciesId && (
@@ -108,6 +109,10 @@ export const SpeciesTable = () => {
           id={deleteSpeciesId}
           isOpen={isDeleteOpen}
           onClose={() => {
+            setIsDeleteOpen(false);
+            setDeleteSpeciesId(null);
+          }}
+          onSuccess={() => {
             setIsDeleteOpen(false);
             setDeleteSpeciesId(null);
           }}
