@@ -4,6 +4,7 @@ import { NonAuthRoute } from "./utils/NonAuthRoute";
 import { ProtectedRoute } from "./utils/ProtectedRoute";
 import {
   ChangePasswordPage,
+  ForgotPasswordPage,
   HomePage,
   LoginPage,
   SpeciesDetailsPage,
@@ -17,6 +18,7 @@ export const AppRoutes = () => {
       <Route element={<PublicLayout />}>
         <Route element={<NonAuthRoute />}>
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         </Route>
       </Route>
       <Route element={<ProtectedRoute />}>

@@ -119,5 +119,16 @@
       "success": "Hasło zostało zmienione pomyślnie. Za chwilę zostaniesz wylogowany.",
       "error": "Nie udało się zaktualizować hasła. Upewnij się, że podałeś poprawne hasło"
     }
+  },
+  "forgotPassword": {
+    "header": "Zapomniałeś hasła?",
+    "instruction": "Wprowadź swój adres e-mail, a wyślemy Ci instrukcje dotyczące resetowania hasła.",
+    "emailInput": "Adres e-mail",
+    "backToLogin": "Powrót do strony logowania",
+    "button": "Kontynuuj",
+    "emailSentMessage": "Wysłaliśmy do Ciebie e-mail z instrukcjami dotyczącymi resetowania hasła. Sprawdź swoją skrzynkę odbiorczą.",
+    "schema": {
+      "email": "Nieprawidłowy adres e-mail."
+    }
   }
 }

@@ -119,5 +119,16 @@
       "success": "Password has been successfully updated. You will be logged out in a moment",
       "error": "Failed to update password. Make sure you entered the correct current password."
     }
+  },
+  "forgotPassword": {
+    "header": "Forgot your password?",
+    "instruction": "Enter your email addres and we will send you instruction to reset your password",
+    "emailInput": "Email address",
+    "backToLogin": "Back to login page",
+    "button": "Continiue",
+    "emailSentMessage": "We sent you an email with instructions to reset your password. Please check your inbox.",
+    "schema": {
+      "email": "Invalid email type"
+    }
   }
 }
