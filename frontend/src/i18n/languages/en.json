@@ -23,5 +23,74 @@
   "errorTooManyRequests": "Too many requests. Try again later",
   "error": "An error occured",
   "tryAgain": "Try again later",
-  "test": "english"
+  "test": "english",
+  "loading": "Loading...",
+  "species": {
+    "header": "Species List",
+    "name": "Species",
+    "error": "Failed to load data",
+    "createdAt": "Created at",
+    "updatedAt": "Updated at",
+    "actions": "Actions",
+    "details": "Species details",
+    "delete": "Delete",
+    "create": {
+      "toast": {
+        "success": "Successfully added a new species",
+        "error": "Failed to add a new species",
+        "exsists": "Species already exsists"
+      },
+      "button": "Add Species",
+      "dialogTitle": "Add New Species",
+      "name": "Species Name",
+      "namePlaceholder": "Species name (e.g., Dog)",
+      "errors": {
+        "min": "Species name must be at least 3 characters",
+        "max": "Species name must not exceed 30 characters"
+      }
+    },
+    "deleteToast": {
+      "success": "Successfully deleted species",
+      "error": "Failed to delete species"
+    }
+  },
+  "cancel": "Cancel",
+  "save": "Save",
+  "success": "Success",
+  "deleteDialog": {
+    "confirm": "Delete",
+    "cancel": "Cancel",
+    "title": "Confirm delete",
+    "body": "Are you sure you want to delete this item?"
+  },
+  "breeds": {
+    "header": "Breed List",
+    "button": "Add Breed",
+    "error": "Failed to load data",
+    "empty": "This species does not have any breeds yet!",
+    "create": {
+      "dialog": {
+        "title": "Add New Breed",
+        "name": "Breed Name",
+        "namePlaceholder": "Breed name (e.g. German Shepherd)"
+      },
+      "toast": {
+        "success": "Successfully added a new breed",
+        "error": "Failed to add a new breed",
+        "exsists": "Breed already exists for this species"
+      },
+      "errors": {
+        "min": "Breed name must be at least 3 characters long",
+        "max": "Breed name can be up to 30 characters long"
+      }
+    },
+    "delete": {
+      "toast": {
+        "success": "Successfully deleted breed",
+        "error": "Failed to delete breed"
+      }
+    }
+  },
+  "createdAt": "Created at",
+  "updatedAt": "Updated at"
 }

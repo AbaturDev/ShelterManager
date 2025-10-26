@@ -5,7 +5,7 @@ namespace ShelterManager.Services.Validators;
 
 public class PageQueryFilterValidator : AbstractValidator<PageQueryFilter>
 {
-    private readonly int[] _allowedPageSizes = [10, 25, 50, 100];
+    private readonly int[] _allowedPageSizes = [5, 10, 25, 50, 100];
     
     public PageQueryFilterValidator()
     {

@@ -23,5 +23,74 @@
   "errorTooManyRequests": "Zbyt wiele zapytań. Spróbuj ponownie później",
   "error": "Wystąpił błąd",
   "tryAgain": "Spróbuj ponownie później",
-  "test": "polski"
+  "test": "polski",
+  "loading": "Ładowanie strony...",
+  "species": {
+    "header": "Lista Gatunków",
+    "name": "Gatunek",
+    "error": "Nie udało się załadować danych",
+    "createdAt": "Data utworzenia",
+    "updatedAt": "Data aktualizacji",
+    "actions": "Akcje",
+    "details": "Szczegóły gatunku",
+    "delete": "Usuń",
+    "create": {
+      "toast": {
+        "success": "Pomyślnie dodano nowy gatunek",
+        "error": "Nie udało się dodać nowego gatunku",
+        "exsists": "Gatunek już istnieje"
+      },
+      "button": "Dodaj gatunek",
+      "dialogTitle": "Dodaj nowy gatunek",
+      "name": "Nazwa gatunku",
+      "namePlaceholder": "Nazwa gatunku (np. Pies)",
+      "errors": {
+        "min": "Nazwa gatunku musi mieć min. 3 znaki",
+        "max": "Nazwa gatunku może mieć maks 30 znaków"
+      }
+    },
+    "deleteToast": {
+      "success": "Pomyślnie usunięto gatunek",
+      "error": "Nie udało się usunąć gatunku"
+    }
+  },
+  "cancel": "Anuluj",
+  "save": "Zapisz",
+  "success": "Sukces",
+  "deleteDialog": {
+    "confirm": "Usuń",
+    "cancel": "Anuluj",
+    "title": "Potwierdź operacje usuwania",
+    "body": "Czy jesteś pewny, że chcesz usunąć ten element?"
+  },
+  "breeds": {
+    "header": "Lista Ras",
+    "button": "Dodaj rasę",
+    "error": "Nie udało się załadować danych",
+    "empty": "Ten gatunek nie posiada jeszcze żadnych ras!",
+    "create": {
+      "dialog": {
+        "title": "Dodaj nową rasę",
+        "name": "Nazwa rasy",
+        "namePlaceholder": "Nazwa rasy (np. Owczarek niemiecki)"
+      },
+      "toast": {
+        "success": "Pomyślnie dodano nową rasę",
+        "error": "Nie udało się dodać nowej rasy",
+        "exsists": "Rasa już istnieje dla tego gatunku"
+      },
+      "errors": {
+        "min": "Nazwa rasy musi mieć min. 3 znaki",
+        "max": "Nazwa rasy może mieć maks 30 znaków"
+      }
+    },
+    "delete": {
+      "toast": {
+        "success": "Pomyślnie usunięto rasę",
+        "error": "Nie udało się usunąć rasy"
+      }
+    }
+  },
+  "createdAt": "Data utworzenia",
+  "updatedAt": "Data aktualizacji"
 }
