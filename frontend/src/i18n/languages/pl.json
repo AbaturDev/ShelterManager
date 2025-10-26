@@ -130,5 +130,20 @@
     "schema": {
       "email": "Nieprawidłowy adres e-mail."
     }
+  },
+  "resetPassword": {
+    "title": "Zresetuj hasło",
+    "instruction": "Wprowadź nowe hasło, aby dokończyć proces resetowania.",
+    "password": "Nowe hasło",
+    "confirmPassword": "Potwierdź hasło",
+    "button": "Zresetuj hasło",
+    "backToLogin": "Powrót do strony logowania",
+    "success": "Hasło zostało pomyślnie zmienione!",
+    "error": "Nie udało się zresetować hasła. Link mógł wygasnąć lub być nieprawidłowy.",
+    "schema": {
+      "min": "Hasło musi mieć co najmniej 8 znaków.",
+      "regex": "Hasło musi zawierać małą i dużą literę, cyfrę oraz znak specjalny.",
+      "identical": "Hasła muszą być identyczne."
+    }
   }
 }

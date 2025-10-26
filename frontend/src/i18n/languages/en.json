@@ -130,5 +130,20 @@
     "schema": {
       "email": "Invalid email type"
     }
+  },
+  "resetPassword": {
+    "title": "Reset Password",
+    "instruction": "Enter a new password to complete the reset process.",
+    "password": "New Password",
+    "confirmPassword": "Confirm Password",
+    "button": "Reset Password",
+    "backToLogin": "Back to Login",
+    "success": "Your password has been successfully reset!",
+    "error": "Failed to reset the password. The link may have expired or is invalid.",
+    "schema": {
+      "min": "Password must be at least 8 characters long.",
+      "regex": "Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character.",
+      "identical": "Passwords must match."
+    }
   }
 }

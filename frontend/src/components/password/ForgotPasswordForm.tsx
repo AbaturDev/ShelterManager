@@ -29,7 +29,9 @@ type FormData = z.infer<typeof schema>;
 
 export const ForgotPasswordForm = () => {
   const [isEmailSent, setIsEmailSent] = useState(false);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+
+  const currentLang = i18n.language;
 
   const {
     register,
@@ -40,7 +42,7 @@ export const ForgotPasswordForm = () => {
 
   const onSubmit = async (data: FormData) => {
     try {
-      await AccountService.forgotPassword({ email: data.email });
+      await AccountService.forgotPassword({ email: data.email }, currentLang);
     } finally {
       setIsEmailSent(true);
       reset();

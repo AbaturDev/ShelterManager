@@ -196,6 +196,16 @@ public class AccountService : IAccountService
             var errors = string.Join(";", result.Errors.Select(e => e.Description));
             throw new BadRequestException(errors);
         }
+        
+        var refreshTokens = await _context.RefreshTokens
+            .Where(rt => rt.UserId == user.Id).ToListAsync();
+
+        foreach (var refreshToken in refreshTokens)
+        {
+            refreshToken.IsRevoked = true;
+        }
+        
+        await _context.SaveChangesAsync();
     }
 
     public async Task ChangePasswordAsync(ChangePasswordRequest request)

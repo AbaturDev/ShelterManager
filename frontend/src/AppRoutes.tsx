@@ -7,6 +7,7 @@ import {
   ForgotPasswordPage,
   HomePage,
   LoginPage,
+  ResetPasswordPage,
   SpeciesDetailsPage,
   SpeciesPage,
 } from "./pages";
@@ -19,6 +20,7 @@ export const AppRoutes = () => {
         <Route element={<NonAuthRoute />}>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
         </Route>
       </Route>
       <Route element={<ProtectedRoute />}>
