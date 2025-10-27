@@ -3,6 +3,7 @@ import { AuthLayout, PublicLayout } from "./Layout";
 import { NonAuthRoute } from "./utils/NonAuthRoute";
 import { ProtectedRoute } from "./utils/ProtectedRoute";
 import {
+  AnimalsPage,
   ChangePasswordPage,
   ForgotPasswordPage,
   HomePage,
@@ -30,6 +31,7 @@ export const AppRoutes = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="/species" element={<SpeciesPage />} />
             <Route path="/species/:id" element={<SpeciesDetailsPage />} />
+            <Route path="/animals" element={<AnimalsPage />} />
           </Route>
         </Route>
       </Route>

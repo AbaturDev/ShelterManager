@@ -21,7 +21,7 @@ export const SpeciesTable = () => {
   const { data, isLoading, error } = useSpeciesListQuery(page, pageSize);
 
   if (isLoading) return <Loading />;
-  if (error) return <Text>{t("species.error")}</Text>;
+  if (error) return <Text color={"red"}>{t("species.error")}</Text>;
 
   const items = data?.items || [];
 

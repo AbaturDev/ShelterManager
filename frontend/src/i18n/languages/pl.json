@@ -145,5 +145,31 @@
       "regex": "Hasło musi zawierać małą i dużą literę, cyfrę oraz znak specjalny.",
       "identical": "Hasła muszą być identyczne."
     }
+  },
+  "search": "Wyszukaj",
+  "animals": {
+    "sex": {
+      "title": "Płeć",
+      "0": "Samiec",
+      "1": "Samica"
+    },
+    "status": {
+      "inShelter": "W schronisku",
+      "adopted": "Adoptowany",
+      "died": "Zmarły"
+    },
+    "deleteToast": {
+      "success": "Pomyślnie usunięto zwierzę",
+      "error": "Usuwanie zwierzęcia nie powiodło się"
+    },
+    "list": {
+      "title": "Zwierzęta",
+      "error": "Nie udało się załadować danych o zwierzętach",
+      "empty": "W systemie nie ma jeszcze żadnych zwierząt!",
+      "age": "Wiek",
+      "years": "lat",
+      "admissionDate": "Data przyjęcia",
+      "add": "Dodaj zwierzę"
+    }
   }
 }

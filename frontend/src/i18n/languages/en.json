@@ -145,5 +145,31 @@
       "regex": "Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character.",
       "identical": "Passwords must match."
     }
+  },
+  "search": "Search",
+  "animals": {
+    "sex": {
+      "title": "Sex",
+      "0": "Male",
+      "1": "Female"
+    },
+    "status": {
+      "inShelter": "In Shelter",
+      "adopted": "Adopted",
+      "died": "Deceased"
+    },
+    "deleteToast": {
+      "success": "Animal deleted successfully",
+      "error": "Failed to delete the animal"
+    },
+    "list": {
+      "title": "Animals",
+      "error": "Failed to load animal data",
+      "empty": "There are no animals in the system yet!",
+      "age": "Age",
+      "years": "years",
+      "admissionDate": "Admission Date",
+      "add": "Add Animal"
+    }
   }
 }
