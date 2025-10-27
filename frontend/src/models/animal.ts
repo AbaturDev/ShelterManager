@@ -1,5 +1,4 @@
-type SexType = 0 | 1;
-
+export type SexType = 0 | 1;
 export const PossibleSex = {
   Male: 0 as SexType,
   Female: 1 as SexType,
@@ -43,4 +42,13 @@ export interface AnimalQuery {
   sex?: SexType;
   status?: AnimalStatusType;
   name?: string;
+}
+
+export interface CreateAnimal {
+  name: string;
+  admissionDate: string;
+  sex: SexType;
+  age?: number;
+  breedId: string;
+  description?: string;
 }

@@ -8,6 +8,7 @@ export const useAnimalImage = (id: string) => {
   const { data, isLoading, error } = useQuery({
     queryKey: ["animal-image", id],
     queryFn: () => AnimalService.getAnimalProfileImage(id),
+    staleTime: 10 * 60 * 1000,
   });
 
   useEffect(() => {

@@ -1,6 +1,7 @@
 import { Button, Flex, Heading, Box } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { SearchInput } from "../../commons";
+import { AddAnimalDialog } from "../create";
 
 interface HeaderProps {
   onSearch: (query: string) => void;
@@ -32,9 +33,7 @@ export const Header = ({ onSearch }: HeaderProps) => {
       </Box>
 
       <Box>
-        <Button size="lg" background={"green.400"}>
-          {t("animals.list.add")}
-        </Button>
+        <AddAnimalDialog />
       </Box>
     </Flex>
   );

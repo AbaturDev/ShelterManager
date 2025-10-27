@@ -170,6 +170,23 @@
       "years": "lat",
       "admissionDate": "Data przyjęcia",
       "add": "Dodaj zwierzę"
+    },
+    "create": {
+      "title": "Dodaj nowę zwierzę",
+      "toast": {
+        "success": "Pomyślnie dodano nowę zwierzę",
+        "error": "Nie udało się dodać nowego zwierzęcia"
+      },
+      "fields": {
+        "name": "Imię",
+        "age": "Wiek",
+        "admissionDate": "Data przyjęcia",
+        "sex": "Płeć",
+        "description": "Opis"
+      }
     }
-  }
+  },
+  "next": "Dalej",
+  "prev": "Cofnij",
+  "optional": "Opcjonalne"
 }

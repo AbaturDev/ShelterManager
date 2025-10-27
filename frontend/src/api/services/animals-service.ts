@@ -1,4 +1,4 @@
-import type { Animal, AnimalQuery } from "../../models/animal";
+import type { Animal, AnimalQuery, CreateAnimal } from "../../models/animal";
 import type { PaginatedResponse } from "../../models/common";
 import { apiClient } from "../clients/api-client";
 
@@ -31,6 +31,10 @@ const AnimalService = {
       responseType: "blob",
     });
     return response.data;
+  },
+
+  createAnimal: async (data: CreateAnimal) => {
+    await apiClient.post("/animals", data);
   },
 };
 

@@ -76,7 +76,6 @@ public class AnimalService : IAnimalService
             Sex = animalDto.Sex,
             Status = AnimalStatus.InShelter,
             Description = animalDto.Description,
-            ImagePath = animalDto.ImagePath,
             BreedId = animalDto.BreedId
         };
 
@@ -114,7 +113,6 @@ public class AnimalService : IAnimalService
         animal.AdmissionDate = dto.AdmissionDate;
         animal.Age = dto.Age;
         animal.Description = dto.Description;
-        animal.ImagePath = dto.ImagePath;
         animal.Status = dto.Status;
         
         await _context.SaveChangesAsync(ct);
