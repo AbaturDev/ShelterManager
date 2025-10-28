@@ -170,6 +170,34 @@
       "years": "years",
       "admissionDate": "Admission Date",
       "add": "Add Animal"
+    },
+    "create": {
+      "title": "Add new animal",
+      "toast": {
+        "success": "New animal added successfully",
+        "error": "Failed to add new animal"
+      },
+      "fields": {
+        "name": "Name",
+        "age": "Age",
+        "admissionDate": "Admission date",
+        "sex": "Sex",
+        "description": "Description"
+      }
+    }
+  },
+  "next": "Next",
+  "prev": "Back",
+  "optional": "Optional",
+  "homepage": {
+    "title": "Welcome to Shelter Manager!",
+    "subtitle": "Employee Panel",
+    "thanks": "Thank you for your help!",
+    "dashboard": {
+      "animals": "Animals in shelter",
+      "adoptions": "Adoption processes",
+      "events": "Upcoming events",
+      "error": "Failed to load statistics"
     }
   }
 }

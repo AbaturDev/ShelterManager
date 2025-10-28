@@ -188,5 +188,16 @@
   },
   "next": "Dalej",
   "prev": "Cofnij",
-  "optional": "Opcjonalne"
+  "optional": "Opcjonalne",
+  "homepage": {
+    "title": "Witaj w aplikacji Shelter Manager!",
+    "subtitle": "Panel Pracownika",
+    "thanks": "Dziękujemy za twoją pomoc!",
+    "dashboard": {
+      "animals": "Zwierząt w schronisku",
+      "adoptions": "Procesów adopcyjnych",
+      "events": "Nadchodzące wydarzenia",
+      "error": "Nie udało się załadować statystyki"
+    }
+  }
 }
