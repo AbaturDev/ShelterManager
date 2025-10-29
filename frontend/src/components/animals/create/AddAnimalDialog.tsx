@@ -26,15 +26,13 @@ export const AddAnimalDialog = () => {
         <Dialog.Positioner>
           <Dialog.Content>
             <Dialog.Header justifyContent={"center"}>
-              <Dialog.Title>
-                <Heading size={"2xl"}>{t("animals.create.title")}</Heading>
-              </Dialog.Title>
+              <Heading size={"2xl"}>{t("animals.create.title")}</Heading>
               <Dialog.CloseTrigger asChild>
                 <CloseButton size="sm" />
               </Dialog.CloseTrigger>
             </Dialog.Header>
             <Dialog.Body>
-              <AddAnimalDialogContent />
+              <AddAnimalDialogContent onClose={() => setIsOpen(false)} />
             </Dialog.Body>
           </Dialog.Content>
         </Dialog.Positioner>

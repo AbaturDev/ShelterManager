@@ -5,7 +5,8 @@ namespace ShelterManager.Services.Validators;
 
 public class PageQueryFilterValidator : AbstractValidator<PageQueryFilter>
 {
-    private readonly int[] _allowedPageSizes = [5, 10, 25, 50, 100];
+    // TODO: 10000000 to handle fetching all items from list
+    private readonly int[] _allowedPageSizes = [5, 10, 25, 50, 100, 10000000];
     
     public PageQueryFilterValidator()
     {

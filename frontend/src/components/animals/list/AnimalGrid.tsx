@@ -13,7 +13,7 @@ export const AnimalGrid = ({ search }: AnimalGridProps) => {
   const [page, setPage] = useState(1);
   const { t } = useTranslation();
   const { data, isLoading, error } = useAnimalsListQuery({
-    page: 1,
+    page: page,
     pageSize: 10,
     name: search,
   });

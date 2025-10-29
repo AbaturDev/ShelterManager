@@ -6,11 +6,10 @@ import {
   Flex,
   Input,
   NativeSelect,
-  Select,
   Text,
   Textarea,
 } from "@chakra-ui/react";
-import { useFormContext, Controller } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { getFormErrorMessage } from "../../../utils/form-error-handlers";
 import type { AddAnimalSchema } from "./AddAnimal.Context";
@@ -22,7 +21,6 @@ interface Props {
 export const AnimalDetailsStep = ({ onNext }: Props) => {
   const { t } = useTranslation();
   const {
-    control,
     register,
     formState: { errors },
   } = useFormContext<AddAnimalSchema>();
@@ -59,13 +57,19 @@ export const AnimalDetailsStep = ({ onNext }: Props) => {
           min={0}
           max={100}
           placeholder={t("animals.create.fields.age")}
-          {...register("age")}
+          {...register("age", {
+            valueAsNumber: true,
+            setValueAs: (v) => (v === "" || v === null ? null : Number(v)),
+          })}
         />
+        {errors.age && (
+          <Text color={"red"}>{getFormErrorMessage(errors.age?.message)}</Text>
+        )}
       </Field.Root>
       <Field.Root>
         <Field.Label>{t("animals.create.fields.sex")}</Field.Label>
         <NativeSelect.Root>
-          <NativeSelect.Field {...register("sex")}>
+          <NativeSelect.Field {...register("sex", { valueAsNumber: true })}>
             <option value={0}>{t("animals.sex.0")}</option>
             <option value={1}>{t("animals.sex.1")}</option>
           </NativeSelect.Field>
@@ -78,8 +82,15 @@ export const AnimalDetailsStep = ({ onNext }: Props) => {
         </Field.Label>
         <Input
           type="date"
-          {...register("admissionDate", { valueAsDate: true })}
+          {...register("admissionDate", {
+            valueAsDate: true,
+          })}
         />
+        {errors.admissionDate && (
+          <Text color={"red"}>
+            {getFormErrorMessage(errors.admissionDate.message)}
+          </Text>
+        )}
       </Field.Root>
       <Field.Root>
         <Field.Label>
@@ -94,8 +105,15 @@ export const AnimalDetailsStep = ({ onNext }: Props) => {
         </Field.Label>
         <Textarea
           placeholder={t("animals.create.fields.description")}
-          {...register("description")}
+          {...register("description", {
+            setValueAs: (v) => (v === "" || v === null ? null : v.toString()),
+          })}
         />
+        {errors.description && (
+          <Text color={"red"}>
+            {getFormErrorMessage(errors.description?.message)}
+          </Text>
+        )}
       </Field.Root>
       <Flex w="100%" justifyContent={"end"}>
         <Button background="green.400" mt={4} onClick={onNext}>

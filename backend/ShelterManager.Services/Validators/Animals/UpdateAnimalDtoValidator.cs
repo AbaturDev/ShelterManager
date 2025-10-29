@@ -20,8 +20,8 @@ public class UpdateAnimalDtoValidator : AbstractValidator<AnimalDto>
             .IsInEnum().WithMessage("Status must be a valid value from AnimalStatus enum");
         
         RuleFor(x => x.Age)
-            .InclusiveBetween(0, 50)
-            .WithMessage("Age must be between 0 and 50");
+            .InclusiveBetween(0, 100)
+            .WithMessage("Age must be between 0 and 100");
         
         RuleFor(x => x.AdmissionDate)
             .LessThanOrEqualTo(timeProvider.GetUtcNow())

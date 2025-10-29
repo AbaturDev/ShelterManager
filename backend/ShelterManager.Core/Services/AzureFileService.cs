@@ -1,3 +1,4 @@
+using Azure.Core;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
 using Microsoft.Extensions.Configuration;
@@ -14,7 +15,6 @@ public class AzureFileService : IFileService
     public AzureFileService(IConfiguration configuration)
     {
         var connectionString = configuration.GetConnectionString(ConnectionStringName);
-        
         _blobServiceClient = new BlobServiceClient(connectionString);
     }
 

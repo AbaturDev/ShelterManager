@@ -148,6 +148,7 @@
   },
   "search": "Wyszukaj",
   "animals": {
+    "unknown": "Nieznany",
     "sex": {
       "title": "Płeć",
       "0": "Samiec",
@@ -182,7 +183,24 @@
         "age": "Wiek",
         "admissionDate": "Data przyjęcia",
         "sex": "Płeć",
-        "description": "Opis"
+        "description": "Opis",
+        "species": "Gatunek",
+        "selectSpecies": "Wybierz gatunek",
+        "breed": "Rasa",
+        "selectSpeciesFirst": "Najpier wybierz rasę!",
+        "selectBreed": "Wybierz rasę"
+      },
+      "errors": {
+        "nameMin": "Nazwa musi zawierać co najmniej 3 znaki",
+        "nameMax": "Nazwa nie może przekraczać 30 znaków",
+        "ageMin": "Wiek nie może być mniejszy niż 0 lat",
+        "ageMax": "Wiek nie może przekraczać 100 lat",
+        "description": "Opis nie może przekraczać 350 znaków",
+        "dateFuture": "Data przyjęcia nie może być z przyszłości"
+      },
+      "summary": {
+        "title": "Podsumowanie",
+        "validationError": "Uzupełnij wszystkie wymagane pola w poprzednich krokach, aby dodać zwierzę!"
       }
     }
   },

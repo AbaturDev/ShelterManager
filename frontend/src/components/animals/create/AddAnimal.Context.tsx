@@ -22,14 +22,27 @@ interface AddAnimalContextType {
 }
 
 const schema = z.object({
-  name: z.string().min(10, setFormErrorMessage("animals.create.errors.name")),
-  admissionDate: z.date(),
+  name: z
+    .string()
+    .min(3, setFormErrorMessage("animals.create.errors.nameMin"))
+    .max(30, setFormErrorMessage("animals.create.errors.nameMax")),
+  admissionDate: z
+    .date()
+    .max(new Date(), setFormErrorMessage("animals.create.errors.dateFuture")),
   sex: z.number(),
-  age: z.number().nullable(),
+  age: z
+    .number()
+    .min(0, setFormErrorMessage("animals.create.errors.ageMin"))
+    .max(100, setFormErrorMessage("animals.create.errors.ageMax"))
+    .nullable(),
+  speciesId: z.string(),
   species: z.string(),
   breed: z.string(),
   breedId: z.string(),
-  description: z.string(),
+  description: z
+    .string()
+    .max(350, setFormErrorMessage("animals.create.errors.description"))
+    .nullable(),
 });
 
 type AddAnimalSchema = z.infer<typeof schema>;
@@ -47,6 +60,7 @@ const AddAnimalProvider = ({ children }: { children: ReactNode }) => {
 
   const addAnimalFormMethods = useForm<AddAnimalSchema>({
     resolver: zodResolver(schema),
+    mode: "onChange",
   });
 
   const addAnimalMutation = useMutation({

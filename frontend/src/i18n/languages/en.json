@@ -148,6 +148,7 @@
   },
   "search": "Search",
   "animals": {
+    "unknown": "Unknown",
     "sex": {
       "title": "Sex",
       "0": "Male",
@@ -182,7 +183,24 @@
         "age": "Age",
         "admissionDate": "Admission date",
         "sex": "Sex",
-        "description": "Description"
+        "description": "Description",
+        "species": "Species",
+        "selectSpecies": "Select Species",
+        "breed": "Breed",
+        "selectSpeciesFirst": "Select Species first!",
+        "selectBreed": "Select Breed"
+      },
+      "errors": {
+        "nameMin": "Name must be at least 3 characters",
+        "nameMax": "Name must not exceed 30 characters",
+        "ageMin": "Maximum age is 100 years",
+        "ageMax": "Minimum age is 0 years",
+        "description": "Description must not exceed 350 characters",
+        "dateFuture": "Admission date cannot be in the future"
+      },
+      "summary": {
+        "title": "Summary",
+        "validationError": "Complete all required fields in previous steps to create animal!"
       }
     }
   },
