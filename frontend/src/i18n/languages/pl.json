@@ -4,7 +4,8 @@
     "animals": "Zwierzęta",
     "species": "Gatunki",
     "events": "Wydarzenia",
-    "adoptions": "Adopcje"
+    "adoptions": "Adopcje",
+    "users": "Użytkownicy"
   },
   "login": {
     "email": "Email",
@@ -101,6 +102,23 @@
         "verified": "Hasło zweryfikowane",
         "notVerified": "Wymagana zmiana hasła"
       }
+    },
+    "list": {
+      "header": "Lista użytkowników",
+      "error": "Nie udało się załadować danych użytkowników",
+      "name": "Imię",
+      "surname": "Nazwisko",
+      "email": "Email",
+      "deleteToast": {
+        "success": "Pomyślnie usunięto użytkownika",
+        "error": "Nie udało się usunąć użytkownika"
+      }
+    },
+    "details": {
+      "header": "Profil użytkownika",
+      "email": "Email",
+      "role": "Rola",
+      "mustChangePassword": "Czy musi zmienić hasło?"
     }
   },
   "changePassword": {
@@ -187,7 +205,7 @@
         "species": "Gatunek",
         "selectSpecies": "Wybierz gatunek",
         "breed": "Rasa",
-        "selectSpeciesFirst": "Najpier wybierz rasę!",
+        "selectSpeciesFirst": "Najpierw wybierz gatunek!",
         "selectBreed": "Wybierz rasę"
       },
       "errors": {
@@ -217,5 +235,15 @@
       "events": "Nadchodzące wydarzenia",
       "error": "Nie udało się załadować statystyki"
     }
-  }
+  },
+  "route": {
+    "roleBased": {
+      "errorToast": {
+        "title": "Brak dostępu",
+        "description": "Nie posiadasz dostępu do tej ścieżki"
+      }
+    }
+  },
+  "yes": "Tak",
+  "no": "Nie"
 }

@@ -4,7 +4,8 @@
     "animals": "Animals",
     "species": "Species",
     "events": "Events",
-    "adoptions": "Adoptions"
+    "adoptions": "Adoptions",
+    "users": "Users"
   },
   "login": {
     "email": "Email",
@@ -101,6 +102,23 @@
         "verified": "Password verified",
         "notVerified": "Password change is required"
       }
+    },
+    "list": {
+      "header": "Users List",
+      "error": "Failed to load users data",
+      "name": "Name",
+      "surname": "Surname",
+      "email": "Email",
+      "deleteToast": {
+        "success": "User deleted successfuly",
+        "error": "Failed to delete user"
+      }
+    },
+    "details": {
+      "header": "User Profile",
+      "email": "Email",
+      "role": "Role",
+      "mustChangePassword": "Must change password?"
     }
   },
   "changePassword": {
@@ -217,5 +235,15 @@
       "events": "Upcoming events",
       "error": "Failed to load statistics"
     }
-  }
+  },
+  "route": {
+    "roleBased": {
+      "errorToast": {
+        "title": "Access denied",
+        "description": "You do not have access to this path!"
+      }
+    }
+  },
+  "yes": "Yes",
+  "no": "No"
 }
