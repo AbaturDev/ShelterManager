@@ -21,7 +21,7 @@ export const SpeciesTable = () => {
   const { data, isLoading, error } = useSpeciesListQuery(page, pageSize);
 
   if (isLoading) return <Loading />;
-  if (error) return <Text>{t("species.error")}</Text>;
+  if (error) return <Text color={"red"}>{t("species.error")}</Text>;
 
   const items = data?.items || [];
 
@@ -47,7 +47,6 @@ export const SpeciesTable = () => {
               <Table.Row
                 key={item.id}
                 onDoubleClick={() => navigate(`/species/${item.id}`)}
-                _hover={{ cursor: "pointer" }}
               >
                 <Table.Cell width={"40%"}>{item.name}</Table.Cell>
                 <Table.Cell width={"40%"}>
@@ -66,7 +65,11 @@ export const SpeciesTable = () => {
                         <Menu.Content>
                           <Menu.Item
                             value="details"
-                            _hover={{ bg: "green.600", color: "white" }}
+                            _hover={{
+                              bg: "green.600",
+                              color: "white",
+                              cursor: "pointer",
+                            }}
                             onSelect={() => navigate(`/species/${item.id}`)}
                           >
                             <Icon as={FaEye} />
@@ -74,7 +77,11 @@ export const SpeciesTable = () => {
                           </Menu.Item>
                           <Menu.Item
                             value="delete"
-                            _hover={{ bg: "green.600", color: "white" }}
+                            _hover={{
+                              bg: "green.600",
+                              color: "white",
+                              cursor: "pointer",
+                            }}
                             onSelect={() => {
                               setIsDeleteOpen(true);
                               setDeleteSpeciesId(item.id);

@@ -4,7 +4,8 @@
     "animals": "Animals",
     "species": "Species",
     "events": "Events",
-    "adoptions": "Adoptions"
+    "adoptions": "Adoptions",
+    "users": "Users"
   },
   "login": {
     "email": "Email",
@@ -101,6 +102,50 @@
         "verified": "Password verified",
         "notVerified": "Password change is required"
       }
+    },
+    "list": {
+      "header": "Users List",
+      "error": "Failed to load users data",
+      "name": "Name",
+      "surname": "Surname",
+      "email": "Email",
+      "deleteToast": {
+        "success": "User deleted successfuly",
+        "error": "Failed to delete user"
+      }
+    },
+    "details": {
+      "header": "User Profile",
+      "email": "Email",
+      "role": "Role",
+      "mustChangePassword": "Must change password?"
+    },
+    "register": {
+      "button": "Register User",
+      "title": "User Registration",
+      "name": "First Name",
+      "namePlaceholder": "User's first name (e.g. John)",
+      "surname": "Last Name",
+      "surnamePlaceholder": "User's last name (e.g. Smith)",
+      "email": "Email Address",
+      "emailPlaceholder": "Email address (e.g. john@smith.com)",
+      "role": {
+        "title": "Role",
+        "user": "User",
+        "admin": "Admin"
+      },
+      "toast": {
+        "success": "User account created successfully. Further instructions have been sent to their email.",
+        "error": "Failed to create user account.",
+        "emailTaken": "The email might already be in use or an account with this email was archived."
+      },
+      "error": {
+        "nameMin": "First name must be at least 3 characters",
+        "nameMax": "First name cannot exceed 30 characters",
+        "surnameMin": "Last name must be at least 3 characters",
+        "surnameMax": "Last name cannot exceed 30 characters",
+        "email": "Invalid email address"
+      }
     }
   },
   "changePassword": {
@@ -145,5 +190,87 @@
       "regex": "Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character.",
       "identical": "Passwords must match."
     }
-  }
+  },
+  "search": "Search",
+  "animals": {
+    "unknown": "Unknown",
+    "sex": {
+      "title": "Sex",
+      "0": "Male",
+      "1": "Female"
+    },
+    "status": {
+      "inShelter": "In Shelter",
+      "adopted": "Adopted",
+      "died": "Deceased"
+    },
+    "deleteToast": {
+      "success": "Animal deleted successfully",
+      "error": "Failed to delete the animal"
+    },
+    "list": {
+      "title": "Animals",
+      "error": "Failed to load animal data",
+      "empty": "There are no animals in the system yet!",
+      "age": "Age",
+      "years": "years",
+      "admissionDate": "Admission Date",
+      "add": "Add Animal"
+    },
+    "create": {
+      "title": "Add new animal",
+      "toast": {
+        "success": "New animal added successfully",
+        "error": "Failed to add new animal"
+      },
+      "fields": {
+        "name": "Name",
+        "age": "Age",
+        "admissionDate": "Admission date",
+        "sex": "Sex",
+        "description": "Description",
+        "species": "Species",
+        "selectSpecies": "Select Species",
+        "breed": "Breed",
+        "selectSpeciesFirst": "Select Species first!",
+        "selectBreed": "Select Breed"
+      },
+      "errors": {
+        "nameMin": "Name must be at least 3 characters",
+        "nameMax": "Name must not exceed 30 characters",
+        "ageMin": "Maximum age is 100 years",
+        "ageMax": "Minimum age is 0 years",
+        "description": "Description must not exceed 350 characters",
+        "dateFuture": "Admission date cannot be in the future"
+      },
+      "summary": {
+        "title": "Summary",
+        "validationError": "Complete all required fields in previous steps to create animal!"
+      }
+    }
+  },
+  "next": "Next",
+  "prev": "Back",
+  "optional": "Optional",
+  "homepage": {
+    "title": "Welcome to Shelter Manager!",
+    "subtitle": "Employee Panel",
+    "thanks": "Thank you for your help!",
+    "dashboard": {
+      "animals": "Animals in shelter",
+      "adoptions": "Adoption processes",
+      "events": "Upcoming events",
+      "error": "Failed to load statistics"
+    }
+  },
+  "route": {
+    "roleBased": {
+      "errorToast": {
+        "title": "Access denied",
+        "description": "You do not have access to this path!"
+      }
+    }
+  },
+  "yes": "Yes",
+  "no": "No"
 }

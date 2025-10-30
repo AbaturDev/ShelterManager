@@ -13,5 +13,6 @@ export const useBreedsListQuery = (
     queryFn: () =>
       BreedService.getBreeds(speciesId, { page: page, pageSize: pageSize }),
     staleTime: fiveMin,
+    enabled: !!speciesId,
   });
 };

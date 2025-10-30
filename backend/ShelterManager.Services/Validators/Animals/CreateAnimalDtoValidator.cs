@@ -15,7 +15,7 @@ public class CreateAnimalDtoValidator : AbstractValidator<CreateAnimalDto>
             .MaximumLength(350).WithMessage("Description must not exceed 350 characters");
 
         RuleFor(x => x.Age)
-            .InclusiveBetween(0, 50).WithMessage("Age must be between 0 and 50");
+            .InclusiveBetween(0, 100).WithMessage("Age must be between 0 and 100");
 
         RuleFor(x => x.Sex)
             .IsInEnum().WithMessage("Sex must be valid enum value");

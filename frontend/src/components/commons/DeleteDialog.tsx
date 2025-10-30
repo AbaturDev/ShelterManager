@@ -31,7 +31,9 @@ export const DeleteDialog = ({
             <Dialog.Body>{t("deleteDialog.body")}</Dialog.Body>
             <Dialog.Footer>
               <HStack justify="space-between" w="100%">
-                <Button onClick={onClose}>{t("deleteDialog.cancel")}</Button>
+                <Button onClick={onClose} variant={"outline"}>
+                  {t("deleteDialog.cancel")}
+                </Button>
                 <Button onClick={onConfirm} colorPalette={"red"}>
                   {t("deleteDialog.confirm")}
                   <MdDelete />

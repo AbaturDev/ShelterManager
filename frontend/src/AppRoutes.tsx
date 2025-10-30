@@ -1,8 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { AuthLayout, PublicLayout } from "./Layout";
-import { NonAuthRoute } from "./utils/NonAuthRoute";
-import { ProtectedRoute } from "./utils/ProtectedRoute";
 import {
+  AnimalsPage,
   ChangePasswordPage,
   ForgotPasswordPage,
   HomePage,
@@ -10,8 +9,14 @@ import {
   ResetPasswordPage,
   SpeciesDetailsPage,
   SpeciesPage,
+  UsersPage,
 } from "./pages";
-import { MustChangePasswordRoute } from "./utils/MustChangePasswordRoute";
+import {
+  NonAuthRoute,
+  ProtectedRoute,
+  MustChangePasswordRoute,
+  RoleBasedRoute,
+} from "./utils";
 
 export const AppRoutes = () => {
   return (
@@ -30,6 +35,10 @@ export const AppRoutes = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="/species" element={<SpeciesPage />} />
             <Route path="/species/:id" element={<SpeciesDetailsPage />} />
+            <Route path="/animals" element={<AnimalsPage />} />
+            <Route element={<RoleBasedRoute roles={["Admin"]} />}>
+              <Route path="/users" element={<UsersPage />} />
+            </Route>
           </Route>
         </Route>
       </Route>

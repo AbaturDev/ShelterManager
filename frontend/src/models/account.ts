@@ -27,3 +27,12 @@ export interface ChangePasswordRequest {
   currentPassword: string;
   newPassword: string;
 }
+
+export type Role = "User" | "Admin";
+
+export interface RegisterRequest {
+  email: string;
+  name: string;
+  surname: string;
+  role: Role;
+}

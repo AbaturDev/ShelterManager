@@ -12,7 +12,7 @@ import {
   Icon,
   HStack,
 } from "@chakra-ui/react";
-import { MdCheckCircle, MdWarning } from "react-icons/md";
+import { MdCheckCircle, MdEmail, MdWarning } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
 
 interface UserProfileDialogProps {
@@ -71,10 +71,8 @@ export const UserProfile = ({ isOpen, onClose }: UserProfileDialogProps) => {
                     </VStack>
                   </HStack>
 
-                  <HStack>
-                    <Text fontSize={"sm"} fontWeight={"bold"}>
-                      @:
-                    </Text>
+                  <HStack gap={3}>
+                    <Icon as={MdEmail} />
                     <Text
                       color="blue.600"
                       fontSize="sm"

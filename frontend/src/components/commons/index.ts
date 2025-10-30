@@ -8,3 +8,4 @@ export * from "./PaginationMenu";
 export * from "./PageSizeSelector";
 export * from "./PaginationFooter";
 export * from "./DeleteDialog";
+export * from "./SearchInput";

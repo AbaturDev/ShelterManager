@@ -4,6 +4,5 @@ public enum AnimalStatus
 {
     InShelter,
     Adopted,
-    Reserved,
     Died
 }

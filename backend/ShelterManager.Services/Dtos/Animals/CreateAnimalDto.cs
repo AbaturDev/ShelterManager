@@ -9,6 +9,5 @@ public sealed record CreateAnimalDto
     public required Sex Sex { get; init; }
     public int? Age { get; init; }
     public string? Description { get; init; }
-    public string? ImagePath { get; init; }
     public required Guid BreedId { get; init; }
 }
