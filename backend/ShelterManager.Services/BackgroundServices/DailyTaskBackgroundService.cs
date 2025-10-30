@@ -31,7 +31,7 @@ public class DailyTaskBackgroundService : BackgroundService
     
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        var now = _timeProvider.GetUtcNow();
+        var now = _timeProvider.GetUtcNow().UtcDateTime;
         var nextRun = now.Date.AddDays(1).AddMinutes(1);
         
         var delay = nextRun - now;

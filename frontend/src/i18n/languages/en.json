@@ -119,6 +119,33 @@
       "email": "Email",
       "role": "Role",
       "mustChangePassword": "Must change password?"
+    },
+    "register": {
+      "button": "Register User",
+      "title": "User Registration",
+      "name": "First Name",
+      "namePlaceholder": "User's first name (e.g. John)",
+      "surname": "Last Name",
+      "surnamePlaceholder": "User's last name (e.g. Smith)",
+      "email": "Email Address",
+      "emailPlaceholder": "Email address (e.g. john@smith.com)",
+      "role": {
+        "title": "Role",
+        "user": "User",
+        "admin": "Admin"
+      },
+      "toast": {
+        "success": "User account created successfully. Further instructions have been sent to their email.",
+        "error": "Failed to create user account.",
+        "emailTaken": "The email might already be in use or an account with this email was archived."
+      },
+      "error": {
+        "nameMin": "First name must be at least 3 characters",
+        "nameMax": "First name cannot exceed 30 characters",
+        "surnameMin": "Last name must be at least 3 characters",
+        "surnameMax": "Last name cannot exceed 30 characters",
+        "email": "Invalid email address"
+      }
     }
   },
   "changePassword": {

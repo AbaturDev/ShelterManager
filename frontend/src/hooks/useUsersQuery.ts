@@ -7,7 +7,7 @@ const fiveMin = 5 * 60 * 1000;
 export const useUsersQuery = (args: PaginationQuery) => {
   return useQuery({
     queryFn: () => UserService.getUsers(args),
-    queryKey: ["users"],
+    queryKey: ["users", args.page, args.pageSize],
     staleTime: fiveMin,
   });
 };

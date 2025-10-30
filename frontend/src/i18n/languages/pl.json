@@ -119,6 +119,33 @@
       "email": "Email",
       "role": "Rola",
       "mustChangePassword": "Czy musi zmienić hasło?"
+    },
+    "register": {
+      "button": "Zarejestruj użytkownika",
+      "title": "Rejstracja użytkownika",
+      "name": "Imię",
+      "namePlaceholder": "Imię użytkownika (np. Marek)",
+      "surname": "Nazwisko",
+      "surnamePlaceholder": "Nazwisko użytkownika (np. Kowalski)",
+      "email": "Adres email",
+      "emailPlaceholder": "Adres email (np. marek@kowalski.pl)",
+      "role": {
+        "title": "Rola",
+        "user": "Użytkownik",
+        "admin": "Admin"
+      },
+      "toast": {
+        "success": "Poprawnie utworzono konto użytkownika. Na jego email została wysłana dalsza instrukcja",
+        "error": "Nie udało się utworzyć konta użytkownika.",
+        "emailTaken": "Email może być już w użyciu lub konto z tym emailem zostało zarchiwizowane."
+      },
+      "error": {
+        "nameMin": "Imię musi mieć co najmniej 3 znaki",
+        "nameMax": "Imię nie może mieć więcej niż 30 znaków",
+        "surnameMin": "Nazwisko musi mieć co najmniej 3 znaki",
+        "surnameMax": "Nazwisko nie może mieć więcej niż 30 znaków",
+        "email": "Nieprawidłowy adres email"
+      }
     }
   },
   "changePassword": {

@@ -4,6 +4,7 @@ import type {
   LoginRequest,
   LoginResponse,
   RefreshTokenRequest,
+  RegisterRequest,
   ResetPasswordRequest,
 } from "../../models/account";
 import { apiClient } from "../clients/api-client";
@@ -44,6 +45,10 @@ const AccountService = {
 
   changePassword: async (changePasswordRequest: ChangePasswordRequest) => {
     await apiClient.post("/change-password", changePasswordRequest);
+  },
+
+  register: async (registerRequest: RegisterRequest) => {
+    await apiClient.post("/register", registerRequest);
   },
 };
 

@@ -1,5 +1,6 @@
-import { Flex, Text, Button } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
+import { RegisterUserDialog } from "./RegisterUserDialog";
 
 export const UsersHeader = () => {
   const { t } = useTranslation();
@@ -9,7 +10,7 @@ export const UsersHeader = () => {
       <Text fontSize={"4xl"} fontWeight={"bold"}>
         {t("user.list.header")}
       </Text>
-      <Button />
+      <RegisterUserDialog />
     </Flex>
   );
 };
