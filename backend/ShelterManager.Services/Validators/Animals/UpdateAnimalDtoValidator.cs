@@ -4,7 +4,7 @@ using ShelterManager.Services.Dtos.Animals;
 
 namespace ShelterManager.Services.Validators.Animals;
 
-public class UpdateAnimalDtoValidator : AbstractValidator<AnimalDto>
+public class UpdateAnimalDtoValidator : AbstractValidator<UpdateAnimalDto>
 {
     public UpdateAnimalDtoValidator(TimeProvider timeProvider)
     {

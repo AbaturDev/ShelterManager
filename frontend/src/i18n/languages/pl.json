@@ -194,6 +194,16 @@
   "search": "Wyszukaj",
   "animals": {
     "unknown": "Nieznany",
+    "fetchError": "Nie udało się załadować danych zwierzęcia",
+    "edit": {
+      "title": "Edytuj zwierzę",
+      "status": "Status",
+      "age": "Wiek nieznany",
+      "toast": {
+        "success": "Pomyślnie zaktualizowano dane zwierzęcia.",
+        "error": "Nie udało się zaktualizować danych o zwierzęciu."
+      }
+    },
     "sex": {
       "title": "Płeć",
       "0": "Samiec",
@@ -241,7 +251,8 @@
         "ageMin": "Wiek nie może być mniejszy niż 0 lat",
         "ageMax": "Wiek nie może przekraczać 100 lat",
         "description": "Opis nie może przekraczać 350 znaków",
-        "dateFuture": "Data przyjęcia nie może być z przyszłości"
+        "dateFuture": "Data przyjęcia nie może być z przyszłości",
+        "date": "Data przyjęcia jest wymagana"
       },
       "summary": {
         "title": "Podsumowanie",
@@ -272,5 +283,7 @@
     }
   },
   "yes": "Tak",
-  "no": "Nie"
+  "no": "Nie",
+  "delete": "Usuń",
+  "edit": "Edytuj"
 }

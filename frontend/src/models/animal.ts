@@ -52,3 +52,11 @@ export interface CreateAnimal {
   breedId: string;
   description?: string;
 }
+
+export interface EditAnimal {
+  name: string;
+  admissionDate: string;
+  age?: number;
+  description?: string;
+  status: AnimalStatusType;
+}

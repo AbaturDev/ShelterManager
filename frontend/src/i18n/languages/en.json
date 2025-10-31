@@ -194,6 +194,16 @@
   "search": "Search",
   "animals": {
     "unknown": "Unknown",
+    "fetchError": "Failed to load animal data",
+    "edit": {
+      "title": "Edit animal",
+      "status": "Status",
+      "age": "Age unknown",
+      "toast": {
+        "success": "Successfully updated animal data.",
+        "error": "Failed to update animal data."
+      }
+    },
     "sex": {
       "title": "Sex",
       "0": "Male",
@@ -202,7 +212,7 @@
     "status": {
       "inShelter": "In Shelter",
       "adopted": "Adopted",
-      "died": "Deceased"
+      "died": "Dead"
     },
     "deleteToast": {
       "success": "Animal deleted successfully",
@@ -241,7 +251,8 @@
         "ageMin": "Maximum age is 100 years",
         "ageMax": "Minimum age is 0 years",
         "description": "Description must not exceed 350 characters",
-        "dateFuture": "Admission date cannot be in the future"
+        "dateFuture": "Admission date cannot be in the future",
+        "date": "Admission date is required"
       },
       "summary": {
         "title": "Summary",
@@ -272,5 +283,7 @@
     }
   },
   "yes": "Yes",
-  "no": "No"
+  "no": "No",
+  "delete": "Delete",
+  "edit": "Edit"
 }

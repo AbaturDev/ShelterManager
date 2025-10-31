@@ -8,6 +8,7 @@ import {
   Icon,
   Center,
   Spinner,
+  HStack,
 } from "@chakra-ui/react";
 import type { AnimalStatusType } from "../../../models/animal";
 import { PossibleAnimalStatus } from "../../../models/animal";
@@ -16,11 +17,12 @@ import animalPlaceholder from "../../../assets/animal-placeholder.png";
 
 import { useTranslation } from "react-i18next";
 import type { Animal } from "../../../models/animal";
-import { MdDelete } from "react-icons/md";
+import { MdDelete, MdEdit } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { DeleteAnimalDialog } from "../DeleteAnimalDialog";
 import { useAnimalImage } from "../../../hooks/useAnimalImage";
+import { EditAnimalDialog } from "../EditAnimalDialog";
 
 interface AnimalCardProps {
   animal: Animal;
@@ -38,6 +40,7 @@ export const AnimalCard = ({ animal }: AnimalCardProps) => {
   const showSpinner = animal.imagePath && isLoading;
 
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  const [isEditOpen, setIsEditOpen] = useState(false);
 
   const BadgeMapper = (status: AnimalStatusType) => {
     switch (status) {
@@ -104,11 +107,16 @@ export const AnimalCard = ({ animal }: AnimalCardProps) => {
             {t("animals.sex.title")}: {t(`animals.sex.${animal.sex}`)}
           </Text>
 
-          {animal.age && (
-            <Text fontSize="sm">
-              {t("animals.list.age")}: {animal.age} {t("animals.list.years")}
-            </Text>
-          )}
+          <Text fontSize="sm">
+            {t("animals.list.age")}:{" "}
+            {animal.age ? (
+              <>
+                {animal.age} {t("animals.list.years")}
+              </>
+            ) : (
+              <>{t("animals.unknown")}</>
+            )}
+          </Text>
 
           <Flex
             mt={2}
@@ -120,12 +128,20 @@ export const AnimalCard = ({ animal }: AnimalCardProps) => {
               {t("animals.list.admissionDate")}:{" "}
               {new Date(animal.admissionDate).toLocaleDateString()}
             </Text>
-            <Icon
-              as={MdDelete}
-              boxSize={5}
-              onClick={() => setIsDeleteOpen(true)}
-              _hover={{ cursor: "pointer" }}
-            />
+            <HStack>
+              <Icon
+                as={MdEdit}
+                boxSize={5}
+                onClick={() => setIsEditOpen(true)}
+                _hover={{ cursor: "pointer" }}
+              />
+              <Icon
+                as={MdDelete}
+                boxSize={5}
+                onClick={() => setIsDeleteOpen(true)}
+                _hover={{ cursor: "pointer" }}
+              />
+            </HStack>
           </Flex>
         </Card.Body>
       </Card.Root>
@@ -134,6 +150,12 @@ export const AnimalCard = ({ animal }: AnimalCardProps) => {
         id={animal.id}
         onClose={() => setIsDeleteOpen(false)}
         onSuccess={() => setIsDeleteOpen(false)}
+      />
+      <EditAnimalDialog
+        isOpen={isEditOpen}
+        id={animal.id}
+        onClose={() => setIsEditOpen(false)}
+        onSuccess={() => setIsEditOpen(false)}
       />
     </>
   );

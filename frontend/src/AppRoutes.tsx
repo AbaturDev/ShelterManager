@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { AuthLayout, PublicLayout } from "./Layout";
 import {
+  AnimalsDetailsPage,
   AnimalsPage,
   ChangePasswordPage,
   ForgotPasswordPage,
@@ -36,6 +37,7 @@ export const AppRoutes = () => {
             <Route path="/species" element={<SpeciesPage />} />
             <Route path="/species/:id" element={<SpeciesDetailsPage />} />
             <Route path="/animals" element={<AnimalsPage />} />
+            <Route path="/animals/:id" element={<AnimalsDetailsPage />} />
             <Route element={<RoleBasedRoute roles={["Admin"]} />}>
               <Route path="/users" element={<UsersPage />} />
             </Route>

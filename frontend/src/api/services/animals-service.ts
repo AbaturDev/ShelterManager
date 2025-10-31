@@ -1,10 +1,15 @@
-import type { Animal, AnimalQuery, CreateAnimal } from "../../models/animal";
+import type {
+  Animal,
+  AnimalQuery,
+  CreateAnimal,
+  EditAnimal,
+} from "../../models/animal";
 import type { PaginatedResponse } from "../../models/common";
 import { apiClient } from "../clients/api-client";
 
 const AnimalService = {
   getAnimalById: async (id: string) => {
-    const { data } = await apiClient.get<Animal>(`/aniamls/${id}`);
+    const { data } = await apiClient.get<Animal>(`/animals/${id}`);
 
     return data;
   },
@@ -35,6 +40,10 @@ const AnimalService = {
 
   createAnimal: async (data: CreateAnimal) => {
     await apiClient.post("/animals", data);
+  },
+
+  editAnimal: async (id: string, data: EditAnimal) => {
+    await apiClient.put(`/animals/${id}`, data);
   },
 };
 
