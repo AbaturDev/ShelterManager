@@ -26,7 +26,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AnimalService } from "../../api/services/animals-service";
 import { toaster } from "../ui/toaster";
-import type { AnimalStatusType } from "../../models/animal";
+import type { Animal, AnimalStatusType } from "../../models/animal";
 import { useAnimalByIdQuery } from "../../hooks/useAnimalByIdQuery";
 import { useEffect } from "react";
 
@@ -68,7 +68,9 @@ export const EditAnimalDialog = ({
   const queryClient = useQueryClient();
   const { t } = useTranslation();
 
-  const { data: animal, error, isLoading, refetch } = useAnimalByIdQuery(id);
+  const { data, error, isLoading, refetch } = useAnimalByIdQuery(id, {
+    enabled: isOpen,
+  });
 
   if (error) {
     toaster.create({
@@ -135,6 +137,8 @@ export const EditAnimalDialog = ({
   }, [isOpen, refetch]);
 
   const onSubmit = async (data: FormData) => await mutation.mutateAsync(data);
+
+  const animal = data as Animal;
 
   return (
     <Portal>

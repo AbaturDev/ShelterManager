@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import {
-  AnimalsDetailsCard,
-  AnimalsDetailsHeader,
+  AnimalDetailsCard,
+  AnimalDetailsHeader,
 } from "../components/animals/details";
 
 export const AnimalsDetailsPage = () => {
@@ -11,8 +11,8 @@ export const AnimalsDetailsPage = () => {
 
   return (
     <>
-      <AnimalsDetailsHeader id={animalId} />
-      <AnimalsDetailsCard id={animalId} />
+      <AnimalDetailsHeader id={animalId} />
+      <AnimalDetailsCard id={animalId} />
     </>
   );
 };

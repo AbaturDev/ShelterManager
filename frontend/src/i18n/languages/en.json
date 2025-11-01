@@ -258,6 +258,21 @@
         "title": "Summary",
         "validationError": "Complete all required fields in previous steps to create animal!"
       }
+    },
+    "details": {
+      "age": "Age",
+      "years": "years",
+      "admissionDate": "Admission Date",
+      "breed": "Breed",
+      "species": "Species",
+      "description": "Description",
+      "noDescription": "The animal does not have any description",
+      "tabs": {
+        "details": "Details",
+        "files": "Files",
+        "dailyTasks": "Daily tasks",
+        "hasImage": "Has image"
+      }
     }
   },
   "next": "Next",

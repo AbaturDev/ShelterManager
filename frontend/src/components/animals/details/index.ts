@@ -1,2 +1,2 @@
-export * from "./AnimalsDetailsCard";
-export * from "./AnimalsDetailsHeader";
+export * from "./AnimalDetailsCard";
+export * from "./AnimalDetailsHeader";

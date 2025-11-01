@@ -258,6 +258,21 @@
         "title": "Podsumowanie",
         "validationError": "Uzupełnij wszystkie wymagane pola w poprzednich krokach, aby dodać zwierzę!"
       }
+    },
+    "details": {
+      "age": "Wiek",
+      "years": "lat",
+      "admissionDate": "Data przyjęcia",
+      "breed": "Rasa",
+      "species": "Gatunek",
+      "description": "Opis",
+      "noDescription": "Brak dodatkowego opisu dla tego zwierzęcia",
+      "tabs": {
+        "details": "Szczegóły",
+        "files": "Pliki",
+        "dailyTasks": "Codzienne zadania",
+        "hasImage": "Posiada zdjęcie"
+      }
     }
   },
   "next": "Dalej",

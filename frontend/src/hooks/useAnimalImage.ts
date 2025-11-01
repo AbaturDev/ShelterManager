@@ -12,6 +12,7 @@ export const useAnimalImage = (id: string) => {
     queryKey: ["animal-image", id],
     queryFn: () => AnimalService.getAnimalProfileImage(id),
     staleTime: 10 * 60 * 1000,
+    enabled: !!id,
     retry: (failCount, error) => {
       if (error instanceof AxiosError) {
         const status = error.response?.status;

@@ -11,7 +11,7 @@ interface AnimalsDetailsHeaderProps {
   id: string;
 }
 
-export const AnimalsDetailsHeader = ({ id }: AnimalsDetailsHeaderProps) => {
+export const AnimalDetailsHeader = ({ id }: AnimalsDetailsHeaderProps) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
