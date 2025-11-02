@@ -78,7 +78,7 @@ export const DailyTaskTab = ({ animalId }: DailyTaskTabProps) => {
               _hover={{ bg: "gray.50" }}
             >
               <Flex justify="space-between" align="center">
-                <Box>
+                <Box flex={1} maxW="33.3%">
                   <Text fontWeight="semibold">{entry.title}</Text>
                   {entry.description && (
                     <Text fontSize="sm" color="gray.600">
@@ -86,24 +86,26 @@ export const DailyTaskTab = ({ animalId }: DailyTaskTabProps) => {
                     </Text>
                   )}
                 </Box>
-                {entry.isCompleted && (
-                  <VStack>
-                    <Text fontSize={"md"} font={"initial"}>
-                      {t("dailyTasks.list.completed")}{" "}
-                      {entry.completedAt &&
-                        new Date(entry.completedAt).toLocaleTimeString()}
-                    </Text>
-                    {entry.userDisplayName && (
+                <Box flex={1} textAlign="center" maxW="33.3%">
+                  {entry.isCompleted && (
+                    <VStack>
                       <Text fontSize={"md"} font={"initial"}>
-                        {t("dailyTasks.list.by")} {entry.userDisplayName}
+                        {t("dailyTasks.list.completed")}{" "}
+                        {entry.completedAt &&
+                          new Date(entry.completedAt).toLocaleTimeString()}
                       </Text>
-                    )}
-                  </VStack>
-                )}
-                <Flex gap={2}>
+                      {entry.userDisplayName && (
+                        <Text fontSize={"md"} font={"initial"}>
+                          {t("dailyTasks.list.by")} {entry.userDisplayName}
+                        </Text>
+                      )}
+                    </VStack>
+                  )}
+                </Box>
+                <Flex flex={1} justify="flex-end" gap={2} maxW="33.3%">
                   <Button
                     size="sm"
-                    background={"green.400"}
+                    background={"green.600"}
                     disabled={entry.isCompleted || !isToday}
                     onClick={() => {
                       setEndEntryId(entry.id);
