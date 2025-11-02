@@ -28,6 +28,7 @@ public class DailyTaskService : IDailyTaskService
         var dailyTask = await _context.DailyTasks
             .AsNoTracking()
             .Include(x => x.Entries)
+            .ThenInclude(x => x.User)
             .FirstOrDefaultAsync(x => x.Date == date && x.AnimalId == animalId, ct);
 
         if (dailyTask is null)
@@ -53,6 +54,7 @@ public class DailyTaskService : IDailyTaskService
                 CompletedAt = x.CompletedAt,
                 DailyTaskId = x.DailyTaskId,
                 UserId = x.UserId,
+                UserDisplayName = x.User is not null ? $"{x.User.Name} {x.User.Surname}" : null
             }).ToList(),
         };
 

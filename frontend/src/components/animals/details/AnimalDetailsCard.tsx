@@ -25,6 +25,7 @@ import { MdEdit } from "react-icons/md";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AnimalService } from "../../../api/services/animals-service";
 import { toaster } from "../../ui/toaster";
+import { DailyTaskTab } from "../../daily-tasks";
 
 interface AnimalsDetailsCardProps {
   id: string;
@@ -198,7 +199,7 @@ export const AnimalDetailsCard = ({ id }: AnimalsDetailsCardProps) => {
               <FilesTab animalId={animal.id} />
             </Tabs.Content>
             <Tabs.Content value="dailyTasks">
-              Manage your tasks for freelancers
+              <DailyTaskTab animalId={animal.id} />
             </Tabs.Content>
           </Tabs.Root>
         </Card.Footer>

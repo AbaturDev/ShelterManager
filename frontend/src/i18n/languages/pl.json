@@ -325,5 +325,48 @@
   "yes": "Tak",
   "no": "Nie",
   "delete": "Usuń",
-  "edit": "Edytuj"
+  "edit": "Edytuj",
+  "dailyTasks": {
+    "delete": {
+      "toast": {
+        "success": "Pomyślnie usunięto zadanie",
+        "error": "Nie udało się usunąc zadania"
+      }
+    },
+    "end": {
+      "title": "Potwierdź operację",
+      "body": "Czy jesteś pewny, że chcesz zakończyć to zadanie? Zostaniesz oznaczony jako osoba, która wykonała zadanie.",
+      "cancel": "Anuluj",
+      "confirm": "Zakończ",
+      "toast": {
+        "success": "Pomyślnie zakończono zadanie",
+        "error": "Nie udało się zakończyć zadania"
+      }
+    },
+    "list": {
+      "completed": "Zadanie wykonane",
+      "by": "przez",
+      "end": "Zakończ",
+      "empty": "Brak zadań na ten dzień"
+    },
+    "create": {
+      "button": "Dodaj zadanie",
+      "dialogTitle": "Dodaj nowe zadanie",
+      "title": "Tytuł",
+      "titlePlaceholder": "Tytuł np. \"Spacer\"",
+      "description": "Opis",
+      "descriptionPlaceholder": "Opis np. \"30minut + bieganie\"",
+      "toast": {
+        "success": "Pomyślnie dodano nowe zadanie",
+        "error": "Nie udało się dodać nowego zdania"
+      },
+      "errors": {
+        "title": {
+          "min": "Tytuł musi mieć min. 3 znaki",
+          "max": "Tytuł może mieć maks 30 znaków"
+        },
+        "description": "Opis nie może przekraczać 300 znaków"
+      }
+    }
+  }
 }

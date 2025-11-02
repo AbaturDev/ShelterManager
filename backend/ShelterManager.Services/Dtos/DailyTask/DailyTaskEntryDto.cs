@@ -11,4 +11,5 @@ public sealed record DailyTaskEntryDto
     public DateTimeOffset? CompletedAt { get; init; }
     public Guid DailyTaskId { get; init; }
     public Guid? UserId { get; init; }
+    public string? UserDisplayName { get; init; }
 }
