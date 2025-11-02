@@ -267,11 +267,36 @@
       "species": "Species",
       "description": "Description",
       "noDescription": "The animal does not have any description",
+      "profileImage": {
+        "toast": {
+          "success": "Successfully updated animal profile image",
+          "error": "Failed to update animal profile image"
+        }
+      },
       "tabs": {
         "details": "Details",
         "files": "Files",
         "dailyTasks": "Daily tasks",
         "hasImage": "Has image"
+      },
+      "files": {
+        "title": "Uploaded files",
+        "dropzone": "Drag and drop file here",
+        "error": "Failed to load files list",
+        "toast": {
+          "upload": {
+            "success": "Successfully uploaded new file",
+            "error": "Failed to upload file",
+            "duplicate": "File with this name already exists for this animal"
+          },
+          "delete": {
+            "success": "Successfully deleted file",
+            "error": "Failed to delete file"
+          },
+          "download": {
+            "error": "Failed to download selected file"
+          }
+        }
       }
     }
   },

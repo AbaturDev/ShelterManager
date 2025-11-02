@@ -272,6 +272,31 @@
         "files": "Pliki",
         "dailyTasks": "Codzienne zadania",
         "hasImage": "Posiada zdjęcie"
+      },
+      "profileImage": {
+        "toast": {
+          "success": "Pomyślnie zaktualizowano zdjęcie zwierzęcia",
+          "error": "Nie udało się zaktualizować zdjęcia zwierzęcia"
+        }
+      },
+      "files": {
+        "title": "Przesłane pliki",
+        "dropzone": "Przeciągnij i upuść plik tutaj",
+        "error": "Nie udało się wczytać listy plików",
+        "toast": {
+          "upload": {
+            "success": "Pomyślnie przesłano nowy plik",
+            "error": "Nie udało się przesłać pliku",
+            "duplicate": "Plik o tej nazwie już istnieje dla tego zwierzęcia"
+          },
+          "delete": {
+            "success": "Pomyślnie usunięto plik",
+            "error": "Nie udało się usunąć pliku"
+          },
+          "download": {
+            "error": "Nie udało się pobrać wybranego pliku"
+          }
+        }
       }
     }
   },

@@ -2,6 +2,7 @@ import {
   Badge,
   Box,
   Card,
+  FileUpload,
   Flex,
   Heading,
   HStack,
@@ -19,6 +20,11 @@ import { FaPaw } from "react-icons/fa";
 import type { Animal } from "../../../models/animal";
 import { AnimalBadge } from "../AnimalBadge";
 import { AnimalImage } from "../AnimalImage";
+import { FilesTab } from "./tabs";
+import { MdEdit } from "react-icons/md";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { AnimalService } from "../../../api/services/animals-service";
+import { toaster } from "../../ui/toaster";
 
 interface AnimalsDetailsCardProps {
   id: string;
@@ -26,6 +32,32 @@ interface AnimalsDetailsCardProps {
 
 export const AnimalDetailsCard = ({ id }: AnimalsDetailsCardProps) => {
   const { t } = useTranslation();
+  const queryClient = useQueryClient();
+
+  const uploadMutation = useMutation({
+    mutationFn: (file: File) =>
+      AnimalService.uploadAnimalProfileImage(id, file),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["animal-image", id],
+      });
+      toaster.create({
+        type: "success",
+        title: t("success"),
+        description: t("animals.details.profileImage.toast.success"),
+        closable: true,
+      });
+    },
+    onError: () => {
+      toaster.create({
+        type: "error",
+        title: t("error"),
+        description: t("animals.details.profileImage.toast.error"),
+        closable: true,
+      });
+    },
+  });
+
   const { data, isLoading: isAnimalLoading, error } = useAnimalByIdQuery(id);
 
   if (isAnimalLoading) return <Loading />;
@@ -43,18 +75,38 @@ export const AnimalDetailsCard = ({ id }: AnimalsDetailsCardProps) => {
               <Heading size="2xl" fontWeight="bold">
                 {animal.name}
               </Heading>
-              <Text as="span" color="gray.500" fontSize="lg">
-                ({animal.species.breed.name})
-              </Text>
             </HStack>
             <AnimalBadge status={animal.status} />
           </Flex>
         </Card.Header>
         <Card.Body>
           <Flex justifyContent={"space-between"}>
-            <Flex maxH="300px" maxW="150px">
+            <Flex maxH="150px" maxW="150px" gap={1}>
               <AnimalImage animal={animal} />
+              <FileUpload.Root
+                accept="image/*"
+                onFileChange={(uploadFiles) => {
+                  uploadMutation.mutate(uploadFiles.acceptedFiles[0]);
+                }}
+              >
+                <FileUpload.HiddenInput />
+                <FileUpload.Trigger asChild>
+                  <Icon
+                    as={MdEdit}
+                    boxSize={6}
+                    color="white"
+                    bg="blue.500"
+                    borderRadius="full"
+                    p={1}
+                    bottom={2}
+                    right={2}
+                    cursor="pointer"
+                    _hover={{ bg: "blue.600" }}
+                  />
+                </FileUpload.Trigger>
+              </FileUpload.Root>
             </Flex>
+
             <VStack align="start">
               <Text>
                 <strong>{t("animals.details.age")}:</strong>{" "}
@@ -142,7 +194,9 @@ export const AnimalDetailsCard = ({ id }: AnimalsDetailsCardProps) => {
                 </Text>
               </Flex>
             </Tabs.Content>
-            <Tabs.Content value="files">Manage your projects</Tabs.Content>
+            <Tabs.Content value="files">
+              <FilesTab animalId={animal.id} />
+            </Tabs.Content>
             <Tabs.Content value="dailyTasks">
               Manage your tasks for freelancers
             </Tabs.Content>
