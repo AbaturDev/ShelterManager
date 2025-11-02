@@ -43,7 +43,10 @@ export const DeleteAnimalDialog = ({
     },
   });
 
-  const handleConfirm = async () => await mutation.mutateAsync();
+  const handleConfirm = async () => {
+    if (mutation.isPending) return;
+    await mutation.mutateAsync();
+  };
 
   return (
     <DeleteDialog isOpen={isOpen} onClose={onClose} onConfirm={handleConfirm} />

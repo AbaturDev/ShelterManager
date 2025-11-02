@@ -194,6 +194,16 @@
   "search": "Wyszukaj",
   "animals": {
     "unknown": "Nieznany",
+    "fetchError": "Nie udało się załadować danych zwierzęcia",
+    "edit": {
+      "title": "Edytuj zwierzę",
+      "status": "Status",
+      "age": "Wiek nieznany",
+      "toast": {
+        "success": "Pomyślnie zaktualizowano dane zwierzęcia.",
+        "error": "Nie udało się zaktualizować danych o zwierzęciu."
+      }
+    },
     "sex": {
       "title": "Płeć",
       "0": "Samiec",
@@ -241,11 +251,52 @@
         "ageMin": "Wiek nie może być mniejszy niż 0 lat",
         "ageMax": "Wiek nie może przekraczać 100 lat",
         "description": "Opis nie może przekraczać 350 znaków",
-        "dateFuture": "Data przyjęcia nie może być z przyszłości"
+        "dateFuture": "Data przyjęcia nie może być z przyszłości",
+        "date": "Data przyjęcia jest wymagana"
       },
       "summary": {
         "title": "Podsumowanie",
         "validationError": "Uzupełnij wszystkie wymagane pola w poprzednich krokach, aby dodać zwierzę!"
+      }
+    },
+    "details": {
+      "age": "Wiek",
+      "years": "lat",
+      "admissionDate": "Data przyjęcia",
+      "breed": "Rasa",
+      "species": "Gatunek",
+      "description": "Opis",
+      "noDescription": "Brak dodatkowego opisu dla tego zwierzęcia",
+      "tabs": {
+        "details": "Szczegóły",
+        "files": "Pliki",
+        "dailyTasks": "Codzienne zadania",
+        "hasImage": "Posiada zdjęcie"
+      },
+      "profileImage": {
+        "toast": {
+          "success": "Pomyślnie zaktualizowano zdjęcie zwierzęcia",
+          "error": "Nie udało się zaktualizować zdjęcia zwierzęcia"
+        }
+      },
+      "files": {
+        "title": "Przesłane pliki",
+        "dropzone": "Przeciągnij i upuść plik tutaj",
+        "error": "Nie udało się wczytać listy plików",
+        "toast": {
+          "upload": {
+            "success": "Pomyślnie przesłano nowy plik",
+            "error": "Nie udało się przesłać pliku",
+            "duplicate": "Plik o tej nazwie już istnieje dla tego zwierzęcia"
+          },
+          "delete": {
+            "success": "Pomyślnie usunięto plik",
+            "error": "Nie udało się usunąć pliku"
+          },
+          "download": {
+            "error": "Nie udało się pobrać wybranego pliku"
+          }
+        }
       }
     }
   },
@@ -272,5 +323,7 @@
     }
   },
   "yes": "Tak",
-  "no": "Nie"
+  "no": "Nie",
+  "delete": "Usuń",
+  "edit": "Edytuj"
 }

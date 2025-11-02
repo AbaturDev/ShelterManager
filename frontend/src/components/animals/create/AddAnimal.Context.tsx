@@ -27,7 +27,7 @@ const schema = z.object({
     .min(3, setFormErrorMessage("animals.create.errors.nameMin"))
     .max(30, setFormErrorMessage("animals.create.errors.nameMax")),
   admissionDate: z
-    .date()
+    .date(setFormErrorMessage("animals.create.errors.date"))
     .max(new Date(), setFormErrorMessage("animals.create.errors.dateFuture")),
   sex: z.number(),
   age: z

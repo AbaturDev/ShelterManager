@@ -7,3 +7,4 @@ export * from "./ForgotPasswordPage";
 export * from "./ResetPasswordPage";
 export * from "./AnimalsPage";
 export * from "./UsersPage";
+export * from "./AnimalsDetailsPage";

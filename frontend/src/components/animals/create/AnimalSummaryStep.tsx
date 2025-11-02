@@ -12,10 +12,14 @@ interface Props {
 
 export const AnimalSummaryStep = ({ onBack, onClose }: Props) => {
   const { t } = useTranslation();
-  const { watch, handleSubmit } = useFormContext<AddAnimalSchema>();
+  const { watch, handleSubmit, setValue } = useFormContext<AddAnimalSchema>();
   const { addAnimalMutation } = useAddAnimalContext();
 
   const formData = watch();
+
+  if (isNaN(Number(formData.age))) {
+    setValue("age", null);
+  }
 
   const formatDate = (date: Date | null | undefined) => {
     if (!date || !(date instanceof Date) || isNaN(date.getTime())) {
