@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using ShelterManager.Api.Constants;
 using ShelterManager.Api.Extensions;
 using ShelterManager.Api.Utils;
-using ShelterManager.Services.Dtos.Commons;
 using ShelterManager.Services.Dtos.DailyTask;
 using ShelterManager.Services.Services.Abstractions;
 
@@ -33,8 +32,7 @@ public static class DailyTaskEndpoints
         group.MapPut($"/{ApiRoutes.DailyTaskDefaultEntriesRoute}/{{defaultEntryId:guid}}", UpdateDefaultDailyTaskEntry)
             .WithRequestValidation<UpdateDefaultDailyTaskEntryDto>();
         group.MapDelete($"/{ApiRoutes.DailyTaskDefaultEntriesRoute}/{{defaultEntryId:guid}}", RemoveDefaultDailyTaskEntry);
-        group.MapGet($"/{ApiRoutes.DailyTaskDefaultEntriesRoute}", GetDefaultDailyTaskEntries)
-            .WithRequestValidation<PageQueryFilter>();
+        group.MapGet($"/{ApiRoutes.DailyTaskDefaultEntriesRoute}", GetDefaultDailyTaskEntries);
         
         return group;
     }
@@ -124,14 +122,13 @@ public static class DailyTaskEndpoints
         return TypedResults.Ok();
     }
     
-    private static async Task<Ok<PaginatedResponse<DailyTaskDefaultEntryDto>>> GetDefaultDailyTaskEntries(
+    private static async Task<Ok<ICollection<DailyTaskDefaultEntryDto>>> GetDefaultDailyTaskEntries(
         Guid animalId,
-        [AsParameters] PageQueryFilter queryFilter,
         [FromServices] IDailyTaskService dailyTaskService,
         CancellationToken ct
         )
     {
-        var response = await dailyTaskService.GetDefaultDailyTaskEntriesAsync(animalId, queryFilter, ct);
+        var response = await dailyTaskService.GetDefaultDailyTaskEntriesAsync(animalId, ct);
         
         return TypedResults.Ok(response);
     }

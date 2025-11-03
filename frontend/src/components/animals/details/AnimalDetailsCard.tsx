@@ -25,6 +25,8 @@ import { MdEdit } from "react-icons/md";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AnimalService } from "../../../api/services/animals-service";
 import { toaster } from "../../ui/toaster";
+import { DailyTaskTab } from "../../daily-tasks";
+import { DefaultTasksTab } from "../../default-tasks";
 
 interface AnimalsDetailsCardProps {
   id: string;
@@ -61,7 +63,8 @@ export const AnimalDetailsCard = ({ id }: AnimalsDetailsCardProps) => {
   const { data, isLoading: isAnimalLoading, error } = useAnimalByIdQuery(id);
 
   if (isAnimalLoading) return <Loading />;
-  if (error || data === undefined) return <Text color={"red"}>{t("???")}</Text>;
+  if (error || data === undefined)
+    return <Text color={"red"}>{t("animals.details.error")}</Text>;
 
   const animal = data as Animal;
 
@@ -164,6 +167,9 @@ export const AnimalDetailsCard = ({ id }: AnimalsDetailsCardProps) => {
               <Tabs.Trigger value="dailyTasks">
                 {t("animals.details.tabs.dailyTasks")}
               </Tabs.Trigger>
+              <Tabs.Trigger value="defaultTasks">
+                {t("animals.details.tabs.defaultTasks")}
+              </Tabs.Trigger>
             </Tabs.List>
             <Tabs.Content value="details">
               <Flex justifyContent={"start"} direction={"column"} gap={5}>
@@ -198,7 +204,10 @@ export const AnimalDetailsCard = ({ id }: AnimalsDetailsCardProps) => {
               <FilesTab animalId={animal.id} />
             </Tabs.Content>
             <Tabs.Content value="dailyTasks">
-              Manage your tasks for freelancers
+              <DailyTaskTab animalId={animal.id} />
+            </Tabs.Content>
+            <Tabs.Content value="defaultTasks">
+              <DefaultTasksTab animalId={animal.id} />
             </Tabs.Content>
           </Tabs.Root>
         </Card.Footer>

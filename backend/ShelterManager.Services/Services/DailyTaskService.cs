@@ -3,9 +3,7 @@ using ShelterManager.Core.Exceptions;
 using ShelterManager.Core.Services.Abstractions;
 using ShelterManager.Database.Contexts;
 using ShelterManager.Database.Entities;
-using ShelterManager.Services.Dtos.Commons;
 using ShelterManager.Services.Dtos.DailyTask;
-using ShelterManager.Services.Extensions;
 using ShelterManager.Services.Services.Abstractions;
 
 namespace ShelterManager.Services.Services;
@@ -28,6 +26,7 @@ public class DailyTaskService : IDailyTaskService
         var dailyTask = await _context.DailyTasks
             .AsNoTracking()
             .Include(x => x.Entries)
+            .ThenInclude(x => x.User)
             .FirstOrDefaultAsync(x => x.Date == date && x.AnimalId == animalId, ct);
 
         if (dailyTask is null)
@@ -53,6 +52,7 @@ public class DailyTaskService : IDailyTaskService
                 CompletedAt = x.CompletedAt,
                 DailyTaskId = x.DailyTaskId,
                 UserId = x.UserId,
+                UserDisplayName = x.User is not null ? $"{x.User.Name} {x.User.Surname}" : null
             }).ToList(),
         };
 
@@ -174,16 +174,11 @@ public class DailyTaskService : IDailyTaskService
         await _context.SaveChangesAsync(ct);
     }
 
-    public async Task<PaginatedResponse<DailyTaskDefaultEntryDto>> GetDefaultDailyTaskEntriesAsync(Guid animalId, PageQueryFilter queryFilter, CancellationToken ct)
+    public async Task<ICollection<DailyTaskDefaultEntryDto>> GetDefaultDailyTaskEntriesAsync(Guid animalId, CancellationToken ct)
     {
-        var defaultEntries = _context.DailyTaskDefaultEntries
+        var items = await _context.DailyTaskDefaultEntries
             .AsNoTracking()
             .Where(x => x.AnimalId == animalId)
-            .AsQueryable();
-
-        var totalCount = await defaultEntries.CountAsync(ct);
-
-        var items = await defaultEntries
             .Select(x => new DailyTaskDefaultEntryDto
             {
                 Id = x.Id,
@@ -193,10 +188,9 @@ public class DailyTaskService : IDailyTaskService
                 Description = x.Description,
                 AnimalId = x.AnimalId,
             })
-            .Paginate(queryFilter.Page, queryFilter.PageSize)
             .ToListAsync(ct);
         
-        return new PaginatedResponse<DailyTaskDefaultEntryDto>(items, queryFilter.Page, queryFilter.PageSize, totalCount);
+        return items;
     }
 
     public async Task UpdateDefaultDailyTaskEntryAsync(Guid animalId, Guid defaultEntryId, UpdateDefaultDailyTaskEntryDto dto,

@@ -267,6 +267,7 @@
       "species": "Species",
       "description": "Description",
       "noDescription": "The animal does not have any description",
+      "error": "Failed to load the animal data",
       "profileImage": {
         "toast": {
           "success": "Successfully updated animal profile image",
@@ -277,7 +278,8 @@
         "details": "Details",
         "files": "Files",
         "dailyTasks": "Daily tasks",
-        "hasImage": "Has image"
+        "hasImage": "Has image",
+        "defaultTasks": "Default tasks"
       },
       "files": {
         "title": "Uploaded files",
@@ -325,5 +327,85 @@
   "yes": "Yes",
   "no": "No",
   "delete": "Delete",
-  "edit": "Edit"
+  "edit": "Edit",
+  "dailyTasks": {
+    "delete": {
+      "toast": {
+        "success": "Task deleted successfully",
+        "error": "Failed to delete the task"
+      }
+    },
+    "end": {
+      "title": "Confirm action",
+      "body": "Are you sure you want to complete this task? You will be marked as the person who completed it.",
+      "cancel": "Cancel",
+      "confirm": "Complete",
+      "toast": {
+        "success": "Task completed successfully",
+        "error": "Failed to complete the task"
+      }
+    },
+    "list": {
+      "completed": "Task completed",
+      "by": "by",
+      "end": "Complete",
+      "empty": "No tasks for this day"
+    },
+    "create": {
+      "button": "Add task",
+      "dialogTitle": "Add new task",
+      "title": "Title",
+      "titlePlaceholder": "Title e.g. \"Walk\"",
+      "description": "Description",
+      "descriptionPlaceholder": "Description e.g. \"30 minutes + running\"",
+      "toast": {
+        "success": "New task added successfully",
+        "error": "Failed to add new task"
+      },
+      "errors": {
+        "title": {
+          "min": "Title must be at least 3 characters",
+          "max": "Title can be a maximum of 30 characters"
+        },
+        "description": "Description cannot exceed 100 characters"
+      }
+    }
+  },
+  "defaultTasks": {
+    "title": "List of default daily tasks thats creates every day for the animal",
+    "empty": "There is no default tasks for this animal yet",
+    "error": "Failed to load animal default tasks data",
+    "add": "Add task",
+    "toast": {
+      "create": {
+        "success": "Successfully added a new default daily task",
+        "error": "Failed to add a new default daily task"
+      },
+      "delete": {
+        "success": "Successfully deleted default daily task",
+        "error": "Failed to delete default daily task"
+      },
+      "edit": {
+        "success": "Successfully updated default daily task",
+        "error": "Failed to update default daily task"
+      }
+    },
+    "dialog": {
+      "add": "Add default daily task",
+      "edit": "Edit default daily task"
+    },
+    "fields": {
+      "title": "Title",
+      "titlePlaceholder": "Title e.g. \"Walk\"",
+      "description": "Description",
+      "descriptionPlaceholder": "Description e.g. \"30 minutes + running\"",
+      "errors": {
+        "title": {
+          "min": "Title must be at least 3 characters",
+          "max": "Title can be a maximum of 30 characters"
+        },
+        "description": "Description cannot exceed 100 characters"
+      }
+    }
+  }
 }

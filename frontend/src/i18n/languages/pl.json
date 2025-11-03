@@ -266,12 +266,14 @@
       "breed": "Rasa",
       "species": "Gatunek",
       "description": "Opis",
+      "error": "NIe udało się załadować danych o zwierzęciu",
       "noDescription": "Brak dodatkowego opisu dla tego zwierzęcia",
       "tabs": {
         "details": "Szczegóły",
         "files": "Pliki",
         "dailyTasks": "Codzienne zadania",
-        "hasImage": "Posiada zdjęcie"
+        "hasImage": "Posiada zdjęcie",
+        "defaultTasks": "Domyślne zadania"
       },
       "profileImage": {
         "toast": {
@@ -325,5 +327,85 @@
   "yes": "Tak",
   "no": "Nie",
   "delete": "Usuń",
-  "edit": "Edytuj"
+  "edit": "Edytuj",
+  "dailyTasks": {
+    "delete": {
+      "toast": {
+        "success": "Pomyślnie usunięto zadanie",
+        "error": "Nie udało się usunąc zadania"
+      }
+    },
+    "end": {
+      "title": "Potwierdź operację",
+      "body": "Czy jesteś pewny, że chcesz zakończyć to zadanie? Zostaniesz oznaczony jako osoba, która wykonała zadanie.",
+      "cancel": "Anuluj",
+      "confirm": "Zakończ",
+      "toast": {
+        "success": "Pomyślnie zakończono zadanie",
+        "error": "Nie udało się zakończyć zadania"
+      }
+    },
+    "list": {
+      "completed": "Zadanie wykonane",
+      "by": "przez",
+      "end": "Zakończ",
+      "empty": "Brak zadań na ten dzień"
+    },
+    "create": {
+      "button": "Dodaj zadanie",
+      "dialogTitle": "Dodaj nowe zadanie",
+      "title": "Tytuł",
+      "titlePlaceholder": "Tytuł np. \"Spacer\"",
+      "description": "Opis",
+      "descriptionPlaceholder": "Opis np. \"30minut + bieganie\"",
+      "toast": {
+        "success": "Pomyślnie dodano nowe zadanie",
+        "error": "Nie udało się dodać nowego zdania"
+      },
+      "errors": {
+        "title": {
+          "min": "Tytuł musi mieć min. 3 znaki",
+          "max": "Tytuł może mieć maks 30 znaków"
+        },
+        "description": "Opis nie może przekraczać 100 znaków"
+      }
+    }
+  },
+  "defaultTasks": {
+    "title": "Lista domyślnych codziennych zadań tworzonych każdego dnia dla zwierzęcia",
+    "empty": "Brak domyślnych zadań dla tego zwierzęcia",
+    "error": "Nie udało się załadować danych domyślnych zadań zwierzęcia",
+    "add": "Dodaj zadanie",
+    "toast": {
+      "create": {
+        "success": "Pomyślnie dodano nowe domyślne codzienne zadanie",
+        "error": "Nie udało się dodać nowego domyślnego codziennego zadania"
+      },
+      "delete": {
+        "success": "Pomyślnie usunięto domyślne codzienne zadanie",
+        "error": "Nie udało się usunąć domyślnego codziennego zadania"
+      },
+      "edit": {
+        "success": "Pomyślnie zaktualizowano domyślne codzienne zadanie",
+        "error": "Nie udało się zaktualizować domyślnego codziennego zadania"
+      }
+    },
+    "dialog": {
+      "add": "Dodaj domyślne codzienne zadanie",
+      "edit": "Edytuj domyślne codzienne zadanie"
+    },
+    "fields": {
+      "title": "Tytuł",
+      "titlePlaceholder": "Tytuł, np. „Spacer”",
+      "description": "Opis",
+      "descriptionPlaceholder": "Opis, np. „30 minut + bieganie”",
+      "errors": {
+        "title": {
+          "min": "Tytuł musi mieć co najmniej 3 znaki",
+          "max": "Tytuł może mieć maksymalnie 30 znaków"
+        },
+        "description": "Opis nie może przekraczać 100 znaków"
+      }
+    }
+  }
 }
