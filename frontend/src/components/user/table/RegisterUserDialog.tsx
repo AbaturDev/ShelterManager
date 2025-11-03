@@ -10,6 +10,7 @@ import {
   Dialog,
   Field,
   Flex,
+  Icon,
   Input,
   NativeSelect,
   Portal,
@@ -23,6 +24,7 @@ import { toaster } from "../../ui/toaster";
 import { AccountService } from "../../../api/services/account-service";
 import type { Role } from "../../../models/account";
 import { AxiosError } from "axios";
+import { IoMdPersonAdd } from "react-icons/io";
 
 const schema = z.object({
   name: z
@@ -109,6 +111,7 @@ export const RegisterUserDialog = () => {
     >
       <Dialog.Trigger asChild>
         <Button size="lg" background={"green.400"}>
+          <Icon as={IoMdPersonAdd} />
           {t("user.register.button")}
         </Button>
       </Dialog.Trigger>

@@ -20,7 +20,16 @@ export interface DailyTaskEntry {
   userDisplayName?: string;
 }
 
-export interface CreateDailyTaskEntry {
+export interface ManageDailyTaskEntry {
   title: string;
   description?: string;
+}
+
+export interface DefaultDailyTaskEntry {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  title: string;
+  description?: string;
+  animalId: string;
 }

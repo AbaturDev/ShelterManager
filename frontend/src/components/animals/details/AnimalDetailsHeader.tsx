@@ -23,20 +23,20 @@ export const AnimalDetailsHeader = ({ id }: AnimalsDetailsHeaderProps) => {
         <BackButton />
         <HStack gap={5}>
           <Button
-            colorPalette={"red"}
-            variant={"solid"}
-            onClick={() => setIsDeleteOpen(true)}
-          >
-            <Icon as={MdDelete} />
-            {t("delete")}
-          </Button>
-          <Button
             variant={"solid"}
             colorPalette={"blue"}
             onClick={() => setIsEditOpen(true)}
           >
             <Icon as={MdEdit} />
             {t("edit")}
+          </Button>
+          <Button
+            colorPalette={"red"}
+            variant={"solid"}
+            onClick={() => setIsDeleteOpen(true)}
+          >
+            <Icon as={MdDelete} />
+            {t("delete")}
           </Button>
         </HStack>
       </Flex>

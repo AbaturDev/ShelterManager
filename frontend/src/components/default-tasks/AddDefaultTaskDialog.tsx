@@ -24,11 +24,11 @@ import { MdAdd } from "react-icons/md";
 const schema = z.object({
   title: z
     .string()
-    .min(3, setFormErrorMessage("dailyTasks.create.errors.title.min"))
-    .max(30, setFormErrorMessage("dailyTasks.create.errors.title.max")),
+    .min(3, setFormErrorMessage("defaultTasks.fields.errors.title.min"))
+    .max(30, setFormErrorMessage("defaultTasks.fields.errors.title.max")),
   description: z
     .string()
-    .max(100, setFormErrorMessage("dailyTasks.create.errors.description"))
+    .max(100, setFormErrorMessage("defaultTasks.fields.errors.description"))
     .nullable(),
 });
 
@@ -36,15 +36,9 @@ type FormData = z.infer<typeof schema>;
 
 interface Props {
   animalId: string;
-  date: string;
-  disabled: boolean;
 }
 
-export const AddDailyTaskEntryDialog = ({
-  animalId,
-  date,
-  disabled,
-}: Props) => {
+export const AddDefaultTaskDialog = ({ animalId }: Props) => {
   const queryClient = useQueryClient();
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
@@ -57,18 +51,18 @@ export const AddDailyTaskEntryDialog = ({
 
   const mutation = useMutation({
     mutationFn: (data: FormData) =>
-      DailyTasksService.createDailyTaskEntry(animalId, {
+      DailyTasksService.createDefaultDailyTaskEntry(animalId, {
         title: data.title,
         description: data.description ?? undefined,
       }),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [animalId, "daily-task", date],
+        queryKey: ["default-tasks", animalId],
       });
       toaster.create({
         type: "success",
         title: t("success"),
-        description: t("dailyTasks.create.toast.success"),
+        description: t("defaultTasks.toast.create.success"),
         closable: true,
       });
       setOpen(false);
@@ -78,7 +72,7 @@ export const AddDailyTaskEntryDialog = ({
       toaster.create({
         type: "error",
         title: t("error"),
-        description: t("dailyTasks.create.toast.error"),
+        description: t("defaultTasks.toast.create.error"),
         closable: true,
       });
       setOpen(false);
@@ -100,9 +94,9 @@ export const AddDailyTaskEntryDialog = ({
       motionPreset="slide-in-bottom"
     >
       <Dialog.Trigger asChild>
-        <Button size="md" background={"green.400"} disabled={disabled}>
+        <Button size="md" background={"green.400"}>
           <Icon as={MdAdd} />
-          {t("dailyTasks.create.button")}
+          {t("defaultTasks.add")}
         </Button>
       </Dialog.Trigger>
       <Portal>
@@ -110,7 +104,7 @@ export const AddDailyTaskEntryDialog = ({
         <Dialog.Positioner>
           <Dialog.Content>
             <Dialog.Header>
-              <Dialog.Title>{t("dailyTasks.create.dialogTitle")}</Dialog.Title>
+              <Dialog.Title>{t("defaultTasks.dialog.add")}</Dialog.Title>
               <Dialog.CloseTrigger asChild>
                 <CloseButton size="sm" />
               </Dialog.CloseTrigger>
@@ -119,10 +113,10 @@ export const AddDailyTaskEntryDialog = ({
               <Dialog.Body>
                 <Box display="flex" flexDirection="column" gap={4} p={4}>
                   <Field.Root>
-                    <Field.Label>{t("dailyTasks.create.title")}</Field.Label>
+                    <Field.Label>{t("defaultTasks.fields.title")}</Field.Label>
                     <Input
                       variant={"outline"}
-                      placeholder={t("dailyTasks.create.titlePlaceholder")}
+                      placeholder={t("defaultTasks.fields.titlePlaceholder")}
                       {...register("title")}
                     />
                     {errors.title && (
@@ -133,12 +127,12 @@ export const AddDailyTaskEntryDialog = ({
                   </Field.Root>
                   <Field.Root>
                     <Field.Label>
-                      {t("dailyTasks.create.description")}
+                      {t("defaultTasks.fields.description")}
                     </Field.Label>
                     <Input
                       variant={"outline"}
                       placeholder={t(
-                        "dailyTasks.create.descriptionPlaceholder"
+                        "defaultTasks.fields.descriptionPlaceholder"
                       )}
                       {...register("description")}
                     />

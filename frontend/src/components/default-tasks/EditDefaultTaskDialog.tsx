@@ -5,7 +5,6 @@ import {
   Dialog,
   Field,
   Flex,
-  Icon,
   Input,
   Portal,
   Text,
@@ -14,21 +13,20 @@ import z from "zod";
 import { getFormErrorMessage, setFormErrorMessage } from "../../utils";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { DailyTasksService } from "../../api/services/daily-tasks-service";
 import { toaster } from "../ui/toaster";
-import { MdAdd } from "react-icons/md";
+import type { DefaultDailyTaskEntry } from "../../models/daily-task";
 
 const schema = z.object({
   title: z
     .string()
-    .min(3, setFormErrorMessage("dailyTasks.create.errors.title.min"))
-    .max(30, setFormErrorMessage("dailyTasks.create.errors.title.max")),
+    .min(3, setFormErrorMessage("defaultTasks.fields.errors.title.min"))
+    .max(30, setFormErrorMessage("defaultTasks.fields.errors.title.max")),
   description: z
     .string()
-    .max(100, setFormErrorMessage("dailyTasks.create.errors.description"))
+    .max(100, setFormErrorMessage("defaultTasks.fields.errors.description"))
     .nullable(),
 });
 
@@ -36,18 +34,21 @@ type FormData = z.infer<typeof schema>;
 
 interface Props {
   animalId: string;
-  date: string;
-  disabled: boolean;
+  task: DefaultDailyTaskEntry;
+  isOpen: boolean;
+  onClose: () => void;
+  onSuccess: () => void;
 }
 
-export const AddDailyTaskEntryDialog = ({
+export const EditDefaultTaskDialog = ({
   animalId,
-  date,
-  disabled,
+  task,
+  isOpen,
+  onClose,
+  onSuccess,
 }: Props) => {
   const queryClient = useQueryClient();
   const { t } = useTranslation();
-  const [open, setOpen] = useState(false);
   const {
     register,
     formState: { errors, isSubmitting },
@@ -57,31 +58,31 @@ export const AddDailyTaskEntryDialog = ({
 
   const mutation = useMutation({
     mutationFn: (data: FormData) =>
-      DailyTasksService.createDailyTaskEntry(animalId, {
+      DailyTasksService.updateDefaultDailyTaskEntry(animalId, task.id, {
         title: data.title,
         description: data.description ?? undefined,
       }),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [animalId, "daily-task", date],
+        queryKey: ["default-tasks", animalId],
       });
       toaster.create({
         type: "success",
         title: t("success"),
-        description: t("dailyTasks.create.toast.success"),
+        description: t("defaultTasks.toast.edit.success"),
         closable: true,
       });
-      setOpen(false);
+      onSuccess();
       reset();
     },
     onError: () => {
       toaster.create({
         type: "error",
         title: t("error"),
-        description: t("dailyTasks.create.toast.error"),
+        description: t("defaultTasks.toast.edit.error"),
         closable: true,
       });
-      setOpen(false);
+      onClose();
       reset();
     },
   });
@@ -89,28 +90,19 @@ export const AddDailyTaskEntryDialog = ({
   const onSubmit = async (data: FormData) => await mutation.mutateAsync(data);
 
   return (
-    <Dialog.Root
-      open={open}
-      onOpenChange={(e) => {
-        setOpen(e.open);
-        reset();
-      }}
-      placement="top"
-      size={"lg"}
-      motionPreset="slide-in-bottom"
-    >
-      <Dialog.Trigger asChild>
-        <Button size="md" background={"green.400"} disabled={disabled}>
-          <Icon as={MdAdd} />
-          {t("dailyTasks.create.button")}
-        </Button>
-      </Dialog.Trigger>
-      <Portal>
+    <Portal>
+      <Dialog.Root
+        open={isOpen}
+        onOpenChange={onClose}
+        placement="top"
+        size={"lg"}
+        motionPreset="slide-in-bottom"
+      >
         <Dialog.Backdrop />
         <Dialog.Positioner>
           <Dialog.Content>
             <Dialog.Header>
-              <Dialog.Title>{t("dailyTasks.create.dialogTitle")}</Dialog.Title>
+              <Dialog.Title>{t("defaultTasks.dialog.edit")}</Dialog.Title>
               <Dialog.CloseTrigger asChild>
                 <CloseButton size="sm" />
               </Dialog.CloseTrigger>
@@ -119,10 +111,11 @@ export const AddDailyTaskEntryDialog = ({
               <Dialog.Body>
                 <Box display="flex" flexDirection="column" gap={4} p={4}>
                   <Field.Root>
-                    <Field.Label>{t("dailyTasks.create.title")}</Field.Label>
+                    <Field.Label>{t("defaultTasks.fields.title")}</Field.Label>
                     <Input
                       variant={"outline"}
-                      placeholder={t("dailyTasks.create.titlePlaceholder")}
+                      defaultValue={task.title}
+                      placeholder={t("defaultTasks.fields.titlePlaceholder")}
                       {...register("title")}
                     />
                     {errors.title && (
@@ -133,12 +126,13 @@ export const AddDailyTaskEntryDialog = ({
                   </Field.Root>
                   <Field.Root>
                     <Field.Label>
-                      {t("dailyTasks.create.description")}
+                      {t("defaultTasks.fields.description")}
                     </Field.Label>
                     <Input
                       variant={"outline"}
+                      defaultValue={task.description}
                       placeholder={t(
-                        "dailyTasks.create.descriptionPlaceholder"
+                        "defaultTasks.fields.descriptionPlaceholder"
                       )}
                       {...register("description")}
                     />
@@ -167,7 +161,7 @@ export const AddDailyTaskEntryDialog = ({
             </form>
           </Dialog.Content>
         </Dialog.Positioner>
-      </Portal>
-    </Dialog.Root>
+      </Dialog.Root>
+    </Portal>
   );
 };

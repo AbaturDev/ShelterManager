@@ -2,11 +2,12 @@ import { useState } from "react";
 import { useDailyTaskQuery } from "../../hooks/useDailyTaskQuery";
 import { Loading } from "../commons";
 import { Box, Button, Flex, Icon, Text, VStack } from "@chakra-ui/react";
-import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import { MdChevronLeft, MdChevronRight, MdDelete } from "react-icons/md";
 import { useTranslation } from "react-i18next";
 import { AddDailyTaskEntryDialog } from "./AddDailyTaskEntryDialog";
 import { DeleteDailyTaskEntryDialog } from "./DeleteDailyTaskEntryDialog";
 import { EndDailyTaskEntryDialog } from "./EndDailyTaskEntryDialog";
+import { GrCompliance } from "react-icons/gr";
 
 interface DailyTaskTabProps {
   animalId: string;
@@ -112,6 +113,7 @@ export const DailyTaskTab = ({ animalId }: DailyTaskTabProps) => {
                       setIsEndOpen(true);
                     }}
                   >
+                    <Icon as={GrCompliance} />
                     {t("dailyTasks.list.end")}
                   </Button>
                   <Button
@@ -123,6 +125,7 @@ export const DailyTaskTab = ({ animalId }: DailyTaskTabProps) => {
                       setIsDeleteOpen(true);
                     }}
                   >
+                    <Icon as={MdDelete} />
                     {t("delete")}
                   </Button>
                 </Flex>

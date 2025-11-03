@@ -267,6 +267,7 @@
       "species": "Species",
       "description": "Description",
       "noDescription": "The animal does not have any description",
+      "error": "Failed to load the animal data",
       "profileImage": {
         "toast": {
           "success": "Successfully updated animal profile image",
@@ -277,7 +278,8 @@
         "details": "Details",
         "files": "Files",
         "dailyTasks": "Daily tasks",
-        "hasImage": "Has image"
+        "hasImage": "Has image",
+        "defaultTasks": "Default tasks"
       },
       "files": {
         "title": "Uploaded files",
@@ -365,7 +367,44 @@
           "min": "Title must be at least 3 characters",
           "max": "Title can be a maximum of 30 characters"
         },
-        "description": "Description cannot exceed 300 characters"
+        "description": "Description cannot exceed 100 characters"
+      }
+    }
+  },
+  "defaultTasks": {
+    "title": "List of default daily tasks thats creates every day for the animal",
+    "empty": "There is no default tasks for this animal yet",
+    "error": "Failed to load animal default tasks data",
+    "add": "Add task",
+    "toast": {
+      "create": {
+        "success": "Successfully added a new default daily task",
+        "error": "Failed to add a new default daily task"
+      },
+      "delete": {
+        "success": "Successfully deleted default daily task",
+        "error": "Failed to delete default daily task"
+      },
+      "edit": {
+        "success": "Successfully updated default daily task",
+        "error": "Failed to update default daily task"
+      }
+    },
+    "dialog": {
+      "add": "Add default daily task",
+      "edit": "Edit default daily task"
+    },
+    "fields": {
+      "title": "Title",
+      "titlePlaceholder": "Title e.g. \"Walk\"",
+      "description": "Description",
+      "descriptionPlaceholder": "Description e.g. \"30 minutes + running\"",
+      "errors": {
+        "title": {
+          "min": "Title must be at least 3 characters",
+          "max": "Title can be a maximum of 30 characters"
+        },
+        "description": "Description cannot exceed 100 characters"
       }
     }
   }

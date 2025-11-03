@@ -1,4 +1,8 @@
-import type { CreateDailyTaskEntry, DailyTask } from "../../models/daily-task";
+import {
+  type ManageDailyTaskEntry,
+  type DailyTask,
+  type DefaultDailyTaskEntry,
+} from "../../models/daily-task";
 import { apiClient } from "../clients/api-client";
 
 const DailyTasksService = {
@@ -13,7 +17,7 @@ const DailyTasksService = {
 
   createDailyTaskEntry: async (
     animalId: string,
-    data: CreateDailyTaskEntry
+    data: ManageDailyTaskEntry
   ) => {
     await apiClient.post(`/animals/${animalId}/daily-tasks/entries`, data);
   },
@@ -24,6 +28,41 @@ const DailyTasksService = {
 
   deleteDailyTaskEntry: async (animalId: string, id: string) => {
     await apiClient.delete(`/animals/${animalId}/daily-tasks/entries/${id}`);
+  },
+
+  getDefaultDailyTaskEntries: async (animalId: string) => {
+    const { data } = await apiClient.get<DefaultDailyTaskEntry[]>(
+      `/animals/${animalId}/daily-tasks/default-entries`
+    );
+
+    return data;
+  },
+
+  createDefaultDailyTaskEntry: async (
+    animalId: string,
+    data: ManageDailyTaskEntry
+  ) => {
+    await apiClient.post(
+      `/animals/${animalId}/daily-tasks/default-entries`,
+      data
+    );
+  },
+
+  updateDefaultDailyTaskEntry: async (
+    animalId: string,
+    id: string,
+    data: ManageDailyTaskEntry
+  ) => {
+    await apiClient.put(
+      `/animals/${animalId}/daily-tasks/default-entries/${id}`,
+      data
+    );
+  },
+
+  deleteDefaultDailyTaskEntry: async (animalId: string, id: string) => {
+    await apiClient.delete(
+      `/animals/${animalId}/daily-tasks/default-entries/${id}`
+    );
   },
 };
 
