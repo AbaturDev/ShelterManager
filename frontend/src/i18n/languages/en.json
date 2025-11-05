@@ -465,6 +465,15 @@
         "success": "Successfully deleted the event",
         "error": "Failed to delete the event"
       }
+    },
+    "end": {
+      "title": "Confirm action",
+      "body": "Are you sure you want to complete this event? You will be marked as the person who completed it.",
+      "toast": {
+        "success": "Successfully complated the event",
+        "error": "Failed to complate the event"
+      }
     }
-  }
+  },
+  "confirm": "Confirm"
 }

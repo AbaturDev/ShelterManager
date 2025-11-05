@@ -465,6 +465,15 @@
         "success": "Pomyślnie usunięto wydarzenie",
         "error": "Nie udało usunąć wydarzenia"
       }
+    },
+    "end": {
+      "title": "Potwierdź operację",
+      "body": "Czy jesteś pewny, że chcesz zakończyć to wydarzenie? Zostaniesz oznaczony jako osoba, która zakończyła wydarzenie.",
+      "toast": {
+        "success": "Pomyślnie zakończono wydarzenie",
+        "error": "Nie udało się zakończyć wydarzenia"
+      }
     }
-  }
+  },
+  "confirm": "Potwierdź"
 }

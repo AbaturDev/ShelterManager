@@ -18,6 +18,7 @@ import { SlOptionsVertical } from "react-icons/sl";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { DeleteEventDialog } from "../DeleteEventDialog";
 import { GrCompliance } from "react-icons/gr";
+import { EndEventDialog } from "../EndEventDialog";
 
 export const EventsTable = () => {
   const { t } = useTranslation();
@@ -27,6 +28,8 @@ export const EventsTable = () => {
 
   const [deleteEventId, setDeleteEventId] = useState<string | null>(null);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  const [endEventId, setEndEventId] = useState<string | null>(null);
+  const [isEndOpen, setIsEndOpen] = useState(false);
 
   const { data, isLoading, error } = useEventsQuery({ page, pageSize });
 
@@ -121,15 +124,16 @@ export const EventsTable = () => {
                             </Menu.Item>
                             <Menu.Item
                               value="end"
+                              disabled={item.isDone}
                               _hover={{
                                 bg: "green.600",
                                 color: "white",
                                 cursor: "pointer",
                               }}
-                              //   onSelect={() => {
-                              //     setIsDeleteOpen(true);
-                              //     setDeleteEventId(item.id);
-                              //   }}
+                              onSelect={() => {
+                                setIsEndOpen(true);
+                                setEndEventId(item.id);
+                              }}
                             >
                               <Icon as={GrCompliance} />
                               <span>{t("events.list.end")}</span>
@@ -182,6 +186,20 @@ export const EventsTable = () => {
           onSuccess={() => {
             setIsDeleteOpen(false);
             setDeleteEventId(null);
+          }}
+        />
+      )}
+      {endEventId && (
+        <EndEventDialog
+          id={endEventId}
+          isOpen={isEndOpen}
+          onClose={() => {
+            setIsEndOpen(false);
+            setEndEventId(null);
+          }}
+          onSuccess={() => {
+            setIsEndOpen(false);
+            setEndEventId(null);
           }}
         />
       )}
