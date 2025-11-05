@@ -107,7 +107,7 @@ export const LoginForm = () => {
               type="submit"
               background={"green.400"}
               size={"lg"}
-              disabled={isSubmitting}
+              loading={isSubmitting}
             >
               {t("login.login")}
             </Button>

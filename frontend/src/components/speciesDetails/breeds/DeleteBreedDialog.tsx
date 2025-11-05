@@ -50,6 +50,11 @@ export const DeleteBreedDialog = ({
   const handleConfirm = async () => await mutation.mutateAsync();
 
   return (
-    <DeleteDialog isOpen={isOpen} onClose={onClose} onConfirm={handleConfirm} />
+    <DeleteDialog
+      isOpen={isOpen}
+      onClose={onClose}
+      onConfirm={handleConfirm}
+      isLoading={mutation.isPending}
+    />
   );
 };

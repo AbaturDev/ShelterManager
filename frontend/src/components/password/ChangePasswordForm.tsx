@@ -140,7 +140,7 @@ export const ChangePasswordForm = () => {
             type="submit"
             background={"green.400"}
             size="lg"
-            disabled={isSubmitting}
+            loading={isSubmitting}
           >
             {t("changePassword.button")}
           </Button>

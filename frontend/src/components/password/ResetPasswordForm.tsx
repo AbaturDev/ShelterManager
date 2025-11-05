@@ -128,7 +128,7 @@ export const ResetPasswordForm = ({ token, email }: ResetPasswordFormProps) => {
                 type="submit"
                 background={"green.400"}
                 size="lg"
-                disabled={isSubmitting}
+                loading={isSubmitting}
               >
                 {t("resetPassword.button")}
               </Button>

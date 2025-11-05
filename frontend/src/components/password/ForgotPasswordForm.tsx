@@ -86,7 +86,7 @@ export const ForgotPasswordForm = () => {
                 type="submit"
                 background={"green.400"}
                 size="lg"
-                disabled={isSubmitting}
+                loading={isSubmitting}
               >
                 {t("forgotPassword.button")}
               </Button>
