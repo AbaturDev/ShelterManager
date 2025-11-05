@@ -407,5 +407,64 @@
         "description": "Opis nie może przekraczać 100 znaków"
       }
     }
+  },
+  "events": {
+    "list": {
+      "header": "Lista wydarzeń",
+      "title": "Tytuł",
+      "when": "Kiedy?",
+      "where": "Gdzie?",
+      "animal": "Zwierzę",
+      "isDone": "Zakończone?",
+      "actions": "Akcje",
+      "details": "Szczegóły",
+      "end": "Zakończ"
+    },
+    "create": {
+      "button": "Dodaj wydarzenie",
+      "dialogTitle": "Dodaj nowe wydarzenie",
+      "toast": {
+        "success": "Pomyślnie utworzono nowe wydarzenie",
+        "error": "Nie udało się utworzyć nowego wydarzenia"
+      }
+    },
+    "fields": {
+      "errors": {
+        "title": {
+          "min": "Tytuł musi mieć co najmniej 3 znaki",
+          "max": "Tytuł może mieć maksymalnie 40 znaków"
+        },
+        "description": "Opis nie może przekraczać 250 znaków",
+        "date": "Termin wydarzenia jest wymagana",
+        "dateFuture": "Termin nie może być z przeszłości",
+        "location": {
+          "min": "Nazwa lokalizacja musi mieć co najmniej 3 znaki",
+          "max": "Nazwa lokalizacja może mieć maksymalnie 100 znaków"
+        },
+        "user": "Użytkownik jest wymagany",
+        "animal": "Zwierzę jest wymagane",
+        "cost": "Koszt nie może być mniejszy od 0"
+      },
+      "title": "Tytuł",
+      "titlePlaceholder": "Tytuł np. \"Szczepienie u weterynarza\"",
+      "descriptionPlaceholder": "Opis np. \"Zabrać książeczke weterynaryjna\"",
+      "description": "Opis",
+      "date": "Termin",
+      "location": "Lokalizacja",
+      "locationPlaceholder": "Lokalizacja np. \"Wrocław ul. XXX 19\"",
+      "animal": "Zwierzę",
+      "selectAnimal": "Wybierz zwierzę",
+      "selectUser": "Wybierz pracownika odpowiedzialnego za wydarzenie",
+      "user": "Pracownik",
+      "cost": "Koszt",
+      "costPlaceholder": "Koszt np. 250",
+      "currency": "Wybierz walute"
+    },
+    "delete": {
+      "toast": {
+        "success": "Pomyślnie usunięto wydarzenie",
+        "error": "Nie udało usunąć wydarzenia"
+      }
+    }
   }
 }

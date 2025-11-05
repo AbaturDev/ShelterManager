@@ -407,5 +407,64 @@
         "description": "Description cannot exceed 100 characters"
       }
     }
+  },
+  "events": {
+    "list": {
+      "header": "Event List",
+      "title": "Title",
+      "when": "When?",
+      "where": "Where?",
+      "animal": "Animal",
+      "isDone": "Completed?",
+      "actions": "Actions",
+      "details": "Details",
+      "end": "Complete"
+    },
+    "create": {
+      "button": "Add Event",
+      "dialogTitle": "Add New Event",
+      "toast": {
+        "success": "Successfully created a new event",
+        "error": "Failed to create a new event"
+      }
+    },
+    "fields": {
+      "errors": {
+        "title": {
+          "min": "Title must be at least 3 characters long",
+          "max": "Title can be at most 40 characters long"
+        },
+        "description": "Description cannot exceed 250 characters",
+        "date": "Event date is required",
+        "dateFuture": "The date cannot be in the past",
+        "location": {
+          "min": "Location name must be at least 3 characters long",
+          "max": "Location name can be at most 100 characters long"
+        },
+        "user": "User is required",
+        "animal": "Animal is required",
+        "cost": "Cost cannot be less than 0"
+      },
+      "title": "Title",
+      "titlePlaceholder": "Title e.g. \"Veterinary vaccination\"",
+      "descriptionPlaceholder": "Description e.g. \"Bring the veterinary booklet\"",
+      "description": "Description",
+      "date": "Event date",
+      "location": "Location",
+      "locationPlaceholder": "Location e.g. \"Wrocław, XXX Street 19\"",
+      "animal": "Animal",
+      "selectAnimal": "Select animal",
+      "selectUser": "Select employee responsible for the event",
+      "user": "Employee",
+      "cost": "Cost",
+      "costPlaceholder": "Cost e.g. 250",
+      "currency": "Select currency"
+    },
+    "delete": {
+      "toast": {
+        "success": "Successfully deleted the event",
+        "error": "Failed to delete the event"
+      }
+    }
   }
 }

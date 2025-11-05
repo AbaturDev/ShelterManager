@@ -10,7 +10,7 @@ public class UpdateEventDtoValidator : AbstractValidator<UpdateEventDto>
     {
         RuleFor(x => x.Title)
             .NotEmpty().WithMessage("Title is required.")
-            .MaximumLength(250).WithMessage("Title must not exceed 250 characters.");
+            .MaximumLength(40).WithMessage("Title must not exceed 40 characters.");
 
         RuleFor(x => x.Description)
             .MaximumLength(250).WithMessage("Description must not exceed 250 characters.");

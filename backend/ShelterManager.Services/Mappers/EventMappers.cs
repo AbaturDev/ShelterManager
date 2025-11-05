@@ -22,6 +22,7 @@ public static class EventMappers
             AnimalId = eventEntity.AnimalId,
             UserId = eventEntity.UserId,
             CompletedByUserId = eventEntity.CompletedByUserId,
+            AnimalName = eventEntity.Animal.Name,
             Cost = MoneyMappers.MapToMoneyDto(eventEntity.Cost)
         };
     }
