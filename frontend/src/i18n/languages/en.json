@@ -441,7 +441,7 @@
           "min": "Location name must be at least 3 characters long",
           "max": "Location name can be at most 100 characters long"
         },
-        "user": "User is required",
+        "user": "Employee is required",
         "animal": "Animal is required",
         "cost": "Cost cannot be less than 0"
       },
@@ -472,6 +472,14 @@
       "toast": {
         "success": "Successfully complated the event",
         "error": "Failed to complate the event"
+      }
+    },
+    "edit": {
+      "dialogTitle": "Edit event",
+      "animalMessage": "Event is related to an animal named ",
+      "toast": {
+        "success": "Successfully updated event data",
+        "error": "Failed to update event data"
       }
     }
   },

@@ -19,6 +19,8 @@ import { MdDelete, MdEdit } from "react-icons/md";
 import { DeleteEventDialog } from "../DeleteEventDialog";
 import { GrCompliance } from "react-icons/gr";
 import { EndEventDialog } from "../EndEventDialog";
+import type { Event } from "../../../models/event";
+import { EditEventDialog } from "../EditEventDialog";
 
 export const EventsTable = () => {
   const { t } = useTranslation();
@@ -30,6 +32,8 @@ export const EventsTable = () => {
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [endEventId, setEndEventId] = useState<string | null>(null);
   const [isEndOpen, setIsEndOpen] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
+  const [isEditOpen, setIsEditOpen] = useState(false);
 
   const { data, isLoading, error } = useEventsQuery({ page, pageSize });
 
@@ -114,10 +118,10 @@ export const EventsTable = () => {
                                 color: "white",
                                 cursor: "pointer",
                               }}
-                              //   onSelect={() => {
-                              //     setIsDeleteOpen(true);
-                              //     setDeleteSpeciesId(item.id);
-                              //   }}
+                              onSelect={() => {
+                                setIsEditOpen(true);
+                                setSelectedEvent(item);
+                              }}
                             >
                               <Icon as={MdEdit} />
                               <span>{t("edit")}</span>
@@ -200,6 +204,20 @@ export const EventsTable = () => {
           onSuccess={() => {
             setIsEndOpen(false);
             setEndEventId(null);
+          }}
+        />
+      )}
+      {selectedEvent && (
+        <EditEventDialog
+          event={selectedEvent}
+          isOpen={isEditOpen}
+          onClose={() => {
+            setIsEditOpen(false);
+            setSelectedEvent(null);
+          }}
+          onSuccess={() => {
+            setIsEditOpen(false);
+            setSelectedEvent(null);
           }}
         />
       )}

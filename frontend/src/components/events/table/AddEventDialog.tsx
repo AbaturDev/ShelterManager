@@ -87,10 +87,6 @@ export const AddEventDialog = () => {
         };
       }
 
-      console.log(data.costAmount);
-      console.log(data.costCurrencyCode);
-      console.log(cost);
-
       return EventsService.createEvent({
         title: data.title,
         date: data.date.toISOString(),
