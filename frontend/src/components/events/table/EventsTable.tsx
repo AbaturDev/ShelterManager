@@ -12,7 +12,7 @@ import { Loading, PaginationFooter } from "../../commons";
 import { useState } from "react";
 import { useEventsQuery } from "../../../hooks/useEventsQuery";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { FaEye } from "react-icons/fa";
 import { SlOptionsVertical } from "react-icons/sl";
 import { MdDelete, MdEdit } from "react-icons/md";
@@ -35,10 +35,27 @@ export const EventsTable = () => {
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [isEditOpen, setIsEditOpen] = useState(false);
 
-  const { data, isLoading, error } = useEventsQuery({ page, pageSize });
+  const [searchParams] = useSearchParams();
+  const animalIdsParam = searchParams.getAll("animalIds");
+  const statusParam = searchParams.get("status");
+
+  console.log(animalIdsParam);
+
+  const { data, isLoading, error } = useEventsQuery({
+    page,
+    pageSize,
+    animalIds: animalIdsParam ?? undefined,
+    isDone:
+      statusParam === "true"
+        ? true
+        : statusParam === "false"
+        ? false
+        : undefined,
+  });
 
   if (isLoading) return <Loading />;
-  if (error || data === undefined) return <Text color="red">Error</Text>;
+  if (error || data === undefined)
+    return <Text color="red">{t("events.list.error")}</Text>;
 
   return (
     <>

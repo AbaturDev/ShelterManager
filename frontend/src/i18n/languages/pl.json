@@ -418,7 +418,13 @@
       "isDone": "Zakończone?",
       "actions": "Akcje",
       "details": "Szczegóły",
-      "end": "Zakończ"
+      "end": "Zakończ",
+      "animals": "Zwierzęta",
+      "status": "Status",
+      "filter": "Filtruj",
+      "active": "Aktywne",
+      "completed": "Zakończone",
+      "error": "Nie udało się załadować danych o wydarzeniach"
     },
     "create": {
       "button": "Dodaj wydarzenie",

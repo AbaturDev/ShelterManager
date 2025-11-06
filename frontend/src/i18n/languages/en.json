@@ -418,7 +418,13 @@
       "isDone": "Completed?",
       "actions": "Actions",
       "details": "Details",
-      "end": "Complete"
+      "end": "Complete",
+      "animals": "Animals",
+      "status": "Status",
+      "filter": "Filter",
+      "active": "Active",
+      "completed": "Completed",
+      "error": "Failed to load events data"
     },
     "create": {
       "button": "Add Event",
