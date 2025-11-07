@@ -1,4 +1,4 @@
-import { Button, Flex, Heading, Box } from "@chakra-ui/react";
+import { Flex, Heading, Box } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { SearchInput } from "../../commons";
 import { AddAnimalDialog } from "../create";
@@ -28,7 +28,7 @@ export const Header = ({ onSearch }: HeaderProps) => {
         </Heading>
       </Box>
 
-      <Box flex="1" minW="600px" maxW="800px">
+      <Box flex="1" maxW="800px">
         <SearchInput onSearch={onSearch} />
       </Box>
 

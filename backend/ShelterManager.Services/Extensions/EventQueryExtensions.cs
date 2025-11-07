@@ -12,6 +12,9 @@ public static class EventQueryExtensions
         
         if (filter.IsDone.HasValue)
             query = query.Where(x => x.IsDone == filter.IsDone);
+        
+        if (!string.IsNullOrWhiteSpace(filter.Title))
+            query = query.Where(x => x.Title.Contains(filter.Title));
 
         return query;
     }

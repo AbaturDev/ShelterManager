@@ -11,6 +11,7 @@ export const useEventsQuery = (query: EventQuery) => {
       query.pageSize,
       query.isDone,
       query.animalIds,
+      query.title,
     ],
     queryFn: () => EventsService.getEvents(query),
     staleTime: fiveMin,

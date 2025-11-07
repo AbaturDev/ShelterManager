@@ -506,5 +506,29 @@
       "updated": "Last modified"
     }
   },
-  "confirm": "Confirm"
+  "adoptions": {
+    "status": {
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected"
+    },
+    "list": {
+      "header": "Adoptions",
+      "animal": "Animal",
+      "status": "Status",
+      "startDate": "Process start date",
+      "adoptionDate": "Date of adoption",
+      "actions": "Actions",
+      "animals": "Animals"
+    },
+    "delete": {
+      "toast": {
+        "success": "Successfully deleted adoption",
+        "error": "Failed to delete adoption"
+      }
+    }
+  },
+  "confirm": "Confirm",
+  "filter": "Filter",
+  "details": "Details"
 }

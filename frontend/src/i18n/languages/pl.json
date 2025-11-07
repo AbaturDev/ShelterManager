@@ -506,5 +506,29 @@
       "updated": "Modyfikowano"
     }
   },
-  "confirm": "Potwierdź"
+  "adoptions": {
+    "status": {
+      "pending": "Oczekująca",
+      "approved": "Zatwierdzona",
+      "rejected": "Odrzucona"
+    },
+    "list": {
+      "header": "Adopcje",
+      "animal": "Zwierzę",
+      "status": "Status",
+      "startDate": "Data rozpoczęcia procesu",
+      "adoptionDate": "Data adopcji",
+      "actions": "Akcje",
+      "animals": "Zwierzęta"
+    },
+    "delete": {
+      "toast": {
+        "success": "Pomyślnie usunięto adopcję",
+        "error": "Nie udało się usunąć adopcji"
+      }
+    }
+  },
+  "confirm": "Potwierdź",
+  "filter": "Filtruj",
+  "details": "Szczegóły"
 }

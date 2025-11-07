@@ -22,7 +22,11 @@ import { EndEventDialog } from "../EndEventDialog";
 import type { Event } from "../../../models/event";
 import { EditEventDialog } from "../EditEventDialog";
 
-export const EventsTable = () => {
+interface EventsTableProps {
+  search?: string;
+}
+
+export const EventsTable = ({ search }: EventsTableProps) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
@@ -39,12 +43,11 @@ export const EventsTable = () => {
   const animalIdsParam = searchParams.getAll("animalIds");
   const statusParam = searchParams.get("status");
 
-  console.log(animalIdsParam);
-
   const { data, isLoading, error } = useEventsQuery({
     page,
     pageSize,
     animalIds: animalIdsParam ?? undefined,
+    title: search,
     isDone:
       statusParam === "true"
         ? true
