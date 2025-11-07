@@ -21,6 +21,7 @@ import { GrCompliance } from "react-icons/gr";
 import { EndEventDialog } from "../EndEventDialog";
 import type { Event } from "../../../models/event";
 import { EditEventDialog } from "../EditEventDialog";
+import { EventStatusBadge } from "../EventStatusBadge";
 
 interface EventsTableProps {
   search?: string;
@@ -80,7 +81,7 @@ export const EventsTable = ({ search }: EventsTableProps) => {
                   {t("events.list.animal")}
                 </Table.ColumnHeader>
                 <Table.ColumnHeader width={"11%"} textAlign={"center"}>
-                  {t("events.list.isDone")}
+                  {t("events.list.status")}
                 </Table.ColumnHeader>
                 <Table.ColumnHeader width={"5%"} textAlign={"center"}>
                   {t("events.list.actions")}
@@ -106,7 +107,7 @@ export const EventsTable = ({ search }: EventsTableProps) => {
                     {item.animalName}
                   </Table.Cell>{" "}
                   <Table.Cell textAlign={"center"} width={"11%"}>
-                    {item.isDone === true ? <>{t("yes")}</> : <>{t("no")}</>}
+                    <EventStatusBadge isDone={item.isDone} />
                   </Table.Cell>
                   <Table.Cell textAlign={"center"}>
                     <Menu.Root>

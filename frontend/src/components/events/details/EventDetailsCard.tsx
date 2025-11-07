@@ -1,5 +1,4 @@
 import {
-  Badge,
   Box,
   Flex,
   Heading,
@@ -20,6 +19,7 @@ import { GrCompliance } from "react-icons/gr";
 import { CiCalendarDate } from "react-icons/ci";
 import { useUserByIdQuery } from "../../../hooks/useUserByIdQuery";
 import type { UserDetails } from "../../../models/user";
+import { EventStatusBadge } from "../EventStatusBadge";
 
 interface EventDetailsCardProps {
   event: Event | undefined;
@@ -49,11 +49,6 @@ export const EventDetailsCard = ({
   const employeeUser = employeeUserData as UserDetails;
   const endUser = endUserData as UserDetails;
 
-  const statusColor = event.isDone ? "green" : "orange";
-  const statusLabel = event.isDone
-    ? t("events.details.completed")
-    : t("events.details.active");
-
   return (
     <Box maxW="700px" mx="auto" p={6} bg="white" rounded="2xl" shadow="md">
       <Stack>
@@ -68,7 +63,7 @@ export const EventDetailsCard = ({
               {t("events.details.date")} {new Date(event.date).toLocaleString()}
             </Text>
           </HStack>
-          <Badge colorPalette={statusColor}>{statusLabel}</Badge>
+          <EventStatusBadge isDone={event.isDone} />
         </HStack>
 
         <Separator />
