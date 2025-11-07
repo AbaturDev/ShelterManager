@@ -9,3 +9,4 @@ export * from "./AnimalsPage";
 export * from "./UsersPage";
 export * from "./AnimalsDetailsPage";
 export * from "./EventsPage";
+export * from "./EventsDetailsPage";

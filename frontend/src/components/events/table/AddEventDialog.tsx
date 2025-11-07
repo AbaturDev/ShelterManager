@@ -194,7 +194,7 @@ export const AddEventDialog = () => {
                       <Field.RequiredIndicator />
                     </Field.Label>
                     <Input
-                      type="date"
+                      type="datetime-local"
                       {...register("date", {
                         valueAsDate: true,
                       })}

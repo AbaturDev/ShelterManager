@@ -487,6 +487,23 @@
         "success": "Pomyślnie zaktualizowano informacje o wydarzeniu",
         "error": "Nie udało się zaktualizować informacji o wydarzeniu"
       }
+    },
+    "details": {
+      "error": "Nie udało się załadować danych o wydarzeniu",
+      "end": "Zakończ",
+      "date": "Termin",
+      "completed": "Zakończone",
+      "active": "Aktywne",
+      "location": "Lokalizacja",
+      "animal": "Zwierzę",
+      "cost": "Koszt",
+      "employee": "Przypisany pracownik",
+      "completedAt": "Zakończone",
+      "completedEmployee": "Zakończone przez",
+      "description": "Opis",
+      "emptyDescription": "To wydarzenie nie posiada opisu",
+      "created": "Utworzono",
+      "updated": "Modyfikowano"
     }
   },
   "confirm": "Potwierdź"

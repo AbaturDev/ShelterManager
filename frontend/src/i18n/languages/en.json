@@ -487,6 +487,23 @@
         "success": "Successfully updated event data",
         "error": "Failed to update event data"
       }
+    },
+    "details": {
+      "error": "Failed to load event data",
+      "end": "Complete",
+      "date": "Date",
+      "completed": "Completed",
+      "active": "Active",
+      "location": "Location",
+      "animal": "Animal",
+      "cost": "Cost",
+      "employee": "Assigned employee",
+      "completedAt": "Completed at",
+      "completedEmployee": "Completed by",
+      "description": "Description",
+      "emptyDescription": "This event has no description",
+      "created": "Created at",
+      "updated": "Last modified"
     }
   },
   "confirm": "Confirm"

@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 import z from "zod";
 import {
-  formatDate,
+  formatDateTime,
   getFormErrorMessage,
   setFormErrorMessage,
 } from "../../utils";
@@ -27,6 +27,7 @@ import { toaster } from "../ui/toaster";
 import { useUsersQuery } from "../../hooks/useUsersQuery";
 import { EventsService } from "../../api/services/events-service";
 import type { Event, Money } from "../../models/event";
+import { useEffect } from "react";
 
 const schema = z.object({
   title: z
@@ -83,6 +84,12 @@ export const EditEventDialog = ({
       userId: event.userId ?? "",
     },
   });
+
+  useEffect(() => {
+    if (isOpen) {
+      reset();
+    }
+  }, [isOpen]);
 
   const { data: usersData } = useUsersQuery({ page: 1, pageSize: 10000000 });
 
@@ -218,8 +225,8 @@ export const EditEventDialog = ({
                       <Field.RequiredIndicator />
                     </Field.Label>
                     <Input
-                      defaultValue={formatDate(event.date)}
-                      type="date"
+                      defaultValue={formatDateTime(event.date)}
+                      type="datetime-local"
                       {...register("date", {
                         valueAsDate: true,
                       })}
