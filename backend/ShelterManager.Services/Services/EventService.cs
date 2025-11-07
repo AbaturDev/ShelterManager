@@ -27,6 +27,7 @@ public class EventService : IEventService
     public async Task<PaginatedResponse<EventDto>> ListEventsAsync(EventPageQueryFilter queryFilter, CancellationToken ct)
     {
         var query = _context.Events
+            .Include(x => x.Animal)
             .AsNoTracking()
             .ApplyFilters(queryFilter)
             .AsQueryable();
@@ -44,6 +45,7 @@ public class EventService : IEventService
     public async Task<EventDto> GetEventAsync(Guid id, CancellationToken ct)
     {
         var eventEntity = await _context.Events
+            .Include(x => x.Animal)
             .AsNoTracking()
             .FirstOrDefaultAsync(x => x.Id == id, ct);
 

@@ -1,33 +1,35 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toaster } from "../ui/toaster";
 import { useTranslation } from "react-i18next";
-import { DeleteDialog } from "../../commons";
-import { UserService } from "../../../api/services/user-service";
-import { toaster } from "../../ui/toaster";
+import { DeleteDialog } from "../commons";
+import { EventsService } from "../../api/services/events-service";
 
-interface DeleteUserDialogProps {
+interface Props {
   id: string;
   isOpen: boolean;
   onClose: () => void;
   onSuccess: () => void;
 }
 
-export const DeleteUserDialog = ({
+export const DeleteEventDialog = ({
   id,
   isOpen,
   onClose,
   onSuccess,
-}: DeleteUserDialogProps) => {
+}: Props) => {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: () => UserService.deleteUser(id),
+    mutationFn: () => EventsService.deleteEvent(id),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["users"] });
+      queryClient.invalidateQueries({
+        queryKey: ["events"],
+      });
       toaster.create({
         type: "success",
         title: t("success"),
-        description: t("user.list.deleteToast.success"),
+        description: t("events.delete.toast.success"),
         closable: true,
       });
       onSuccess();
@@ -36,7 +38,7 @@ export const DeleteUserDialog = ({
       toaster.create({
         type: "error",
         title: t("error"),
-        description: t("user.list.deleteToast.error"),
+        description: t("events.delete.toast.error"),
         closable: true,
       });
       onClose();

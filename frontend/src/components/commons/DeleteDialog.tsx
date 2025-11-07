@@ -4,12 +4,14 @@ import { MdDelete } from "react-icons/md";
 
 interface DeleteDialogProps {
   isOpen: boolean;
+  isLoading?: boolean;
   onClose: () => void;
   onConfirm: () => void;
 }
 
 export const DeleteDialog = ({
   isOpen,
+  isLoading,
   onClose,
   onConfirm,
 }: DeleteDialogProps) => {
@@ -34,7 +36,11 @@ export const DeleteDialog = ({
                 <Button onClick={onClose} variant={"outline"}>
                   {t("deleteDialog.cancel")}
                 </Button>
-                <Button onClick={onConfirm} colorPalette={"red"}>
+                <Button
+                  onClick={onConfirm}
+                  colorPalette={"red"}
+                  loading={isLoading}
+                >
                   {t("deleteDialog.confirm")}
                   <MdDelete />
                 </Button>

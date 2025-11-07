@@ -4,6 +4,8 @@ import {
   AnimalsDetailsPage,
   AnimalsPage,
   ChangePasswordPage,
+  EventsDetailsPage,
+  EventsPage,
   ForgotPasswordPage,
   HomePage,
   LoginPage,
@@ -38,6 +40,8 @@ export const AppRoutes = () => {
             <Route path="/species/:id" element={<SpeciesDetailsPage />} />
             <Route path="/animals" element={<AnimalsPage />} />
             <Route path="/animals/:id" element={<AnimalsDetailsPage />} />
+            <Route path="/events" element={<EventsPage />} />
+            <Route path="/events/:id" element={<EventsDetailsPage />} />
             <Route element={<RoleBasedRoute roles={["Admin"]} />}>
               <Route path="/users" element={<UsersPage />} />
             </Route>

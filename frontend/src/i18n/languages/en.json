@@ -407,5 +407,104 @@
         "description": "Description cannot exceed 100 characters"
       }
     }
-  }
+  },
+  "events": {
+    "list": {
+      "header": "Event List",
+      "title": "Title",
+      "when": "When?",
+      "where": "Where?",
+      "animal": "Animal",
+      "isDone": "Completed?",
+      "actions": "Actions",
+      "details": "Details",
+      "end": "Complete",
+      "animals": "Animals",
+      "status": "Status",
+      "filter": "Filter",
+      "active": "Active",
+      "completed": "Completed",
+      "error": "Failed to load events data"
+    },
+    "create": {
+      "button": "Add Event",
+      "dialogTitle": "Add New Event",
+      "toast": {
+        "success": "Successfully created a new event",
+        "error": "Failed to create a new event"
+      }
+    },
+    "fields": {
+      "errors": {
+        "title": {
+          "min": "Title must be at least 3 characters long",
+          "max": "Title can be at most 40 characters long"
+        },
+        "description": "Description cannot exceed 250 characters",
+        "date": "Event date is required",
+        "dateFuture": "The date cannot be in the past",
+        "location": {
+          "min": "Location name must be at least 3 characters long",
+          "max": "Location name can be at most 100 characters long"
+        },
+        "user": "Employee is required",
+        "animal": "Animal is required",
+        "cost": "Cost cannot be less than 0"
+      },
+      "title": "Title",
+      "titlePlaceholder": "Title e.g. \"Veterinary vaccination\"",
+      "descriptionPlaceholder": "Description e.g. \"Bring the veterinary booklet\"",
+      "description": "Description",
+      "date": "Event date",
+      "location": "Location",
+      "locationPlaceholder": "Location e.g. \"Wrocław, XXX Street 19\"",
+      "animal": "Animal",
+      "selectAnimal": "Select animal",
+      "selectUser": "Select employee responsible for the event",
+      "user": "Employee",
+      "cost": "Cost",
+      "costPlaceholder": "Cost e.g. 250",
+      "currency": "Select currency"
+    },
+    "delete": {
+      "toast": {
+        "success": "Successfully deleted the event",
+        "error": "Failed to delete the event"
+      }
+    },
+    "end": {
+      "title": "Confirm action",
+      "body": "Are you sure you want to complete this event? You will be marked as the person who completed it.",
+      "toast": {
+        "success": "Successfully complated the event",
+        "error": "Failed to complate the event"
+      }
+    },
+    "edit": {
+      "dialogTitle": "Edit event",
+      "animalMessage": "Event is related to an animal named ",
+      "toast": {
+        "success": "Successfully updated event data",
+        "error": "Failed to update event data"
+      }
+    },
+    "details": {
+      "error": "Failed to load event data",
+      "end": "Complete",
+      "date": "Date",
+      "completed": "Completed",
+      "active": "Active",
+      "location": "Location",
+      "animal": "Animal",
+      "cost": "Cost",
+      "employee": "Assigned employee",
+      "completedAt": "Completed at",
+      "completedEmployee": "Completed by",
+      "description": "Description",
+      "emptyDescription": "This event has no description",
+      "created": "Created at",
+      "updated": "Last modified"
+    }
+  },
+  "confirm": "Confirm"
 }

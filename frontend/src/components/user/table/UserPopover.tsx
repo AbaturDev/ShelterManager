@@ -9,6 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { useUserByIdQuery } from "../../../hooks/useUserByIdQuery";
 import { useTranslation } from "react-i18next";
+import type { UserDetails } from "../../../models/user";
 
 interface UserPopoverProps {
   userId: string;
@@ -32,6 +33,8 @@ export const UserPopover = ({
     return;
   }
 
+  const user = data as UserDetails;
+
   return (
     <Popover.Root
       open={isOpen}
@@ -54,7 +57,7 @@ export const UserPopover = ({
         <Popover.Content maxW="400px">
           <Popover.Header>
             <Heading size="md">
-              {t("user.details.header")} – {data?.name} {data?.surname}
+              {t("user.details.header")} – {user?.name} {user?.surname}
             </Heading>
           </Popover.Header>
           <Popover.Body>
@@ -63,17 +66,17 @@ export const UserPopover = ({
             ) : (
               <Stack gap={2}>
                 <Text>
-                  <b>{t("user.details.email")}:</b> {data?.email}
+                  <b>{t("user.details.email")}:</b> {user?.email}
                 </Text>
                 <Text>
                   <b>{t("user.details.role")}:</b>{" "}
-                  <Badge color={data?.role === "Admin" ? "blue.700" : "green"}>
-                    {data?.role}
+                  <Badge color={user?.role === "Admin" ? "blue.700" : "green"}>
+                    {user?.role}
                   </Badge>
                 </Text>
                 <Text>
                   <b>{t("user.details.mustChangePassword")}</b>{" "}
-                  {data?.mustChangePassword ? t("yes") : t("no")}
+                  {user?.mustChangePassword ? t("yes") : t("no")}
                 </Text>
               </Stack>
             )}

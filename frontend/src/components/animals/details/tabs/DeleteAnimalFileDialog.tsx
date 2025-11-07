@@ -50,6 +50,11 @@ export const DeleteAnimalFileDialog = ({
   const handleSubmit = async () => await mutation.mutateAsync();
 
   return (
-    <DeleteDialog isOpen={isOpen} onClose={onClose} onConfirm={handleSubmit} />
+    <DeleteDialog
+      isOpen={isOpen}
+      onClose={onClose}
+      onConfirm={handleSubmit}
+      isLoading={mutation.isPending}
+    />
   );
 };

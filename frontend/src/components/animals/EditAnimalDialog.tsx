@@ -284,7 +284,11 @@ export const EditAnimalDialog = ({
                   <Button onClick={onClose} variant={"outline"}>
                     {t("cancel")}
                   </Button>
-                  <Button type="submit" background={"green.400"}>
+                  <Button
+                    type="submit"
+                    background={"green.400"}
+                    loading={mutation.isPending}
+                  >
                     {t("save")}
                   </Button>
                 </HStack>
