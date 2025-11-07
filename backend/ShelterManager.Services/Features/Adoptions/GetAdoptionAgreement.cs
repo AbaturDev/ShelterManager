@@ -75,7 +75,7 @@ public static class GetAdoptionAgreement
         };
         var content = templateService.LoadTemplate($"Templates\\Adoptions\\{lang}\\AdoptionAgreement.html", templateParameters);
 
-        var pdfStream = pdfService.GeneratePdfFromHtml(content);
+        var pdfStream = await pdfService.GeneratePdfFromHtml(content, ct);
         
         return new FileStreamDto
         {

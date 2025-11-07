@@ -2,5 +2,5 @@ namespace ShelterManager.Core.Services.Abstractions;
 
 public interface IPdfService
 {
-    Stream GeneratePdfFromHtml(string htmlContent);
+    Task<Stream> GeneratePdfFromHtml(string htmlContent, CancellationToken ct = default);
 }
