@@ -610,6 +610,27 @@
           }
         }
       }
+    },
+    "details": {
+      "error": "Failed to load adoption data",
+      "title": "Adoption Process of",
+      "start": "Process start date",
+      "date": "Date of adoption",
+      "note": "Note",
+      "noNote": "This adoption process does not have any note",
+      "created": "Created at",
+      "updated": "Last modified",
+      "pdf": "Generte agreement",
+      "pdfError": "Failed to generate adoption agreement file",
+      "person": {
+        "info": "Adopter Info",
+        "name": "Name",
+        "email": "Email",
+        "phoneNumber": "Phone Number",
+        "documentId": "Document ID",
+        "pesel": "PESEL",
+        "address": "Address"
+      }
     }
   },
   "confirm": "Confirm",

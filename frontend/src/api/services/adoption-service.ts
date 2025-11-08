@@ -26,10 +26,13 @@ const AdoptionService = {
     return data;
   },
 
-  getAdoptionAgreement: async (id: string): Promise<Blob> => {
+  getAdoptionAgreement: async (id: string, lang: string): Promise<Blob> => {
     const response = await apiClient.get(
-      `/adoptions/${id}/adoption-agreement​`,
+      `/adoptions/${id}/adoption-agreement`,
       {
+        headers: {
+          "Accept-Language": lang,
+        },
         responseType: "blob",
       }
     );

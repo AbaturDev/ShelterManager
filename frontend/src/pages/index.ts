@@ -11,3 +11,4 @@ export * from "./AnimalsDetailsPage";
 export * from "./EventsPage";
 export * from "./EventsDetailsPage";
 export * from "./AdoptionsPage";
+export * from "./AdoptionsDetailsPage";

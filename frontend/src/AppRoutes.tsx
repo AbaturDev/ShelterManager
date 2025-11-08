@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { AuthLayout, PublicLayout } from "./Layout";
 import {
+  AdoptionsDetailsPage,
   AdoptionsPage,
   AnimalsDetailsPage,
   AnimalsPage,
@@ -44,6 +45,7 @@ export const AppRoutes = () => {
             <Route path="/events" element={<EventsPage />} />
             <Route path="/events/:id" element={<EventsDetailsPage />} />
             <Route path="/adoptions" element={<AdoptionsPage />} />
+            <Route path="/adoptions/:id" element={<AdoptionsDetailsPage />} />
             <Route element={<RoleBasedRoute roles={["Admin"]} />}>
               <Route path="/users" element={<UsersPage />} />
             </Route>

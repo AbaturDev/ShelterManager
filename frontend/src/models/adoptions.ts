@@ -19,7 +19,7 @@ export interface AdoptionDetails {
   status: AdoptionStatus;
   animalName: string;
   animalId: string;
-  startAdoptionProcess?: string;
+  startAdoptionProcess: string;
   adoptionDate?: string;
   createdAt: string;
   updatedAt: string;

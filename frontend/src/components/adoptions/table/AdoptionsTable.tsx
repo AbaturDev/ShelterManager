@@ -1,26 +1,15 @@
-import {
-  Badge,
-  Flex,
-  Icon,
-  Menu,
-  Portal,
-  Stack,
-  Table,
-  Text,
-} from "@chakra-ui/react";
+import { Flex, Icon, Menu, Portal, Stack, Table, Text } from "@chakra-ui/react";
 import { useAdoptionsQuery } from "../../../hooks/useAdoptionsQuery";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Loading, PaginationFooter } from "../../commons";
 import { useState } from "react";
-import {
-  PossibleAdoptionStatus,
-  type AdoptionStatus,
-} from "../../../models/adoptions";
+import { type AdoptionStatus } from "../../../models/adoptions";
 import { SlOptionsVertical } from "react-icons/sl";
 import { FaEye } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { DeleteAdoptionDialog } from "../DeleteAdoptionDialog";
+import { AdoptionStatusBadge } from "../AdoptionStatusBadge";
 
 interface AdoptionsTableProps {
   search?: string;
@@ -51,25 +40,6 @@ export const AdoptionsTable = ({ search }: AdoptionsTableProps) => {
   if (error || data === undefined) {
     return <Text color="red">{t("adoptions.list.error")}</Text>;
   }
-
-  const renderStatus = (status: number) => {
-    switch (status) {
-      case PossibleAdoptionStatus.Active:
-        return (
-          <Badge colorPalette="yellow">{t("adoptions.status.active")}</Badge>
-        );
-      case PossibleAdoptionStatus.Approved:
-        return (
-          <Badge colorPalette="green">{t("adoptions.status.approved")}</Badge>
-        );
-      case PossibleAdoptionStatus.Rejected:
-        return (
-          <Badge colorPalette="red">{t("adoptions.status.rejected")}</Badge>
-        );
-      default:
-        return "-";
-    }
-  };
 
   return (
     <>
@@ -105,7 +75,7 @@ export const AdoptionsTable = ({ search }: AdoptionsTableProps) => {
                     {item.animalName}
                   </Table.Cell>
                   <Table.Cell width={"10%"} textAlign={"center"}>
-                    {renderStatus(item.status)}
+                    <AdoptionStatusBadge status={item.status} />
                   </Table.Cell>
                   <Table.Cell textAlign={"center"} width={"29%"}>
                     {new Date(item.startAdoptionProcess).toLocaleString()}

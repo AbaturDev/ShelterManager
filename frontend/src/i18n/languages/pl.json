@@ -610,6 +610,27 @@
           }
         }
       }
+    },
+    "details": {
+      "error": "Nie udało się wczytać danych procesu adopcyjnego",
+      "title": "Proces adopcji -",
+      "start": "Data rozpoczęcia procesu",
+      "date": "Data adopcji",
+      "note": "Notatka",
+      "noNote": "Ten proces adopcji nie zawiera żadnej notatki",
+      "created": "Utworzono",
+      "updated": "Modyfikowano",
+      "pdf": "Generuj umowę adopcyjną",
+      "pdfError": "Nie udało się wygenerować pliku umowy adopcyjnej",
+      "person": {
+        "info": "Informacje o adoptującym",
+        "name": "Imię i nazwisko",
+        "email": "Adres e-mail",
+        "phoneNumber": "Numer telefonu",
+        "documentId": "Numer dokumentu",
+        "pesel": "PESEL",
+        "address": "Adres"
+      }
     }
   },
   "confirm": "Potwierdź",

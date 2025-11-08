@@ -4,6 +4,7 @@ import {
   Heading,
   HStack,
   Icon,
+  Link,
   Separator,
   Stack,
   Text,
@@ -78,7 +79,9 @@ export const EventDetailsCard = ({
           <HStack>
             <Icon as={MdPets} color="purple.500" />
             <Text fontWeight="semibold">{t("events.details.animal")}</Text>
-            <Text>{event.animalName}</Text>
+            <Link variant={"underline"} href={`/animals/${event.animalId}`}>
+              {event.animalName}
+            </Link>
           </HStack>
 
           {event.cost && (
