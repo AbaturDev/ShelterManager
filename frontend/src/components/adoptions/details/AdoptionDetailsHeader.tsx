@@ -4,8 +4,12 @@ import { MdDelete, MdEdit } from "react-icons/md";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import type { AdoptionDetails } from "../../../models/adoptions";
+import {
+  PossibleAdoptionStatus,
+  type AdoptionDetails,
+} from "../../../models/adoptions";
 import { DeleteAdoptionDialog } from "../DeleteAdoptionDialog";
+import { EditAdoptionDialog } from "./EditAdoptionDialog";
 
 interface Props {
   adoption: AdoptionDetails | undefined;
@@ -31,6 +35,7 @@ export const AdoptionDetailsHeader = ({ adoption, isLoading }: Props) => {
         <>
           <HStack gap={5}>
             <Button
+              disabled={adoption.status !== PossibleAdoptionStatus.Active}
               variant={"solid"}
               colorPalette={"blue"}
               onClick={() => setIsEditOpen(true)}
@@ -58,9 +63,9 @@ export const AdoptionDetailsHeader = ({ adoption, isLoading }: Props) => {
               navigate("/adoptions");
             }}
           />
-          {/*
-          <EditEventDialog
-            event={event}
+
+          <EditAdoptionDialog
+            adoption={adoption}
             isOpen={isEditOpen}
             onClose={() => {
               setIsEditOpen(false);
@@ -68,7 +73,7 @@ export const AdoptionDetailsHeader = ({ adoption, isLoading }: Props) => {
             onSuccess={() => {
               setIsEditOpen(false);
             }}
-          /> */}
+          />
           {isEditOpen}
         </>
       )}

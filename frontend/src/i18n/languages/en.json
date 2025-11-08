@@ -631,6 +631,19 @@
         "pesel": "PESEL",
         "address": "Address"
       }
+    },
+    "edit": {
+      "dialogTitle": "Edit Adoption Process",
+      "event": {
+        "section": "Create adoption event",
+        "title": "Adoption of ",
+        "location": "In shelter"
+      },
+      "toast": {
+        "success": "Successfully updated adoption process",
+        "successWithEvent": "Successfully updated adoption process and created event for this upcoming adoption",
+        "error": "Failed to update adoption process"
+      }
     }
   },
   "confirm": "Confirm",

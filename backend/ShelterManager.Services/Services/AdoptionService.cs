@@ -155,7 +155,7 @@ public class AdoptionService : IAdoptionService
 
         if (adoption.Status != AdoptionStatus.Active)
         {
-            throw new BadRequestException("Only pending adoptions can be updated.");
+            throw new BadRequestException("Only active adoptions can be updated.");
         }
         
         adoption.Status = dto.Status;

@@ -631,6 +631,19 @@
         "pesel": "PESEL",
         "address": "Adres"
       }
+    },
+    "edit": {
+      "dialogTitle": "Edytuj proces adopcji",
+      "event": {
+        "section": "Utwórz wydarzenie adopcyjne",
+        "title": "Adopcja - ",
+        "location": "W schronisku"
+      },
+      "toast": {
+        "success": "Pomyślnie zaktualizowano proces adopcji",
+        "successWithEvent": "Pomyślnie zaktualizowano proces adopcji i utworzono wydarzenie dla tej nadchodzącej adopcji",
+        "error": "Nie udało się zaktualizować procesu adopcji"
+      }
     }
   },
   "confirm": "Potwierdź",
