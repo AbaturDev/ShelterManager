@@ -54,9 +54,9 @@ export const AdoptionsTable = ({ search }: AdoptionsTableProps) => {
 
   const renderStatus = (status: number) => {
     switch (status) {
-      case PossibleAdoptionStatus.Pending:
+      case PossibleAdoptionStatus.Active:
         return (
-          <Badge colorPalette="yellow">{t("adoptions.status.pending")}</Badge>
+          <Badge colorPalette="yellow">{t("adoptions.status.active")}</Badge>
         );
       case PossibleAdoptionStatus.Approved:
         return (

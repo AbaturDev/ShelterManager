@@ -1,6 +1,6 @@
 export type AdoptionStatus = 0 | 1 | 2;
 export const PossibleAdoptionStatus = {
-  Pending: 0 as AdoptionStatus,
+  Active: 0 as AdoptionStatus,
   Approved: 1 as AdoptionStatus,
   Rejected: 2 as AdoptionStatus,
 };

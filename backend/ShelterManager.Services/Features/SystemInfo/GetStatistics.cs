@@ -14,7 +14,7 @@ public static class GetStatistics
     {
         var animalsCount = await context.Animals.CountAsync(ct);
         var currentAdoptions = await context.Adoptions
-            .Where(x => x.Status == AdoptionStatus.Pending)
+            .Where(x => x.Status == AdoptionStatus.Active)
             .CountAsync(ct);
         var upComingEvents = await context.Events
             .Where(x => !x.IsDone)

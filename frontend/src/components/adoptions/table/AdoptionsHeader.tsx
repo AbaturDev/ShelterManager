@@ -20,6 +20,7 @@ import {
   PossibleAdoptionStatus,
   type AdoptionStatus,
 } from "../../../models/adoptions";
+import { AddAdoptionDialog } from "../create";
 
 interface AdoptionsHeaderProps {
   onSearch: (query: string) => void;
@@ -71,7 +72,7 @@ export const AdoptionsHeader = ({ onSearch }: AdoptionsHeaderProps) => {
 
       <Flex w="100%" justifyContent={"center"}>
         <HStack w="80%" justifyContent="space-between">
-          <Button background={"green.400"}>Create</Button>
+          <AddAdoptionDialog />
 
           <Box flex="1" maxW="700px">
             <SearchInput onSearch={onSearch} />

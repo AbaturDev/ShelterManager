@@ -35,10 +35,10 @@ const schema = z.object({
     .min(0, setFormErrorMessage("animals.create.errors.ageMin"))
     .max(100, setFormErrorMessage("animals.create.errors.ageMax"))
     .nullable(),
-  speciesId: z.string(),
-  species: z.string(),
-  breed: z.string(),
-  breedId: z.string(),
+  speciesId: z.string(setFormErrorMessage("animals.create.errors.species")),
+  species: z.string(setFormErrorMessage("animals.create.errors.species")),
+  breed: z.string(setFormErrorMessage("animals.create.errors.breed")),
+  breedId: z.string(setFormErrorMessage("animals.create.errors.breed")),
   description: z
     .string()
     .max(350, setFormErrorMessage("animals.create.errors.description"))

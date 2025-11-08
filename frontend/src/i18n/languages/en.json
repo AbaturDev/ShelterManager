@@ -252,7 +252,9 @@
         "ageMax": "Minimum age is 0 years",
         "description": "Description must not exceed 350 characters",
         "dateFuture": "Admission date cannot be in the future",
-        "date": "Admission date is required"
+        "date": "Admission date is required",
+        "breed": "Breed is required",
+        "species": "Species is required"
       },
       "summary": {
         "title": "Summary",
@@ -508,7 +510,7 @@
   },
   "adoptions": {
     "status": {
-      "pending": "Pending",
+      "active": "Active",
       "approved": "Approved",
       "rejected": "Rejected"
     },
@@ -519,12 +521,94 @@
       "startDate": "Process start date",
       "adoptionDate": "Date of adoption",
       "actions": "Actions",
-      "animals": "Animals"
+      "animals": "Animals",
+      "error": "Failed to load adoptions list"
     },
     "delete": {
       "toast": {
         "success": "Successfully deleted adoption",
         "error": "Failed to delete adoption"
+      }
+    },
+    "create": {
+      "button": "Create",
+      "title": "Create new adoption process",
+      "general": "General info",
+      "person": "Adopter details",
+      "summary": "Summary",
+      "validationError": "Complete all required fields in previous steps to create adoption process!",
+      "toast": {
+        "success": "Successfully created a new adoption process",
+        "error": "Failed to create a new adoption process",
+        "exist": "Can not create new adoption process for animal that is already adopted or has ongoing adoption process"
+      }
+    },
+    "fields": {
+      "animal": "Animal",
+      "selectAnimal": "Select animal",
+      "note": "Note",
+      "notePlaceholder": "Write an optional note...",
+      "person": {
+        "name": "Name",
+        "namePlaceholder": "First name e.g. John",
+        "surname": "Surname",
+        "surnamePlaceholder": "Last name e.g. Smith",
+        "phone": "Phone number",
+        "phonePlaceholder": "Phone number e.g. 123456789",
+        "email": "Email",
+        "emailPlaceholder": "Email address e.g. john@smith.com",
+        "pesel": "PESEL",
+        "peselPlaceholder": "PESEL number e.g. 12345678901",
+        "document": "Document ID number",
+        "documentPlaceholder": "Document ID or passport number e.g. AB123456",
+        "postalCode": "Postal code",
+        "postalCodePlaceholder": "e.g. 00-000",
+        "city": "City",
+        "cityPlaceholder": "City e.g. Warsaw",
+        "street": "Street and number",
+        "streetPlaceholder": "Enter street and house number e.g. Main St 12"
+      },
+      "errors": {
+        "animal": "Animal is required.",
+        "note": "Note must not exceed 350 characters.",
+        "person": {
+          "name": {
+            "required": "First name is required.",
+            "min": "First name must be at least 1 character.",
+            "max": "First name must not exceed 30 characters."
+          },
+          "surname": {
+            "required": "Last name is required.",
+            "max": "Last name must not exceed 30 characters."
+          },
+          "phone": {
+            "required": "Phone number is required.",
+            "max": "Phone number must not exceed 15 characters."
+          },
+          "email": {
+            "invalid": "Email must be valid.",
+            "max": "Email must not exceed 50 characters."
+          },
+          "pesel": {
+            "invalid": "PESEL must be exactly 11 digits."
+          },
+          "document": {
+            "required": "Document ID is required.",
+            "max": "Document ID must not exceed 20 characters."
+          },
+          "street": {
+            "required": "Street is required.",
+            "max": "Street must not exceed 100 characters."
+          },
+          "city": {
+            "required": "City is required.",
+            "max": "City must not exceed 50 characters."
+          },
+          "postalCode": {
+            "required": "Postal code is required.",
+            "max": "Postal code must not exceed 20 characters."
+          }
+        }
       }
     }
   },
