@@ -19,6 +19,7 @@ export const AnimalSpeciesStep = ({ onNext, onBack }: Props) => {
     setValue,
     formState: { errors },
     watch,
+    trigger,
   } = useFormContext<AddAnimalSchema>();
 
   const speciesId = watch("speciesId");
@@ -41,10 +42,12 @@ export const AnimalSpeciesStep = ({ onNext, onBack }: Props) => {
     setValue("breedId", "");
   };
 
-  const species = watch("species");
-  const breed = watch("breed");
-  const breedId = watch("breedId");
-  const isFormValid = !!species && !!breed && !!breedId;
+  const handleNext = async () => {
+    const isValid = await trigger(["speciesId", "species", "breed", "breedId"]);
+    if (isValid) {
+      onNext();
+    }
+  };
 
   return (
     <Box display="flex" flexDirection="column" gap={4} p={4}>
@@ -125,7 +128,7 @@ export const AnimalSpeciesStep = ({ onNext, onBack }: Props) => {
         <Button variant="outline" onClick={onBack}>
           {t("prev")}
         </Button>
-        <Button background="green.400" onClick={onNext} disabled={!isFormValid}>
+        <Button background="green.400" onClick={handleNext}>
           {t("next")}
         </Button>
       </Box>

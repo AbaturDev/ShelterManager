@@ -23,6 +23,7 @@ export interface Money {
 export interface EventQuery {
   page: number;
   pageSize: number;
+  title?: string;
   animalIds?: string[];
   isDone?: boolean;
 }

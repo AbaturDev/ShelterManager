@@ -149,9 +149,15 @@ export const AnimalDetailsCard = ({ id }: AnimalsDetailsCardProps) => {
             <Heading size="md" mb={2}>
               {t("animals.details.description")}
             </Heading>
-            <Text fontStyle="italic" color="gray.700">
-              {animal.description || t("animals.details.noDescription")}
-            </Text>
+            {animal.description ? (
+              <Text fontStyle="italic" color="gray.700">
+                {animal.description}
+              </Text>
+            ) : (
+              <Text fontStyle="italic" color="gray.400">
+                {t("animals.details.noDescription")}
+              </Text>
+            )}
           </Box>
         </Card.Body>
 

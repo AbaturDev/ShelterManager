@@ -252,7 +252,9 @@
         "ageMax": "Wiek nie może przekraczać 100 lat",
         "description": "Opis nie może przekraczać 350 znaków",
         "dateFuture": "Data przyjęcia nie może być z przyszłości",
-        "date": "Data przyjęcia jest wymagana"
+        "date": "Data przyjęcia jest wymagana",
+        "breed": "Rasa jest wymagana",
+        "species": "Gatunek jest wymagany"
       },
       "summary": {
         "title": "Podsumowanie",
@@ -506,5 +508,145 @@
       "updated": "Modyfikowano"
     }
   },
-  "confirm": "Potwierdź"
+  "adoptions": {
+    "status": {
+      "active": "W trakcie",
+      "approved": "Zatwierdzona",
+      "rejected": "Odrzucona"
+    },
+    "list": {
+      "header": "Adopcje",
+      "animal": "Zwierzę",
+      "status": "Status",
+      "startDate": "Data rozpoczęcia procesu",
+      "adoptionDate": "Data adopcji",
+      "actions": "Akcje",
+      "animals": "Zwierzęta",
+      "error": "Nie udało się załadować listy adopcji"
+    },
+    "delete": {
+      "toast": {
+        "success": "Pomyślnie usunięto adopcję",
+        "error": "Nie udało się usunąć adopcji"
+      }
+    },
+    "create": {
+      "button": "Utwórz",
+      "title": "Utwórz nowy proces adopcyjny",
+      "general": "Informacje ogólne",
+      "person": "Dane adoptującego",
+      "summary": "Podsumowanie",
+      "validationError": "Uzupełnij wszystkie wymagane pola w poprzednich krokach, aby utworzyć proces adopcji!",
+      "toast": {
+        "success": "Pomyślnie utworzono nowy proces adopcyjny",
+        "error": "Nie udało się utworzyć nowego procesu adopcyjnego",
+        "exist": "Nie można utworzyć nowego procesu adopcyjnego dla tego zwierzęcia, ponieważ jest ono już adoptowane lub ma aktywny proces adopcyjny"
+      }
+    },
+    "fields": {
+      "animal": "Zwierzę",
+      "selectAnimal": "Wybierz zwierzę",
+      "note": "Notatka",
+      "notePlaceholder": "Opcjonalna notatka...",
+      "person": {
+        "name": "Imię",
+        "namePlaceholder": "Imię, np. Jan",
+        "surname": "Nazwisko",
+        "surnamePlaceholder": "Nazwisko, np. Kowalski",
+        "phone": "Numer telefonu",
+        "phonePlaceholder": "Numer telefonu, np. 123456789",
+        "email": "Email",
+        "emailPlaceholder": "Adres email, np. jan@kowalski.com",
+        "pesel": "PESEL",
+        "peselPlaceholder": "Numer PESEL, np. 12345678901",
+        "document": "Numer dokumentu",
+        "documentPlaceholder": "Numer dokumentu lub paszportu, np. AB123456",
+        "postalCode": "Kod pocztowy",
+        "postalCodePlaceholder": "np. 00-000",
+        "city": "Miasto",
+        "cityPlaceholder": "Miasto, np. Warszawa",
+        "street": "Ulica i numer",
+        "streetPlaceholder": "Ulica i numer domu, np. Główna 12"
+      },
+      "errors": {
+        "animal": "Wybór zwierzęcia jest wymagany.",
+        "note": "Notatka nie może przekraczać 350 znaków.",
+        "person": {
+          "name": {
+            "required": "Imię jest wymagane.",
+            "min": "Imię musi mieć co najmniej 1 znak.",
+            "max": "Imię nie może przekraczać 30 znaków."
+          },
+          "surname": {
+            "required": "Nazwisko jest wymagane.",
+            "max": "Nazwisko nie może przekraczać 30 znaków."
+          },
+          "phone": {
+            "required": "Numer telefonu jest wymagany.",
+            "max": "Numer telefonu nie może przekraczać 15 znaków."
+          },
+          "email": {
+            "invalid": "Adres email musi być poprawny.",
+            "max": "Adres email nie może przekraczać 50 znaków."
+          },
+          "pesel": {
+            "invalid": "PESEL musi mieć dokładnie 11 cyfr."
+          },
+          "document": {
+            "required": "Numer dokumentu jest wymagany.",
+            "max": "Numer dokumentu nie może przekraczać 20 znaków."
+          },
+          "street": {
+            "required": "Ulica jest wymagana.",
+            "max": "Ulica nie może przekraczać 100 znaków."
+          },
+          "city": {
+            "required": "Miasto jest wymagane.",
+            "max": "Miasto nie może przekraczać 50 znaków."
+          },
+          "postalCode": {
+            "required": "Kod pocztowy jest wymagany.",
+            "max": "Kod pocztowy nie może przekraczać 20 znaków."
+          }
+        }
+      }
+    },
+    "details": {
+      "error": "Nie udało się wczytać danych procesu adopcyjnego",
+      "title": "Proces adopcji -",
+      "start": "Data rozpoczęcia procesu",
+      "date": "Data adopcji",
+      "note": "Notatka",
+      "noNote": "Ten proces adopcji nie zawiera żadnej notatki",
+      "created": "Utworzono",
+      "updated": "Modyfikowano",
+      "pdf": "Generuj umowę adopcyjną",
+      "pdfError": "Nie udało się wygenerować pliku umowy adopcyjnej",
+      "person": {
+        "info": "Informacje o adoptującym",
+        "name": "Imię i nazwisko",
+        "email": "Adres e-mail",
+        "phoneNumber": "Numer telefonu",
+        "documentId": "Numer dokumentu",
+        "pesel": "PESEL",
+        "address": "Adres"
+      }
+    },
+    "edit": {
+      "dialogTitle": "Edytuj proces adopcji",
+      "event": {
+        "section": "Utwórz wydarzenie adopcyjne",
+        "title": "Adopcja - ",
+        "location": "W schronisku"
+      },
+      "toast": {
+        "success": "Pomyślnie zaktualizowano proces adopcji",
+        "successWithEvent": "Pomyślnie zaktualizowano proces adopcji i utworzono wydarzenie dla tej nadchodzącej adopcji",
+        "error": "Nie udało się zaktualizować procesu adopcji"
+      }
+    }
+  },
+  "confirm": "Potwierdź",
+  "filter": "Filtruj",
+  "details": "Szczegóły"
 }

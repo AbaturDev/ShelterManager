@@ -97,7 +97,7 @@ public class AdoptionService : IAdoptionService
         }
 
         if (await _context.Adoptions
-                .Where(x => x.Status == AdoptionStatus.Pending || x.Status == AdoptionStatus.Approved)
+                .Where(x => x.Status == AdoptionStatus.Active || x.Status == AdoptionStatus.Approved)
                 .AnyAsync(x => x.AnimalId == dto.AnimalId, ct))
         {
             throw new BadRequestException("Cannot create adoption: this animal already has an ongoing or approved adoption.");
@@ -120,7 +120,7 @@ public class AdoptionService : IAdoptionService
             },
             AnimalId = dto.AnimalId,
             StartAdoptionProcess = _timeProvider.GetUtcNow(),
-            Status = AdoptionStatus.Pending
+            Status = AdoptionStatus.Active
         };
         
         _context.Adoptions.Add(adoption);
@@ -153,9 +153,9 @@ public class AdoptionService : IAdoptionService
             throw new NotFoundException("Adoption not found");
         }
 
-        if (adoption.Status != AdoptionStatus.Pending)
+        if (adoption.Status != AdoptionStatus.Active)
         {
-            throw new BadRequestException("Only pending adoptions can be updated.");
+            throw new BadRequestException("Only active adoptions can be updated.");
         }
         
         adoption.Status = dto.Status;

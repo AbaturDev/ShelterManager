@@ -2,7 +2,7 @@ namespace ShelterManager.Database.Enums;
 
 public enum AdoptionStatus
 {
-    Pending,
+    Active,
     Approved,
     Rejected,
 }

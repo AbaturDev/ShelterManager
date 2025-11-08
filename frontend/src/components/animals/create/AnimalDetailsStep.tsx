@@ -9,7 +9,7 @@ import {
   Text,
   Textarea,
 } from "@chakra-ui/react";
-import { useFormContext } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { getFormErrorMessage } from "../../../utils/form-error-handlers";
 import type { AddAnimalSchema } from "./AddAnimal.Context";
@@ -23,7 +23,21 @@ export const AnimalDetailsStep = ({ onNext }: Props) => {
   const {
     register,
     formState: { errors },
+    trigger,
+    control,
   } = useFormContext<AddAnimalSchema>();
+
+  const handleNext = async () => {
+    const isValid = await trigger([
+      "name",
+      "sex",
+      "admissionDate",
+      "description",
+    ]);
+    if (isValid) {
+      onNext();
+    }
+  };
 
   return (
     <Box display="flex" flexDirection="column" gap={4} p={4}>
@@ -80,11 +94,23 @@ export const AnimalDetailsStep = ({ onNext }: Props) => {
         <Field.Label>
           {t("animals.create.fields.admissionDate")} <Field.RequiredIndicator />
         </Field.Label>
-        <Input
-          type="date"
-          {...register("admissionDate", {
-            valueAsDate: true,
-          })}
+        <Controller
+          name="admissionDate"
+          control={control}
+          render={({ field }) => (
+            <Input
+              type="date"
+              value={
+                field.value instanceof Date && !isNaN(field.value.getTime())
+                  ? field.value.toISOString().split("T")[0]
+                  : ""
+              }
+              onChange={(e) => {
+                const date = e.target.value ? new Date(e.target.value) : null;
+                field.onChange(date);
+              }}
+            />
+          )}
         />
         {errors.admissionDate && (
           <Text color={"red"}>
@@ -116,7 +142,7 @@ export const AnimalDetailsStep = ({ onNext }: Props) => {
         )}
       </Field.Root>
       <Flex w="100%" justifyContent={"end"}>
-        <Button background="green.400" mt={4} onClick={onNext}>
+        <Button background="green.400" mt={4} onClick={handleNext}>
           {t("next")}
         </Button>
       </Flex>

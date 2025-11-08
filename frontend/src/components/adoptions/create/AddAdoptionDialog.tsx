@@ -1,9 +1,9 @@
 import { Button, CloseButton, Dialog, Heading, Portal } from "@chakra-ui/react";
 import { t } from "i18next";
 import { useState } from "react";
-import { AddAnimalDialogContent } from "./AddAnimalDialogContent";
+import { AddAdoptionContent } from "./AddAdoptionContent";
 
-export const AddAnimalDialog = () => {
+export const AddAdoptionDialog = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -18,7 +18,7 @@ export const AddAnimalDialog = () => {
     >
       <Dialog.Trigger asChild>
         <Button size="lg" background={"green.400"}>
-          {t("animals.list.add")}
+          {t("adoptions.create.button")}
         </Button>
       </Dialog.Trigger>
       <Portal>
@@ -26,13 +26,13 @@ export const AddAnimalDialog = () => {
         <Dialog.Positioner>
           <Dialog.Content>
             <Dialog.Header justifyContent={"center"}>
-              <Heading size={"2xl"}>{t("animals.create.title")}</Heading>
+              <Heading size={"2xl"}>{t("adoptions.create.title")}</Heading>
               <Dialog.CloseTrigger asChild>
                 <CloseButton size="sm" />
               </Dialog.CloseTrigger>
             </Dialog.Header>
             <Dialog.Body>
-              <AddAnimalDialogContent onClose={() => setIsOpen(false)} />
+              <AddAdoptionContent onClose={() => setIsOpen(false)} />
             </Dialog.Body>
           </Dialog.Content>
         </Dialog.Positioner>
