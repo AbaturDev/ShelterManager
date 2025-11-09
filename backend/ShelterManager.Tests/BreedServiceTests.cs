@@ -234,5 +234,4 @@ public class BreedServiceTests
         Assert.Equal(10, result.PageSize);
         Assert.All(result.Items, dto => Assert.NotNull(dto.Name));
     }
-
 }
