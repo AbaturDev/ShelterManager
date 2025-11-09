@@ -1,5 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35707.178 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShelterManager.Api", "ShelterManager.Api\ShelterManager.Api.csproj", "{573AAB97-745D-4513-B636-D8B58A974C6D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShelterManager.Core", "ShelterManager.Core\ShelterManager.Core.csproj", "{B09DB9C3-C82A-4CE4-8ECD-4AFC24A15857}"
@@ -7,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShelterManager.Database", "ShelterManager.Database\ShelterManager.Database.csproj", "{F49C639A-3DC9-4D35-ADED-570E465B8635}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShelterManager.Services", "ShelterManager.Services\ShelterManager.Services.csproj", "{882D87FE-49E5-47D3-A6D3-0DC0DFD52356}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShelterManager.Tests", "ShelterManager.Tests\ShelterManager.Tests.csproj", "{1B6FF911-91E7-4F85-A78D-6620C101FFB5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,5 +35,12 @@ Global
 		{882D87FE-49E5-47D3-A6D3-0DC0DFD52356}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{882D87FE-49E5-47D3-A6D3-0DC0DFD52356}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{882D87FE-49E5-47D3-A6D3-0DC0DFD52356}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B6FF911-91E7-4F85-A78D-6620C101FFB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B6FF911-91E7-4F85-A78D-6620C101FFB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B6FF911-91E7-4F85-A78D-6620C101FFB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B6FF911-91E7-4F85-A78D-6620C101FFB5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal
