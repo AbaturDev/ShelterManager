@@ -73,7 +73,9 @@ public static class GetAdoptionAgreement
             {"AnimalAge", adoption.Animal.Age.ToString() ?? UnknownAgeByLanguage(lang)},
             {"AnimalId", adoption.Animal.Id.ToString()},
         };
-        var content = templateService.LoadTemplate($"Templates\\Adoptions\\{lang}\\AdoptionAgreement.html", templateParameters);
+        
+        var path = Path.Combine("Templates", "Adoptions", lang, "AdoptionAgreement.html");
+        var content = templateService.LoadTemplate(path, templateParameters);
 
         var pdfStream = await pdfService.GeneratePdfFromHtml(content, ct);
         
